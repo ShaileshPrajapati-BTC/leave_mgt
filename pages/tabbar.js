@@ -22,19 +22,19 @@ export default class Tabbar extends Component{
       initialPage={0}
       renderTabBar={() => <Tabs name={santosh} />}
       >
-      <ScrollView tabLabel="ios-paper">
+      <ScrollView tabLabel="ios-card">
         <Card />
       </ScrollView>
-      <ScrollView tabLabel="ios-people">
+      <ScrollView tabLabel="md-list">
         <Vas />
       </ScrollView>
-      <ScrollView tabLabel="ios-chatboxes">
+      <ScrollView tabLabel="ios-walk">
         <Sports />
       </ScrollView>
-      <ScrollView tabLabel="ios-notifications">
+      <ScrollView tabLabel="ios-navigate">
           <Map />
       </ScrollView>
-      <ScrollView tabLabel="ios-list">
+      <ScrollView tabLabel="ios-basket">
         <Shop />
       </ScrollView>
     </ScrollableTabView>;
