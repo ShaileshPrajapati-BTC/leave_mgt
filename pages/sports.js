@@ -10,7 +10,7 @@ import sports_styles from '../styles/sports_styles';
 export default class Sports extends Component {
   _navigate(name) {
     this.props.navigator.push({
-      name: 'Shopping',
+      name: name,
       passProps: {
         name: name
       }
@@ -39,12 +39,20 @@ export default class Sports extends Component {
         <View style={sports_styles.flex_col_container}>
           <View style={sports_styles.row_space}>
             <View style={sports_styles.flex_col_container}>
-              <Image source={require('../images/account.png')} style={{left:50,width: 50, height: 50}}/>
-              <Text style={{left:60}}>Live</Text>
-            </View>
+              <TouchableHighlight onPress={ () => this._navigate('Live') }>
+                <View >
+                  <Image source={require('../images/account.png')} style={{left:10,width: 50, height: 50}}/>
+                  <Text >Live</Text>
+                </View>
+              </TouchableHighlight>
+            </View>  
             <View style={sports_styles.flex_col_container}>
-              <Image source={require('../images/account.png')} style={{left:50,width: 50, height: 50}}/>
-              <Text style={{left:40}}>E-Learning</Text>
+              <TouchableHighlight onPress={ () => this._navigate('Elearning') }>
+                <View>
+                  <Image source={require('../images/account.png')} style={{left:10,width: 50, height: 50}}/>
+                  <Text >E-Learning</Text>
+                </View>
+              </TouchableHighlight>
             </View>
           </View>
         </View>
@@ -56,13 +64,17 @@ export default class Sports extends Component {
               <TouchableHighlight onPress={ () => this._navigate('Shopping') }>
                 <View>
                   <Image source={require('../images/account.png')} style={{left:10,width: 50, height: 50}}/>
-                  <Text style={{left:25}}>Shopping</Text>
+                  <Text>Shopping</Text>
                 </View>
              </TouchableHighlight>
             </View>
             <View style={sports_styles.flex_col_container}>
-              <Image source={require('../images/account.png')} style={{left:50,width: 50, height: 50}}/>
-              <Text style={{left:55}}>Event</Text>
+              <TouchableHighlight onPress={ () => this._navigate('Event') }>
+                <View>
+                  <Image source={require('../images/account.png')} style={{left:10,width: 50, height: 50}}/>
+                  <Text >Event</Text>
+                </View>
+              </TouchableHighlight>
             </View>
           </View>
         </View>
@@ -71,15 +83,25 @@ export default class Sports extends Component {
         <View style={sports_styles.flex_col_container1}>
           <View style={sports_styles.row_space}>
             <View style={sports_styles.flex_col_container}>
-              <Image source={require('../images/account.png')} style={{left:30,width: 50, height: 50}}/>
-              <Text style={{left:20}}>Community</Text>
+            <TouchableHighlight onPress={ () => this._navigate('Community') }>
+              <View>
+                <Image source={require('../images/account.png')} style={{left:10,width: 50, height: 50}}/>
+                <Text >Community</Text>
+              </View>
+            </TouchableHighlight>
             </View>
+
             <View style={sports_styles.flex_col_container}>
-              <Image source={require('../images/account.png')} style={{left:50,width: 50, height: 50}}/>
-              <Text style={{left:55}}>Photo</Text>
+              <TouchableHighlight onPress={ () => this._navigate('Photo') }>
+                <View>
+                  <Image source={require('../images/account.png')} style={{left:10,width: 50, height: 50}}/>
+                  <Text >Photo</Text>
+                </View>
+              </TouchableHighlight>
             </View>
           </View>
         </View>
+
       </View>
     );
   }

@@ -17,11 +17,10 @@ const sports_styles = StyleSheet.create({
   flex_col_container:{
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   row_space:{
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
