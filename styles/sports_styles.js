@@ -29,7 +29,7 @@ const sports_styles = StyleSheet.create({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'flex-start',
-  padding:20
+  margin:20
  }
 });
 

@@ -33,7 +33,7 @@ export default class Elearning extends Component {
           </ToolbarAndroid>
         </View>
         <View style={styles.raw_container}>
-          <Icon name="camera" size={30} color="#ff6f00" style={{top:20}} />
+          <Image source={require('./images/video.png')} style={{width: 50, height: 50}}/>
         </View>
         <ScrollView style={styles.scrollView} >
           <View style={{flex:1}}>
@@ -132,7 +132,6 @@ const styles = StyleSheet.create({
   raw_container:{
     flexDirection: 'row',
     justifyContent: 'center',
-    height:80,
   },
   image_container:{
     flexDirection: 'row',
