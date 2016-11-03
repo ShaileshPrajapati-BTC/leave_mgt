@@ -8,6 +8,7 @@ import Menu from './menu.js';
 import Sports from './sports.js';
 import Map from './map.js';
 import Shop from './shop.js';
+import Tabbar from './tabbar.js';
 
 
 import {
@@ -40,11 +41,9 @@ export default class Home extends Component {
             acceptTap
             styles={{main: {shadowColor: '#787878', shadowOpacity: 0.8, shadowRadius: 15}}}
             onOpen={() => {
-              console.log('onopen')
               this.setState({drawerOpen: true})
             }}
             onClose={() => {
-              console.log('onclose')
               this.setState({drawerOpen: false})
             }}
             captureGestures={false}
@@ -70,15 +69,7 @@ export default class Home extends Component {
               </View>
              </ToolbarAndroid>
           </View>
-            <ScrollableTabView
-            tabBarBackgroundColor="#ff6f00"
-            tabBarTextStyle={{fontSize: 10, color:'white'}}>
-             <Card tabLabel="CARD" />
-             <Vas tabLabel="VAS" navigator={this.props.navigator} />
-             <Sports tabLabel="SPORTS"  navigator={this.props.navigator}/>
-            <Map tabLabel="MAP" />
-            <Shop tabLabel="SHOP" />
-           </ScrollableTabView>
+            <Tabbar />
          </View>
          </Drawer>
         );
