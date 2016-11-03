@@ -10,40 +10,40 @@ export default class Map extends Component {
 
     render() {
         return (
-          <View style={{flex: 1}}>
-            <View style={styles.top_container}>
-              <View style={styles.container}>
-                <Image source={require('../images/account.png')} />
+          <View style={{ flex: 1}}>
+            <View style={styles.raw_container}>
+              <View style={styles.col_container}>
+                <Image source={require('../images/userphoto.png')} style={{width: 50, height: 50}}/>
               </View>
-              <View style={styles.container}>
+              <View style={styles.col_container}>
                 <Text style={{fontSize: 20, color: '#ff6f00'}}>John Smith</Text>
                 <Text style={{color:'#9E9E9E', fontWeight:'bold'}}>Member since:4th June 2016</Text>
               </View>
             </View>
-            <View style={styles.map_container}>
-              <Text style={{color: '#ff6f00', fontSize:30}}>Map</Text>
+            <View style={styles.text_container}>
+              <Text style={{color: '#ff6f00', fontSize:20}}>Map</Text>
             </View>
           </View>
         );
     }
 }
+
 const styles = StyleSheet.create({
-  top_container:{
+  raw_container:{
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
-  container:{
+  col_container:{
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     padding:10,
   },
-  map_container:{
+  text_container:{
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    padding:10,
-    top:100
+    marginTop:150
   }
-  });
+});
