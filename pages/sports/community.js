@@ -4,19 +4,16 @@ import Data from './shopping/data.js';
 import Row from './shopping/raw.js';
 
 import {
-  Text,View,ListView,ToolbarAndroid,Image,StyleSheet,ScrollView,Navigator
+  Text,View,ToolbarAndroid,StyleSheet,Navigator
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-export default class Shopping extends Component {
+export default class Community extends Component {
 
   constructor() {
     super();
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      dataSource: ds.cloneWithRows(data),
-    };
+    
   }
 
   render() {
@@ -33,15 +30,10 @@ export default class Shopping extends Component {
           </ToolbarAndroid>
         </View>
         <View style={styles.raw_container}>
-          <Icon name="shopping-cart" size={30} color="#ff6f00" style={{top:20}} />
+          <Icon name="calendar" size={30} color="#ff6f00" style={{top:20}} />
         </View>
-        <View>
-          <ScrollView>
-            <ListView style={styles.container}
-              dataSource={this.state.dataSource}
-              renderRow={(data) => <Row {...data} />}
-            />
-          </ScrollView>
+        <View style={{justifyContent: 'center', alignItems: 'center',top:150}}>
+          <Text>Comming soon</Text>
         </View>
       </View>
     );

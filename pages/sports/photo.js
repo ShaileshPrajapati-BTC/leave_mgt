@@ -9,7 +9,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-export default class Shopping extends Component {
+export default class Photo extends Component {
 
   constructor() {
     super();
@@ -33,7 +33,7 @@ export default class Shopping extends Component {
           </ToolbarAndroid>
         </View>
         <View style={styles.raw_container}>
-          <Icon name="shopping-cart" size={30} color="#ff6f00" style={{top:20}} />
+          <Icon name="camera" size={30} color="#ff6f00" style={{top:20}} />
         </View>
         <View>
           <ScrollView>
