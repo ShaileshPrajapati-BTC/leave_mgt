@@ -70,16 +70,7 @@ export default class Home extends Component {
                 </View>
               </ToolbarAndroid>
             </View>
-            <ScrollableTabView
-              tabBarBackgroundColor="#ff6f00"
-              tabBarTextStyle={{fontSize: 10, color:'white'}}
-            >
-              <Card tabLabel="CARD" />
-              <Vas tabLabel="VAS" navigator={this.props.navigator} />
-              <Sports tabLabel="SPORTS"  navigator={this.props.navigator}/>
-              <Map tabLabel="MAP" />
-              <Shop tabLabel="SHOP" />
-            </ScrollableTabView>
+            <Tabbar navigator={this.props.navigator}/>
           </View>
         </Drawer>
       );

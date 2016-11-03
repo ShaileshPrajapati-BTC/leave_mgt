@@ -30,7 +30,7 @@ export default class Card extends Component {
               </View>
             </View>
             <View style={styles.card_container}>
-              <Text>Image Here</Text>
+              <Image source={require('../images/popupwallet.png')} style={{marginTop:80, marginBottom:100,width:130,height:100}}/>
             </View>
             <View style={styles.bottom_container}>
               <View style={{borderWidth:1, flex:0.5,borderColor:'#9E9E9E'}}>
@@ -70,8 +70,7 @@ const styles = StyleSheet.create({
   },
   bottom_container:{
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    top:260
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
   }
 });

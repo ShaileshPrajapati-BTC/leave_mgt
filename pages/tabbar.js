@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
+  ScrollView,Navigator
 } from 'react-native';
 
 import Tabs from './tabs';
@@ -23,19 +23,19 @@ export default class Tabbar extends Component{
       renderTabBar={() => <Tabs name={santosh} />}
       >
       <ScrollView tabLabel="ios-card">
-        <Card />
+        <Card navigator={this.props.navigator} />
       </ScrollView>
       <ScrollView tabLabel="md-list">
-        <Vas />
+        <Vas navigator={this.props.navigator} />
       </ScrollView>
       <ScrollView tabLabel="ios-walk">
-        <Sports />
+        <Sports navigator={this.props.navigator} />
       </ScrollView>
       <ScrollView tabLabel="ios-navigate">
-          <Map />
+          <Map navigator={this.props.navigator} />
       </ScrollView>
       <ScrollView tabLabel="ios-basket">
-        <Shop />
+        <Shop navigator={this.props.navigator} />
       </ScrollView>
     </ScrollableTabView>;
   }
