@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import Button from 'react-native-button';
-import Data from './shopping/data.js';
-import Row from './shopping/raw.js';
+import Data from './photo/data.js';
+import Row from './photo/raw.js';
 
 import {
   Text,View,ListView,ToolbarAndroid,Image,StyleSheet,ScrollView,Navigator
@@ -33,7 +33,7 @@ export default class Photo extends Component {
           </ToolbarAndroid>
         </View>
         <View style={styles.raw_container}>
-          <Icon name="camera" size={30} color="#ff6f00" style={{top:20}} />
+          <Image source={require('./images/camera.png')} style={{width: 50, height: 50}}/>
         </View>
         <View>
           <ScrollView>

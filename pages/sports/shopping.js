@@ -33,7 +33,7 @@ export default class Shopping extends Component {
           </ToolbarAndroid>
         </View>
         <View style={styles.raw_container}>
-          <Icon name="shopping-cart" size={30} color="#ff6f00" style={{top:20}} />
+          <Image source={require('./images/library.png')} style={{width: 50, height: 50}}/>
         </View>
         <View>
           <ScrollView>
