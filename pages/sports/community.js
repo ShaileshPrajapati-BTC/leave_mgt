@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import Button from 'react-native-button';
 import Data from './shopping/data.js';
 import Row from './shopping/raw.js';
+import Drawer from '../drawer.js'
 
 import {
   Text,View,ToolbarAndroid,StyleSheet,Navigator,Image
@@ -13,22 +14,10 @@ export default class Community extends Component {
 
   constructor() {
     super();
-    
   }
-
-  render() {
+  renderScene() {
     return (
       <View style={{flex: 1}}>
-        <View style={{backgroundColor: '#ff6f00'}} >
-          <ToolbarAndroid
-            navIcon={require('../../images/reorder-horizontal.png')}
-            title="V-Wallet"
-            titleColor="white"
-          >
-            <View style={{height: 56, flexDirection: 'row', alignItems: 'center'}}>
-            </View>
-          </ToolbarAndroid>
-        </View>
         <View style={styles.raw_container}>
           <Image source={require('./images/community.png')} style={{width: 50, height: 50}}/>
         </View>
@@ -36,6 +25,11 @@ export default class Community extends Component {
           <Text>Comming soon</Text>
         </View>
       </View>
+    );
+  }
+  render() {
+    return (
+      <Drawer data={this.renderScene()}/>
     );
   }
 }

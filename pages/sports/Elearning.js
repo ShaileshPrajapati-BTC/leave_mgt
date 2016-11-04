@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import Button from 'react-native-button';
 import Data from './shopping/data.js';
 import Row from './shopping/raw.js';
-
+import Drawer from '../drawer.js'
 import {
   Text,View,ListView,ToolbarAndroid,Image,StyleSheet,ScrollView,Navigator,
 } from 'react-native';
@@ -18,20 +18,9 @@ export default class Elearning extends Component {
       dataSource: ds.cloneWithRows(data),
     };
   }
-
-  render() {
+  renderScene() {
     return (
-      <View style={{flex: 1}}>
-        <View style={{backgroundColor: '#ff6f00'}} >
-          <ToolbarAndroid
-            navIcon={require('../../images/reorder-horizontal.png')}
-            title="V-Wallet"
-            titleColor="white"
-          >
-            <View style={{height: 56, flexDirection: 'row', alignItems: 'center'}}>
-            </View>
-          </ToolbarAndroid>
-        </View>
+      <View >
         <View style={styles.raw_container}>
           <Image source={require('./images/video.png')} style={{width: 50, height: 50}}/>
         </View>
@@ -119,7 +108,11 @@ export default class Elearning extends Component {
           </View>
         </ScrollView>
       </View>
-
+    );
+  }
+  render() {
+    return (
+      <Drawer data={this.renderScene()}/>
     );
   }
 }

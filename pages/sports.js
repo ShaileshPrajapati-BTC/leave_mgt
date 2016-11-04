@@ -23,7 +23,7 @@ export default class Sports extends Component {
 
         <View style={sports_styles.row_container}>
           <View style={sports_styles.col_container}>
-            <Image source={require('../images/userphoto.png')} />
+            <Image source={require('../images/userphoto.png')} style={{width: 50, height: 50}} />
           </View>
           <View style={sports_styles.col_container}>
             <Text style={{fontSize: 20, color: '#ff6f00'}}>John Smith</Text>
