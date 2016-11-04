@@ -6,7 +6,7 @@
  import Photo from './pages/sports/photo.js';
  import Live from './pages/sports/live.js';
  import Event from './pages/sports/event.js';
- import Community from './pages/sports/event.js';
+ import Community from './pages/sports/community.js';
  import Elearning from './pages/sports/Elearning.js';
  import Sports from './pages/sports.js'
  import Service1 from './pages/vas/service1.js'

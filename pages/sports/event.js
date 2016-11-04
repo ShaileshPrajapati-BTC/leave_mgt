@@ -4,7 +4,7 @@ import Data from './shopping/data.js';
 import Row from './shopping/raw.js';
 
 import {
-  Text,View,ToolbarAndroid,StyleSheet,Navigator
+  Text,Image,View,ToolbarAndroid,StyleSheet,Navigator
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -30,7 +30,7 @@ export default class Event extends Component {
           </ToolbarAndroid>
         </View>
         <View style={styles.raw_container}>
-          <Icon name="calender" size={30} color="#ff6f00" style={{top:20}} />
+          <Image source={require('./images/event.png')} style={{width: 50, height: 50}}/>
         </View>
         <View style={{justifyContent: 'center', alignItems: 'center',top:150}}>
           <Text>Comming soon</Text>

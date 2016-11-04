@@ -22,7 +22,7 @@ const Row = (props) => (
         borderRadius:5,
         borderColor:'#E0E0E0',
       }}>
-        <Image source={require('../../../images/addidas.png')} style={{width: 70, height: 80,top:7,left:5}} />
+        <Image source={require('../images/kids_play_2.png')} style={{width: 70, height: 80,top:7,left:5}} />
         <View style={{left:10}}>
            <Text style={{fontSize:13, color:'#ef6c00'}}>{`${props.product_name}`}</Text>
            <Text style={{fontSize:10}}>{`${props.description}`}</Text>
