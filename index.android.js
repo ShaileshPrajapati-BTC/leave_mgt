@@ -16,10 +16,21 @@
    StyleSheet,
    Text,
    View,
-   Navigator
+   Navigator,BackAndroid
  } from 'react-native';
-
+var navigator;
 export default class HPSReactNative extends Component {
+
+  componentWillMount = () => {
+    BackAndroid.addEventListener('hardwareBackPress', function() {
+     if (navigator && navigator.getCurrentRoutes().length > 1) {
+        navigator.pop();
+        return true;
+    }
+    return false;
+    });
+  };
+
   renderScene(route, navigator) {
   	if(route.name == 'Login') {
     	return <Login navigator={navigator} {...route.passProps}  />
@@ -56,9 +67,12 @@ export default class HPSReactNative extends Component {
   render() {
     return (
       <Navigator
-        	style={{ flex:1 }}
-          initialRoute={{ name: 'Login' }}
-          renderScene={ this.renderScene } />
+      	style={{ flex:1 }}
+        ref={(nav) => { navigator = nav; }}
+        initialRoute={{ name: 'Login' }}
+        renderScene={ this.renderScene }
+        configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
+      />
     );
   }
 }

@@ -4,19 +4,16 @@ import {
 
 const login_styles = StyleSheet.create({
   wallet_image:{
-    flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   wallet_text:{
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
   button_view:{
-    flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -58,19 +55,15 @@ const login_styles = StyleSheet.create({
     left:10
   },
   bottom_text:{
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    padding:10
   },
   bottom_text_view:{
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    padding:10,
-    top:15
   },
   login_botton:{
     margin: 10,

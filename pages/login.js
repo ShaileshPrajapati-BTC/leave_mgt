@@ -23,7 +23,7 @@ export default class Login extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={login_styles.wallet_image}>
-          <Image source={{uri: 'https://camo.githubusercontent.com/3a0d769810f9af2fc0c407648a18c8993813c9a3/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f353833313034342f313435333635312f34376437326564322d343266392d313165332d383062342d6134323237313362306266302e706e67' }} style={{width: 50, height: 50}}/>
+          <Image source={require('../images/screenlogo.png')} style={{width:70,height:70}} />
         </View>
         <View style={login_styles.wallet_text}>
           <Text style={{fontSize: 25, color: '#ff6f00', fontWeight:'bold'}}>V-</Text>
@@ -38,7 +38,7 @@ export default class Login extends Component {
           </Icon.Button>
         </View>
         <View style={login_styles.wallet_image}>
-          <Text>OR</Text>
+          <Text style={{top:12}}>OR</Text>
         </View>
         <View style={login_styles.wallet_text,{padding:5}}>
           <View style={login_styles.login_field_view}>
@@ -57,14 +57,17 @@ export default class Login extends Component {
             Sign In
           </Button>
         </View>
-        <View style={login_styles.bottom_text_view}>
+        <View >
           <View style={login_styles.bottom_text}>
-            <Text style={{padding:5}}>Forget your details?</Text>
-            <Text style={{fontSize: 15, color: '#ff6f00'}}>Get Help</Text>
+            <Text >Forget your details?</Text>
+            <Text style={{fontWeight:'bold',fontSize: 15, color: '#ff6f00'}}>Get Help</Text>
           </View>
           <View style={login_styles.bottom_text}>
-            <Text style={{padding:5}}>Dont have an account? </Text>
-            <Text style={{fontSize: 15, color: '#ff6f00'}}>Sign up</Text>
+            <Text >Dont have an account? </Text>
+            <Text style={{fontWeight:'bold',fontSize: 15, color: '#ff6f00'}}>Sign up</Text>
+          </View>
+          <View style={{top:100,justifyContent: 'center',alignItems: 'center'}}>
+            <Text style={{fontSize: 8}}>Hyperosft Co.Ltd </Text>
           </View>
         </View>
       </View>

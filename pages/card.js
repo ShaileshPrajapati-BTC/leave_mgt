@@ -30,7 +30,7 @@ export default class Card extends Component {
               </View>
             </View>
             <View style={styles.card_container}>
-              <Image source={require('../images/popupwallet.png')} style={{marginTop:80, marginBottom:100,width:130,height:100}}/>
+              <Image source={require('../images/emptywallet.gif')} style={{marginTop:60, marginBottom:100,width:130,height:120}}/>
             </View>
             <View style={styles.bottom_container}>
               <View style={{borderWidth:1, flex:0.5,borderColor:'#9E9E9E'}}>
