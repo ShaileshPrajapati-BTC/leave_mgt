@@ -13,7 +13,7 @@ import {
 export default class Live extends Component {
 
   constructor() {
-    super(); 
+    super();
   }
   renderScene() {
     return (
@@ -31,7 +31,7 @@ export default class Live extends Component {
 
         <View style={styles.image_container}>
           <Image source={require('./images/children_playing.jpg')} style={{width: 340, height: 180}}/>
-        </View>  
+        </View>
 
         <View style={styles.col_container}>
           <Image source={require('./images/record.png')} style={{width: 30, height: 30,top:20}}/>
@@ -41,19 +41,21 @@ export default class Live extends Component {
         <View style={{height: 1,top:20, backgroundColor:'#9E9E9E'}}/>
 
         <View style={styles.button_raw_container}>
-          <Icon.Button style={styles.icon_button_style}  name="search" backgroundColor="#ff6f00" >
+          <Icon.Button style={styles.icon_button_style,{borderRadius:5,width:120}}  name="search" backgroundColor="#ff6f00" >
             <Text style={styles.icon_button_text_style}>Search</Text>
           </Icon.Button>
-          <Icon.Button style={styles.icon_button_style} iconStyle={{marginRight: 10}} name="camera" backgroundColor="#ff6f00" >
+          <View style={{margin:10}}></View>
+          <Icon.Button style={styles.icon_button_style,{borderRadius:5,width:120}} iconStyle={{marginRight: 10}} name="camera" backgroundColor="#ff6f00" >
             <Text style={styles.icon_button_text_style}>Capture</Text>
           </Icon.Button>
         </View>
 
         <View style={styles.buttons_raw_container}>
-         <Icon.Button style={styles.icon_button_style} iconStyle={{marginRight: 10}} name="cog" backgroundColor="#ff6f00" >
+         <Icon.Button style={styles.icon_button_style,{borderRadius:5,width:120}} iconStyle={{marginRight: 10}} name="cog" backgroundColor="#ff6f00" >
             <Text style={styles.icon_button_text_style}>Settings</Text>
           </Icon.Button>
-         <Icon.Button style={styles.icon_button_style} iconStyle={{marginRight: 10}} name="arrows-alt" backgroundColor="#ff6f00" >
+          <View style={{margin:10}}></View>
+         <Icon.Button style={styles.icon_button_style,{borderRadius:5,width:120}} iconStyle={{marginRight: 10}} name="arrows-alt" backgroundColor="#ff6f00" >
             <Text style={styles.icon_button_text_style}>Full Screen</Text>
           </Icon.Button>
         </View>
@@ -92,11 +94,12 @@ const styles = StyleSheet.create({
   icon_button_style:{
     height:35,
     width:130,
-    left:20,
   },
   icon_button_text_style:{
     fontSize: 12,
     color:'white',
+    left:10,
+    fontWeight:'bold'
   },
   button_raw_container:{
     flexDirection: 'row',
@@ -111,4 +114,3 @@ const styles = StyleSheet.create({
     top:80
   }
 });
-

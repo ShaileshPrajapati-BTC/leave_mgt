@@ -25,11 +25,19 @@ const login_styles = StyleSheet.create({
     width:300,
     overflow:'hidden',
     borderRadius:4,
-    backgroundColor: '#d32f2f'
+    backgroundColor: '#DB4437'
+  },
+  button_container_style_fb:{
+    padding:10,
+    height:45,
+    width:300,
+    overflow:'hidden',
+    borderRadius:4,
+    backgroundColor: '#3B5998'
   },
   button_style:{
     fontSize: 15,
-    color: 'white'
+    color: 'white',
   },
   icon_button_style:{
     margin: 10,
@@ -50,8 +58,8 @@ const login_styles = StyleSheet.create({
     left:30
   },
   text_input:{
-    width:270,
-    height: 50,
+    width:260,
+    height:50,
     left:10
   },
   bottom_text:{

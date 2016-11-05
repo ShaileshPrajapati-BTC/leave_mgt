@@ -19,7 +19,7 @@ export default class Tabbar extends Component{
   render() {
     let santosh = ["CARD","VAS","SPORTS","MAP","SHOP"];
     return <ScrollableTabView
-      initialPage={0}
+      initialPage={this.props.index}
       renderTabBar={() => <Tabs name={santosh} />}
       >
       <ScrollView tabLabel="ios-card">
