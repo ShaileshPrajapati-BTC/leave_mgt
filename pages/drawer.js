@@ -20,7 +20,7 @@ export default class DrawerBar extends Component {
   openDrawer = () => {
     this._drawer.open()
   };
-  
+
   render() {
       return (
         <Drawer
@@ -55,6 +55,7 @@ export default class DrawerBar extends Component {
                 navIcon={require('../images/reorder-horizontal.png')}
                 title="V-Wallet"
                 titleColor="white"
+                actions={[{title:'Reload', icon: require('../images/sync.png'), show: 'always'}]}
                 onIconClicked={() => {this.openDrawer()}}
               >
                 <View style={{height: 56, flexDirection: 'row', alignItems: 'center'}}>
