@@ -48,7 +48,7 @@ export default class Card extends Component {
             </View>
             <View style={styles.card_container}>
               <TouchableOpacity onPress={ () => this.openDefaultAnimationDialog() }>
-                <Image source={require('../images/emptywallet.gif')} style={{marginTop:60, marginBottom:100,width:130,height:120}}/>
+                <Image source={require('../images/emptywallet.gif')} style={{marginTop:60, marginBottom:100,width:130,height:110}}/>
               </TouchableOpacity>
             </View>
             <View style={styles.bottom_container}>
