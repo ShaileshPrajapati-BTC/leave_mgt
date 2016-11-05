@@ -4,17 +4,34 @@ import {
   Text,
   View,
   Image,
-  TouchableHighlight,StyleSheet,
+  TouchableOpacity,StyleSheet,
 } from 'react-native';
+import PopupDialog, {
+  DefaultAnimation
+} from 'react-native-popup-dialog';
+import Button from 'react-native-button';
+
+const defaultAnimation = new DefaultAnimation({ animationDuration: 150 });
 
 export default class Card extends Component {
+    constructor(props) {
+    super(props);
 
+    this.state = {
+      dialogOpen: false,
+    };
+
+    this.openDefaultAnimationDialog = this.openDefaultAnimationDialog.bind(this);
+    }
+    openDefaultAnimationDialog() {
+    this.defaultAnimationDialog.openDialog();
+    }
     render() {
         return (
           <View style={{flex: 1}}>
             <View style={styles.user_container}>
               <View style={styles.container}>
-                <Image source={require('../images/account.png')} />
+                <Image source={require('../images/userphoto.png')} style={{width: 50, height: 50}}/>
               </View>
               <View style={styles.container}>
                 <Text style={{fontSize: 20, color: '#ff6f00'}}>John Smith</Text>
@@ -30,7 +47,9 @@ export default class Card extends Component {
               </View>
             </View>
             <View style={styles.card_container}>
-              <Image source={require('../images/emptywallet.gif')} style={{marginTop:60, marginBottom:100,width:130,height:120}}/>
+              <TouchableOpacity onPress={ () => this.openDefaultAnimationDialog() }>
+                <Image source={require('../images/emptywallet.gif')} style={{marginTop:60, marginBottom:100,width:130,height:120}}/>
+              </TouchableOpacity>
             </View>
             <View style={styles.bottom_container}>
               <View style={{borderWidth:1, flex:0.5,borderColor:'#9E9E9E'}}>
@@ -40,6 +59,41 @@ export default class Card extends Component {
                 <Text style={{padding:20, left:50}}>Window 4</Text>
               </View>
             </View>
+            <PopupDialog
+              ref={(defaultAnimationDialog) => {
+                this.defaultAnimationDialog = defaultAnimationDialog;
+              }}
+              dialogAnimation={defaultAnimation}
+              title="Please Add Your Card"
+              width={320}
+              height={320}
+              dialogStyle = {{marginBottom:150,borderRadius:0}}
+            >
+            <View style={styles.dialogContentView}>
+              <View style={styles.card_container}>
+                <Image source={require('../images/emptywallet.gif')} style={{width:70,height:70}}/>
+                <Button
+                  containerStyle={styles.login_botton}
+                  style={styles.button_style}
+                >
+                Scan QR code
+                </Button>
+                <Button
+                  containerStyle={[styles.login_botton,{backgroundColor: '#616161'}]}
+                  style={styles.button_style}
+                >
+                Enter pin
+                </Button>
+                <Button
+                  containerStyle={[styles.login_botton,{height:45,width:100,left:100}]}
+                  style={styles.button_style}
+                  onPress={ () => this.defaultAnimationDialog.closeDialog()}
+                >
+                Cancel
+                </Button>
+              </View>
+            </View>
+           </PopupDialog>
           </View>
         );
     }
@@ -72,5 +126,30 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
+  },
+   dialogContentView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+   login_botton:{
+    margin: 10,
+    padding:10,
+    height:45,
+    width:300,
+    overflow:'hidden',
+    borderRadius:4,
+    backgroundColor: '#ff6f00',
+  },
+  cancel_botton:{
+    height:30,
+    width:100,
+    overflow:'hidden',
+    borderRadius:4,
+    backgroundColor: '#ff6f00',
+  },
+  button_style:{
+    fontSize: 15,
+    color: 'white'
   }
 });
