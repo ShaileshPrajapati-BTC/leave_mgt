@@ -3,7 +3,7 @@ import Drawer from 'react-native-drawer'
 import Menu from './menu.js';
 import {
   Text,View, StyleSheet, ToolbarAndroid,DrawerLayoutAndroid,
-  TouchableHighlight,ScrollView,Navigator
+  TouchableHighlight,ScrollView,Navigator,StatusBar
 } from 'react-native';
 
 
@@ -30,7 +30,9 @@ export default class DrawerBar extends Component {
             <Menu closeDrawer={this.closeDrawer} navigator={this.props.navigator}/>
           }
           acceptTap
-          styles={{main: {shadowColor: '#787878', shadowOpacity: 0.8, shadowRadius: 15}}}
+          acceptPan
+          tapToClose={true}
+          styles={{ main: { shadowColor: '#ff6f00', shadowOpacity: 0.8, shadowRadius: 3}}}
           onOpen={() => {
             console.log('onopen')
             this.setState({drawerOpen: true})
@@ -39,28 +41,35 @@ export default class DrawerBar extends Component {
             console.log('onclose')
             this.setState({drawerOpen: false})
           }}
-          captureGestures={false}
+          captureGestures={true}
           tweenDuration={100}
-          panThreshold={0.08}
+          panThreshold={0.25}
+          panOpenMask = {0.01}
           disabled={this.state.drawerDisabled}
-          openDrawerOffset={(viewport) => {
-            return 100
-          }}
+          openDrawerOffset={0.2} 
           closedDrawerOffset={() => 0}
+          elevation = {200}
           negotiatePan
+          translucent={true}
         >
-          <View style={{flex:1, flexDirection: 'column'}}>
-            <View style={{backgroundColor: '#ff6f00'}} >
+          <View style={{flex:1, flexDirection: 'column'}} >
+            <View style={{backgroundColor: '#ff6f00',elevation: 3,borderTopColor:'black',borderTopWidth:0.2}} >
               <ToolbarAndroid
-                navIcon={require('../images/reorder-horizontal.png')}
+                navIcon={require('../images/menu.png')}
                 title="V-Wallet"
                 titleColor="white"
+                subtitleColor='blue'
+
                 onIconClicked={() => {this.openDrawer()}}
               >
                 <View style={{height: 56, flexDirection: 'row', alignItems: 'center'}}>
                 </View>
               </ToolbarAndroid>
             </View>
+            <StatusBar
+             backgroundColor="#ff6f00"
+             barStyle="light-content"
+            />
             {this.props.data}
           </View>
         </Drawer>
