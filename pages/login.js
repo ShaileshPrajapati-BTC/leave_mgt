@@ -8,7 +8,8 @@ import {
   View,
   TextInput,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from 'react-native';
 
 export default class Login extends Component {
@@ -30,6 +31,10 @@ export default class Login extends Component {
             <Text style={{fontSize: 17,color:'#A9A9A9'}}>Skip</Text>
           </TouchableOpacity>
         </View>
+        <StatusBar
+           backgroundColor="#ff6f00"
+           barStyle="light-content"
+          />
         <View style={login_styles.wallet_image}>
           <Image source={require('../images/screenlogo.png')} style={{width:70,height:70}} />
         </View>
