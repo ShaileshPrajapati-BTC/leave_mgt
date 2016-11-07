@@ -23,7 +23,7 @@ export default class Tabbar extends Component{
       renderTabBar={() => <Tabs name={santosh} />}
       >
       <ScrollView tabLabel="ios-card">
-        <Card navigator={this.props.navigator} />
+        <Card navigator={this.props.navigator} pin={this.props.pin} />
       </ScrollView>
       <ScrollView tabLabel="md-list">
         <Vas navigator={this.props.navigator} />
