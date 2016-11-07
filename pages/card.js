@@ -72,9 +72,9 @@ export default class Card extends Component {
             </View>
             <View style={[styles.card_container,{flexDirection: 'row'}]}>
               <TouchableOpacity onPress={ () => this.props.pin ? false : this.openDefaultAnimationDialog()}>
-                <Image source={this.state.image} style={{marginTop:30,marginLeft:100, marginBottom:40,width:130,height:110}}/>
+                <Image source={this.state.image} style={{marginTop:30,marginLeft:30, marginBottom:40,width:130,height:110}}/>
               </TouchableOpacity>
-              <Image source={require(`../images/panel_btn.png`)} style={{marginLeft:100,width:30,height:50}}/>
+              <Image source={require(`../images/panel_btn.png`)} style={{left:90,width:30,height:50}}/>
             </View>
             <View style={{marginLeft:310}}>
               {this.props.pin ?
