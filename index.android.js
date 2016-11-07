@@ -11,6 +11,10 @@
  import Sports from './pages/sports.js'
  import Service1 from './pages/vas/service1.js'
  import Drawer from 'react-native-drawer'
+ import Qr from './pages/card/qr.js';
+ import Pin from './pages/card/pin.js';
+ import QrScan from './pages/card/qr_scan.js';
+
  import {
    AppRegistry,
    StyleSheet,
@@ -61,6 +65,15 @@ export default class HPSReactNative extends Component {
     }
     if(route.name == 'Community') {
       return <Community navigator={navigator} {...route.passProps} route={route} />
+    }
+    if(route.name == 'Qr') {
+      return <Qr navigator={navigator} {...route.passProps} route={route} />
+    }
+    if(route.name == 'Pin') {
+      return <Pin navigator={navigator} {...route.passProps} route={route} />
+    }
+    if(route.name == 'QrScan') {
+      return <QrScan navigator={navigator} {...route.passProps} route={route} />
     }
   }
 

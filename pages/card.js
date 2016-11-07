@@ -18,10 +18,27 @@ export default class Card extends Component {
     super(props);
 
     this.state = {
+      image: require(`../images/emptywallet.gif`),
       dialogOpen: false,
+      margintop:80
     };
-
     this.openDefaultAnimationDialog = this.openDefaultAnimationDialog.bind(this);
+    }
+    _navigate(name) {
+      this.props.navigator.push({
+        name: name,
+        passProps: {
+          name: name
+        }
+      })
+    }
+    componentWillMount(){
+      if (this.props.pin){
+        this.setState({
+          image: require(`../images/kamo_card.png`),
+          margintop:0
+        });
+      }
     }
     openDefaultAnimationDialog() {
     this.defaultAnimationDialog.openDialog();
@@ -46,12 +63,26 @@ export default class Card extends Component {
                 <Text style={{padding:20, left:50}}>Window 2</Text>
               </View>
             </View>
-            <View style={styles.card_container}>
-              <TouchableOpacity onPress={ () => this.openDefaultAnimationDialog() }>
-                <Image source={require('../images/emptywallet.gif')} style={{marginTop:60, marginBottom:100,width:130,height:110}}/>
-              </TouchableOpacity>
+
+            <View style={{marginTop:10,marginLeft:310}}>
+              {this.props.pin ?
+                <TouchableOpacity onPress={ () => this.openDefaultAnimationDialog() }>
+                  <Image source={require(`../images/emptywallet.gif`)} style={{width:40,height:40}}/>
+                </TouchableOpacity> : false}
             </View>
-            <View style={styles.bottom_container}>
+            <View style={[styles.card_container,{flexDirection: 'row'}]}>
+              <TouchableOpacity onPress={ () => this.props.pin ? false : this.openDefaultAnimationDialog()}>
+                <Image source={this.state.image} style={{marginTop:30,marginLeft:100, marginBottom:40,width:130,height:110}}/>
+              </TouchableOpacity>
+              <Image source={require(`../images/panel_btn.png`)} style={{marginLeft:100,width:30,height:50}}/>
+            </View>
+            <View style={{marginLeft:310}}>
+              {this.props.pin ?
+                <TouchableOpacity onPress={ () => this._navigate('QrScan') }>
+                  <Image source={require(`../images/qrcode.png`)} style={{width:40,height:40}}/>
+                </TouchableOpacity> : false}
+            </View>
+            <View style={[styles.bottom_container,{marginTop: this.state.margintop}]}>
               <View style={{borderWidth:1, flex:0.5,borderColor:'#9E9E9E'}}>
                 <Text style={{padding:20}}>Window 3</Text>
               </View>
@@ -75,12 +106,14 @@ export default class Card extends Component {
                 <Button
                   containerStyle={styles.login_botton}
                   style={styles.button_style}
+                  onPress={ () => this._navigate('Qr')}
                 >
                 Scan QR code
                 </Button>
                 <Button
                   containerStyle={[styles.login_botton,{backgroundColor: '#616161'}]}
                   style={styles.button_style}
+                   onPress={ () => this._navigate('Pin')}
                 >
                 Enter pin
                 </Button>
