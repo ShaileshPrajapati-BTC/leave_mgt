@@ -3,7 +3,7 @@ import {
   Text,
   View,
   Image,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 import sports_styles from '../styles/sports_styles';
 
@@ -30,28 +30,28 @@ export default class Sports extends Component {
             <Text style={{color:'#9E9E9E', fontWeight:'bold'}}>Member since:4th June 2016</Text>
             <Text style={{fontSize:15,left:50, color:'#9E9E9E',top:10, fontWeight:'bold',marginBottom:30}}>Sports</Text>
           </View>
-          
+
         </View>
 
-        <View style={{height: 1, backgroundColor:'#9E9E9E'}}/>
+        <View style={{height: 1, backgroundColor:'#9E9E9E',top:2.5}}/>
 
         <View style={sports_styles.flex_col_container1}>
           <View style={sports_styles.row_space}>
             <View style={sports_styles.flex_col_container}>
-              <TouchableHighlight onPress={ () => this._navigate('Live') }>
+              <TouchableOpacity onPress={ () => this._navigate('Live') }>
                 <View >
                   <Image source={require('./sports/images/live.png')} style={{width: 50, height: 50}}/>
                   <Text style={{left:10}} >Live</Text>
                 </View>
-              </TouchableHighlight>
-            </View>  
+              </TouchableOpacity>
+            </View>
             <View style={sports_styles.flex_col_container}>
-              <TouchableHighlight onPress={ () => this._navigate('Elearning') }>
+              <TouchableOpacity onPress={ () => this._navigate('Elearning') }>
                 <View>
                   <Image source={require('./sports/images/video.png')} style={{width: 50, height: 50}}/>
                   <Text >E-Learning</Text>
                 </View>
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -60,20 +60,20 @@ export default class Sports extends Component {
         <View style={sports_styles.flex_col_container1}>
           <View style={sports_styles.row_space}>
             <View style={sports_styles.flex_col_container}>
-              <TouchableHighlight onPress={ () => this._navigate('Shopping') }>
+              <TouchableOpacity onPress={ () => this._navigate('Shopping') }>
                 <View>
                   <Image source={require('./sports/images/library.png')} style={{width: 50, height: 50}}/>
                   <Text>Shopping</Text>
                 </View>
-             </TouchableHighlight>
+             </TouchableOpacity>
             </View>
             <View style={sports_styles.flex_col_container}>
-              <TouchableHighlight onPress={ () => this._navigate('Event') }>
+              <TouchableOpacity onPress={ () => this._navigate('Event') }>
                 <View>
                   <Image source={require('./sports/images/event.png')} style={{width: 50, height: 50}}/>
                   <Text >Event</Text>
                 </View>
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -82,21 +82,21 @@ export default class Sports extends Component {
         <View style={sports_styles.flex_col_container1}>
           <View style={sports_styles.row_space}>
             <View style={sports_styles.flex_col_container}>
-            <TouchableHighlight onPress={ () => this._navigate('Community') }>
+            <TouchableOpacity onPress={ () => this._navigate('Community') }>
               <View>
                 <Image source={require('./sports/images/community.png')} style={{width: 50, height: 50}}/>
                 <Text >Community</Text>
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
             </View>
 
             <View style={sports_styles.flex_col_container}>
-              <TouchableHighlight onPress={ () => this._navigate('Photo') }>
+              <TouchableOpacity onPress={ () => this._navigate('Photo') }>
                 <View>
                   <Image source={require('./sports/images/camera.png')} style={{width: 50, height: 50}}/>
                   <Text >Photo</Text>
                 </View>
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
           </View>
         </View>

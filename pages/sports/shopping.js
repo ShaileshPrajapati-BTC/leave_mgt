@@ -38,7 +38,7 @@ export default class Shopping extends Component {
   }
   render() {
     return (
-      <Drawer data={this.renderScene()}/>
+      <Drawer data={this.renderScene()} navigator={this.props.navigator}/>
     );
   }
 }

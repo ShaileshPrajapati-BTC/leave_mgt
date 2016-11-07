@@ -28,7 +28,7 @@ export default class Home extends Component {
 
   render() {
       return (
-        <DrawerBar data={this.renderScene()}/>
+        <DrawerBar data={this.renderScene()} navigator={this.props.navigator}/>
       );
   }
 }

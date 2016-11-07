@@ -15,7 +15,11 @@ export default class ControlPanel extends Component {
     closeDrawer: React.PropTypes.func.isRequired
   };
 
-
+  _navigate(name) {
+    this.props.navigator.push({
+      name: name,
+    })
+  }
   render() {
     let {closeDrawer} = this.props
     return (
@@ -38,12 +42,12 @@ export default class ControlPanel extends Component {
         </View>
 
         <View style={{height: 1, backgroundColor:'#9E9E9E', top:10}}/>
-
+        <TouchableOpacity onPress={ () => this._navigate('Login') }>
         <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
-          <Image source={require('../images/logout.png')} style={{width: 35, height: 35}}/>
-          <Text style={{left:10, fontSize:15,top:5, color:'#787878'}}>Logout</Text>
+            <Image source={require('../images/logout.png')} style={{width: 35, height: 35,top:3}}/>
+            <Text style={{left:10, fontSize:15,top:3, color:'#787878'}}>Logout</Text>
         </View>
-
+        </TouchableOpacity>
         <View style={{height: 1, backgroundColor:'#9E9E9E',marginVertical:10}}/>
 
       </View>

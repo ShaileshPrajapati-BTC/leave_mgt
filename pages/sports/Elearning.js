@@ -25,94 +25,65 @@ export default class Elearning extends Component {
           <Image source={require('./images/video.png')} style={{width: 50, height: 50}}/>
         </View>
         <ScrollView style={styles.scrollView} >
-          <View style={{flex:1}}>
-          <View style={styles.image_container}>
-              <Image source={require('./e-learning/video_stream_1.png')} style={{width: 320, height: 150}}/>
-          </View>    
-          <View style={styles.text_container}>
-            <View style={{backgroundColor:"grey",flexDirection:'row',width:320,padding:10}}>
-             <Icon name="user" size={20} color="#ff6f00" style={{left:5}} />
-             <Text style={{paddingLeft:20,color:"white"}}>Soccer Training Session</Text>
-            </View>
-            <View style={{backgroundColor:"grey",flexDirection:'row',width:320,padding:10}}>
-              <Icon name="heart" size={20} color="#EEEEEE" style={{left:8}} />
-              <Text style={{paddingLeft:20,color:"white"}}>888k</Text>
-              <Icon name="share-alt" size={20} color="#EEEEEE"  style={{left:10}}/>
-              <Text style={{paddingLeft:20,color:"white"}}>Share</Text>
-              <Icon name="plus" size={20} color="#EEEEEE" style={{left:12}} />
-              <Text style={{paddingLeft:20,color:"white"}}>Add to</Text>
-            </View>
-            <View style={{backgroundColor:"grey",flexDirection:'row',width:320,padding:10}}>
-              <Button
+          <View style={{flex:1,flexDirection:'column',justifyContent:'flex-start', alignItems: 'flex-start',height:300,width:400,backgroundColor:'#696969'}}>
+            <Image source={require('./e-learning/video_stream_1.png')} style={{width: 350, height: 150}}/>
+          <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'flex-start'}}>
+            <Text style={{color:'white',left:265,top:5}}>999K Views</Text>
+            <Image source={require('./e-learning/more.png')} style={{height:20,width:20,top:25,left:250}}/>
+            <Image source={require('./e-learning/user_photo_orange.png')} style={{height:30,width:30,right:90,top:10}}/>
+            <Text style={{color:'white',right:90,top:15}}>Soccer Training Session</Text>
+          </View>
+          <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'flex-start'}}>
+            <Image source={require('./e-learning/favorite.png')} style={{height:20,width:20,top:20,left:30}}/>
+            <Text style={{color:'white',top:20,left:35}}>888K</Text>
+            <Image source={require('./e-learning/share.png')} style={{height:20,width:20,top:20,left:45}}/>
+            <Text style={{color:'white',top:20,left:50}}>Share</Text>
+            <Image source={require('./e-learning/add.png')} style={{height:20,width:20,top:20,left:60}}/>
+            <Text style={{color:'white',top:20,left:65}}>Add to</Text>
+          </View>
+          <View style={{top:50,left:15}}>
+            <Button
                 containerStyle={styles.login_botton}
                 style={styles.button_style}
               >
                 Pay to Watch
               </Button>
-            </View>
           </View>
-          <View style={{top:8}}>
-            <View style={styles.image_container}>
-                <Image source={require('./e-learning/video_stream.png')} style={{width: 320, height: 150}}/>
-            </View> 
-            <View style={styles.text_container}>
-              <View style={{backgroundColor:"grey",flexDirection:'row',width:320,padding:10}}>
-               <Icon name="user" size={20} color="#ff6f00" style={{left:5}} />
-               <Text style={{paddingLeft:20,color:"white"}}>Soccer Training Session</Text>
-              </View>
-              <View style={{backgroundColor:"grey",flexDirection:'row',width:320,padding:10}}>
-                <Icon name="heart" size={20} color="#EEEEEE" style={{left:8}} />
-                <Text style={{paddingLeft:20,color:"white"}}>888k</Text>
-                <Icon name="share-alt" size={20} color="#EEEEEE"  style={{left:10}}/>
-                <Text style={{paddingLeft:20,color:"white"}}>Share</Text>
-                <Icon name="plus" size={20} color="#EEEEEE" style={{left:12}} />
-                <Text style={{paddingLeft:20,color:"white"}}>Add to</Text>
-              </View>
-              <View style={{backgroundColor:"grey",flexDirection:'row',width:320,padding:10}}>
-                <Button
-                  containerStyle={styles.login_botton}
-                  style={styles.button_style}
-                >
-                  Pay to Watch
-                </Button>
-              </View>
-            </View>
-          </View>
-          <View style={{top:12}}>
-            <View style={styles.image_container}>
-                <Image source={require('./e-learning/video_stream.png')} style={{width: 320, height: 150}}/>
-            </View> 
-            <View style={styles.text_container}>
-              <View style={{backgroundColor:"grey",flexDirection:'row',width:320,padding:10}}>
-               <Icon name="user" size={20} color="#ff6f00" style={{left:5}} />
-               <Text style={{paddingLeft:20,color:"white"}}>Soccer Training Session</Text>
-              </View>
-              <View style={{backgroundColor:"grey",flexDirection:'row',width:320,padding:10}}>
-                <Icon name="heart" size={20} color="#EEEEEE" style={{left:8}} />
-                <Text style={{paddingLeft:20,color:"white"}}>888k</Text>
-                <Icon name="share-alt" size={20} color="#EEEEEE"  style={{left:10}}/>
-                <Text style={{paddingLeft:20,color:"white"}}>Share</Text>
-                <Icon name="plus" size={20} color="#EEEEEE" style={{left:12}} />
-                <Text style={{paddingLeft:20,color:"white"}}>Add to</Text>
-              </View>
-              <View style={{backgroundColor:"grey",flexDirection:'row',width:320,padding:10}}>
-                <Button
-                  containerStyle={styles.login_botton}
-                  style={styles.button_style}
-                >
-                  Pay to Watch
-                </Button>
-              </View>
-            </View>
-          </View>
-          </View>
+        </View>
+        <View style={{margin:3}}></View>
+        <View style={{flex:1,flexDirection:'column',justifyContent:'flex-start', alignItems: 'flex-start',height:300,width:400,backgroundColor:'#696969'}}>
+          <Image source={require('./e-learning/video_stream_1.png')} style={{width: 350, height: 150}}/>
+        <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'flex-start'}}>
+          <Text style={{color:'white',left:265,top:5}}>999K Views</Text>
+          <Image source={require('./e-learning/more.png')} style={{height:20,width:20,top:25,left:250}}/>
+          <Image source={require('./e-learning/user_photo_orange.png')} style={{height:30,width:30,right:90,top:10}}/>
+          <Text style={{color:'white',right:90,top:15}}>Soccer Training Session</Text>
+        </View>
+        <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'flex-start'}}>
+          <Image source={require('./e-learning/favorite.png')} style={{height:20,width:20,top:20,left:30}}/>
+          <Text style={{color:'white',top:20,left:35}}>888K</Text>
+          <Image source={require('./e-learning/share.png')} style={{height:20,width:20,top:20,left:45}}/>
+          <Text style={{color:'white',top:20,left:50}}>Share</Text>
+          <Image source={require('./e-learning/add.png')} style={{height:20,width:20,top:20,left:60}}/>
+          <Text style={{color:'white',top:20,left:65}}>Add to</Text>
+        </View>
+        <View style={{top:50,left:15}}>
+          <Button
+              containerStyle={styles.login_botton}
+              style={styles.button_style}
+            >
+              Pay to Watch
+            </Button>
+        </View>
+      </View>
+      <View style={{margin:40}}></View>
         </ScrollView>
       </View>
     );
   }
   render() {
     return (
-      <Drawer data={this.renderScene()}/>
+      <Drawer data={this.renderScene()} navigator={this.props.navigator}/>
     );
   }
 }
@@ -144,12 +115,12 @@ const styles = StyleSheet.create({
   },
   login_botton:{
     height:30,
-    width:300,
+    width:320,
     overflow:'hidden',
     borderColor:'white',
     borderWidth:2,
     borderRadius:4,
-    backgroundColor: 'grey',
+    backgroundColor: '#696969',
   },
   scrollView: {
     borderWidth: 5,

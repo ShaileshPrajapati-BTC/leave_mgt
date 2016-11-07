@@ -3,7 +3,7 @@ import {
   Text,
   View,
   Image,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 import sports_styles from '../styles/sports_styles';
 
@@ -38,20 +38,20 @@ export default class Sports extends Component {
         <View style={sports_styles.flex_col_container1}>
           <View style={sports_styles.row_space}>
             <View style={sports_styles.flex_col_container}>
-              <TouchableHighlight onPress={ () => this._navigate('Service1') }>
+              <TouchableOpacity onPress={ () => this._navigate('Service1') }>
                 <View >
                   <Image source={require('./vas/images/addmoney.png')} style={{width: 50, height: 50}}/>
                   <Text>Service 1</Text>
                 </View>
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
             <View style={sports_styles.flex_col_container}>
-              <TouchableHighlight onPress={ () => this._navigate('Service1') }>
+              <TouchableOpacity onPress={ () => this._navigate('Service1') }>
                 <View>
                   <Image source={require('./vas/images/mybalance.png')} style={{width: 50, height: 50}}/>
                   <Text >Service 2</Text>
                 </View>
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -60,20 +60,20 @@ export default class Sports extends Component {
         <View style={sports_styles.flex_col_container1}>
           <View style={sports_styles.row_space}>
             <View style={sports_styles.flex_col_container}>
-              <TouchableHighlight onPress={ () => this._navigate('Service1') }>
+              <TouchableOpacity onPress={ () => this._navigate('Service1') }>
                 <View>
                   <Image source={require('./vas/images/topup.png')} style={{width: 50, height: 50}}/>
                   <Text>Service 3</Text>
                 </View>
-             </TouchableHighlight>
+             </TouchableOpacity>
             </View>
             <View style={sports_styles.flex_col_container}>
-              <TouchableHighlight onPress={ () => this._navigate('Service1') }>
+              <TouchableOpacity onPress={ () => this._navigate('Service1') }>
                 <View>
                   <Image source={require('./vas/images/digital.png')} style={{width: 50, height: 50}}/>
                   <Text >Service 4</Text>
                 </View>
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -82,21 +82,21 @@ export default class Sports extends Component {
         <View style={sports_styles.flex_col_container1}>
           <View style={sports_styles.row_space}>
             <View style={sports_styles.flex_col_container}>
-            <TouchableHighlight onPress={ () => this._navigate('Service1') }>
+            <TouchableOpacity onPress={ () => this._navigate('Service1') }>
               <View>
                 <Image source={require('./vas/images/movieticket.png')} style={{width: 50, height: 50}}/>
                 <Text >Service 5</Text>
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
             </View>
 
             <View style={sports_styles.flex_col_container}>
-              <TouchableHighlight onPress={ () => this._navigate('Service1') }>
+              <TouchableOpacity onPress={ () => this._navigate('Service1') }>
                 <View>
                   <Image source={require('./vas/images/sports.png')} style={{width: 50, height: 50}}/>
                   <Text >Service 6</Text>
                 </View>
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
