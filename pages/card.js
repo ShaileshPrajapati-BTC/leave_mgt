@@ -4,7 +4,7 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity,StyleSheet,
+  TouchableOpacity,StyleSheet,BackAndroid
 } from 'react-native';
 import PopupDialog, {
   DefaultAnimation
@@ -37,6 +37,9 @@ export default class Card extends Component {
         this.setState({
           image: require(`../images/kamo_card.png`),
           margintop:0
+        });
+        BackAndroid.addEventListener('hardwareBackPress', function() {        
+            BackAndroid.exitApp(0);
         });
       }
     }
