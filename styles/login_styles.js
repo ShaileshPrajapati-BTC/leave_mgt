@@ -55,7 +55,7 @@ const login_styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'flex-start',
     alignItems:'flex-start',
-    left:30
+    left:5
   },
   text_input:{
     width:260,
@@ -77,11 +77,11 @@ const login_styles = StyleSheet.create({
     margin: 10,
     padding:10,
     height:45,
-    width:300,
+    width:150,
     overflow:'hidden',
     borderRadius:4,
-    backgroundColor: '#ff6f00',
-    left:15
+    backgroundColor: '#2196F3',
+    left:80
   }
 });
 

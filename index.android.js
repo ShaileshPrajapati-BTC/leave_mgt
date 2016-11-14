@@ -1,6 +1,7 @@
 
  import React, { Component } from 'react';
  import Login from './pages/login.js'
+ import Profile from './pages/Profile.js'
  import Home from './pages/home.js';
  import Shopping from './pages/sports/shopping.js';
  import Photo from './pages/sports/photo.js';
@@ -8,7 +9,6 @@
  import Event from './pages/sports/event.js';
  import Community from './pages/sports/community.js';
  import Elearning from './pages/sports/Elearning.js';
- import Sports from './pages/sports.js'
  import Service1 from './pages/vas/service1.js'
  import Drawer from 'react-native-drawer'
  import Qr from './pages/card/qr.js';
@@ -75,6 +75,9 @@ export default class HPSReactNative extends Component {
     if(route.name == 'QrScan') {
       return <QrScan navigator={navigator} {...route.passProps} route={route} />
     }
+    if(route.name == 'Profile') {
+      return <Profile navigator={navigator} {...route.passProps} route={route} />
+    }
   }
 
   render() {
@@ -82,7 +85,7 @@ export default class HPSReactNative extends Component {
       <Navigator
       	style={{ flex:1 }}
         ref={(nav) => { navigator = nav; }}
-        initialRoute={{ name: 'Login' }}
+        initialRoute={{ name: 'Profile' }}
         renderScene={ this.renderScene }
         configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
       />

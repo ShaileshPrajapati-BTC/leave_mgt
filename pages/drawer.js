@@ -5,6 +5,7 @@ import {
   Text,View, StyleSheet, ToolbarAndroid,DrawerLayoutAndroid,
   TouchableHighlight,ScrollView,Navigator,StatusBar
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 export default class DrawerBar extends Component {
@@ -20,7 +21,9 @@ export default class DrawerBar extends Component {
   openDrawer = () => {
     this._drawer.open()
   };
-
+  _onActionSelected = (position) => {
+    alert('Selected ' + position);
+  };
   render() {
       return (
         <Drawer
@@ -53,20 +56,23 @@ export default class DrawerBar extends Component {
           translucent={true}
         >
           <View style={{flex:1, flexDirection: 'column'}} >
-            <View style={{backgroundColor: '#ff6f00',elevation: 3,borderTopColor:'black',borderTopWidth:0.2}} >
-              <ToolbarAndroid
+            <View style={{backgroundColor: '#2196F3',elevation: 3,borderTopColor:'black',borderTopWidth:0.2}} >
+              <Icon.ToolbarAndroid
                 navIcon={require('../images/menu.png')}
-                title="V-Wallet"
+                title="Leave-Mgt"
                 titleColor="white"
-                actions={[{title:'Reload', icon: require('../images/sync.png'), show: 'always'}]}
+                actions={[{title:'Notifications', iconName: 'ios-notifications', iconSize: 30, show: 'always'},
+                          {title:'More', iconName: 'md-more', iconSize: 30, show: 'always'}]}
                 onIconClicked={() => {this.openDrawer()}}
+                onActionSelected={this._onActionSelected}
               >
+
                 <View style={{height: 56, flexDirection: 'row', alignItems: 'center'}}>
                 </View>
-              </ToolbarAndroid>
+              </Icon.ToolbarAndroid>
             </View>
             <StatusBar
-             backgroundColor="#ff6f00"
+             backgroundColor="#2196F3"
              barStyle="light-content"
             />
             {this.props.data}

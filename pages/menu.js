@@ -26,29 +26,36 @@ export default class ControlPanel extends Component {
       <ScrollView style={styles.container}>
         <View style={{flex:1,flexDirection:'column', justifyContent:'center', alignItems:'center',padding:30}}>
           <Image source={require('../images/menuuser.png')} style={{width: 50, height: 50}}/>
-          <Text style={{color: '#ff6f00',top:10}}>Update Profile Photo</Text>
+          <Text style={{top:10}}>Shailesh Prajapati</Text>
         </View>
       <View>
         <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center'}}>
-          <Image source={require('../images/my_profile.png')} style={{width: 35, height: 35}}/>
-          <Text style={{left:10, fontSize:15,top:5, color:'#787878'}}>My Profile</Text>
+          <Icon name="user" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
+          <Text style={{left:10, fontSize:15, color:'#787878'}}>My Profile</Text>
         </View>
 
-        <View style={{height: 1, backgroundColor:'#9E9E9E', top:10}}/>
 
         <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
-          <Image source={require('../images/settings.png')} style={{width: 35, height: 35}}/>
-          <Text style={{left:10, fontSize:15,top:5, color:'#787878'}}>Settings</Text>
+          <Icon name="gear" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
+          <Text style={{left:10, fontSize:15, color:'#787878'}}>Manage Leaves</Text>
         </View>
 
-        <View style={{height: 1, backgroundColor:'#9E9E9E', top:10}}/>
+        <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
+          <Icon name="gear" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
+          <Text style={{left:10, fontSize:15, color:'#787878'}}>Request Leaves</Text>
+        </View>
+
+        <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
+          <Icon name="gear" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
+          <Text style={{left:10, fontSize:15, color:'#787878'}}>Holidays</Text>
+        </View>
+
         <TouchableOpacity onPress={ () => this._navigate('Login') }>
         <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
-            <Image source={require('../images/logout.png')} style={{width: 35, height: 35,top:3}}/>
-            <Text style={{left:10, fontSize:15,top:3, color:'#787878'}}>Logout</Text>
+          <Icon name="power-off" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
+            <Text style={{left:10, fontSize:15, color:'#787878'}}>Logout</Text>
         </View>
         </TouchableOpacity>
-        <View style={{height: 1, backgroundColor:'#9E9E9E',marginVertical:10}}/>
 
       </View>
       </ScrollView>

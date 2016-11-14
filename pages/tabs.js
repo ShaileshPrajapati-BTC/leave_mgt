@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    backgroundColor: '#ff6f00',
+    backgroundColor: '#2196F3',
   },
 });
 

@@ -8,34 +8,34 @@ import {
 
 import Tabs from './tabs';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
-import Card from './card.js'
-import Sports from './sports.js';
-import Map from './map.js';
-import Shop from './shop.js';
-import Vas from './vas.js';
+import Approved from './Approved.js'
+import Pendding from './Pendding.js';
+import Rejected from './Rejected.js';
+import Cancelled from './Cancelled.js';
+import Emergency from './Emergency.js';
 
 export default class Tabbar extends Component{
 
   render() {
-    let santosh = ["CARD","VAS","SPORTS","MAP","SHOP"];
+    let Tabname = ["APPROVED","PENDDING","REJECTED","CANCELLED","EMERGENCY"];
     return <ScrollableTabView
       initialPage={this.props.index}
-      renderTabBar={() => <Tabs name={santosh} />}
+      renderTabBar={() => <Tabs name={Tabname} />}
       >
-      <ScrollView tabLabel="ios-card">
-        <Card navigator={this.props.navigator} pin={this.props.pin} />
+      <ScrollView tabLabel="md-checkbox">
+        <Approved navigator={this.props.navigator} pin={this.props.pin} />
       </ScrollView>
-      <ScrollView tabLabel="md-list">
-        <Vas navigator={this.props.navigator} />
+      <ScrollView tabLabel="md-time">
+        <Pendding navigator={this.props.navigator} />
       </ScrollView>
-      <ScrollView tabLabel="ios-walk">
-        <Sports navigator={this.props.navigator} />
+      <ScrollView tabLabel="md-thumbs-down">
+        <Rejected navigator={this.props.navigator} />
       </ScrollView>
-      <ScrollView tabLabel="ios-navigate">
-          <Map navigator={this.props.navigator} />
+      <ScrollView tabLabel="md-close-circle">
+        <Cancelled navigator={this.props.navigator} />
       </ScrollView>
-      <ScrollView tabLabel="ios-basket">
-        <Shop navigator={this.props.navigator} />
+      <ScrollView tabLabel="md-medkit">
+        <Emergency navigator={this.props.navigator} />
       </ScrollView>
     </ScrollableTabView>;
   }

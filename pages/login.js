@@ -25,43 +25,26 @@ export default class Login extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
-        <View style={{flexDirection:'column',justifyContent:'flex-end',alignItems:'flex-end',top:10,right:10}}>
-          <TouchableOpacity onPress={ () => this._navigate('Home', 1) }>
-            <Text style={{fontSize: 17,color:'#A9A9A9'}}>Skip</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={{flex: 1, justifyContent: 'center',
+    alignItems: 'center'}}>
         <StatusBar
-           backgroundColor="#ff6f00"
+           backgroundColor="#2196F3"
            barStyle="light-content"
           />
         <View style={login_styles.wallet_image}>
-          <Image source={require('../images/screenlogo.png')} style={{width:70,height:70}} />
+          <Image source={{uri:'http://eduerp.net/wp-content/uploads/2015/08/Benefits-of-Leave-Management-System-in-School-ERP-Software-300x300.png'}} style={{width:70,height:70}} />
         </View>
         <View style={login_styles.wallet_text}>
-          <Text style={{fontSize: 25, color: '#ff6f00', fontWeight:'bold'}}>V-</Text>
-          <Text style={{fontSize: 25, fontWeight:'bold'}}>Wallet</Text>
+          <Text style={{fontSize: 25, fontWeight:'bold'}}>LMS</Text>
         </View>
-        <View style={login_styles.button_view}>
-          <Button containerStyle={login_styles.button_container_style}>
-            <Image source={require('../images/gpluslogo.png')} style={{left:10,width:20,height:20}} />
-            <Text style={{right:70,color: 'white',fontSize: 17}}>Sign in with Google+</Text>
-          </Button>
-          <Button containerStyle={login_styles.button_container_style_fb}>
-            <Image source={require('../images/facebooklogo.png')} style={{left:10,width:20,height:20}} />
-            <Text style={{right:60,color: 'white',fontSize: 17}}>Sign in with Facebook</Text>
-          </Button>
-        </View>
-        <View style={login_styles.wallet_image}>
-          <Text style={{top:12}}>OR</Text>
-        </View>
+  
         <View style={login_styles.wallet_text,{padding:5}}>
           <View style={login_styles.login_field_view}>
-            <Image source={require('../images/username.png')} style={{top:13,height:25,width:25}}/>
+            <Icon name="user" size={30} color="#2196F3" style={{top:13,height:25,width:25}} />    
             <TextInput style={login_styles.text_input} placeholder="Username"/>
           </View>
           <View style={login_styles.login_field_view}>
-            <Image source={require('../images/password.png')} style={{top:13,height:25,width:25}}/>
+            <Icon name="lock" size={30} color="#2196F3" style={{top:13,height:25,width:25}} />    
             <TextInput style={login_styles.text_input} placeholder="Password"/>
           </View>
           <Button
@@ -72,19 +55,7 @@ export default class Login extends Component {
             Sign In
           </Button>
         </View>
-        <View >
-          <View style={login_styles.bottom_text}>
-            <Text style={{color:'#A9A9A9',fontWeight:'bold'}}>Forget your details? </Text>
-            <Text style={{fontWeight:'bold',fontSize: 15, color: '#ff6f00'}}>Get help</Text>
-          </View>
-          <View style={login_styles.bottom_text}>
-            <Text style={{color:'#A9A9A9',fontWeight:'bold',top:15}}>Dont have an account? </Text>
-            <Text style={{fontWeight:'bold',fontSize: 15, color: '#ff6f00',top:15}}>Sign Up</Text>
-          </View>
-          <View style={{top:80,justifyContent: 'center',alignItems: 'center'}}>
-            <Text style={{fontSize: 10,color:'#A9A9A9'}}>© Hypersoft Co.Ltd </Text>
-          </View>
-        </View>
+
       </View>
     );
   }

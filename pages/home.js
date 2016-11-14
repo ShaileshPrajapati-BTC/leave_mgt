@@ -1,15 +1,14 @@
 import React,{Component} from 'react';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import Shopping from './sports/shopping.js';
-import Vas from './vas.js';
-import Card from './card.js'
 import Menu from './menu.js';
-import Sports from './sports.js';
-import Map from './map.js';
-import Shop from './shop.js';
 import Tabbar from './tabbar.js';
 import DrawerBar from './drawer.js'
-
+import Approved from './Approved.js'
+import Pendding from './Pendding.js';
+import Rejected from './Rejected.js';
+import Cancelled from './Cancelled.js';
+import Emergency from './Emergency.js';
 
 
 import {
