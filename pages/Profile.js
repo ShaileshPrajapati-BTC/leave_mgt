@@ -35,7 +35,7 @@ export default class Profile extends Component {
           </Image>  
         </View>
 
-        <View style={{flexDirection: 'row',alignItems: 'center'}}>
+        <View style={{flexDirection: 'row',alignItems: 'flex-start'}}>
           <Button
             containerStyle={login_styles.login_botton}
             style={login_styles.button_style}

@@ -14,6 +14,7 @@
  import Qr from './pages/card/qr.js';
  import Pin from './pages/card/pin.js';
  import QrScan from './pages/card/qr_scan.js';
+ import Leaves from './pages/Leaves.js';
 
  import {
    AppRegistry,
@@ -72,8 +73,8 @@ export default class HPSReactNative extends Component {
     if(route.name == 'Pin') {
       return <Pin navigator={navigator} {...route.passProps} route={route} />
     }
-    if(route.name == 'QrScan') {
-      return <QrScan navigator={navigator} {...route.passProps} route={route} />
+    if(route.name == 'Leaves') {
+      return <Leaves navigator={navigator} {...route.passProps} route={route} />
     }
     if(route.name == 'Profile') {
       return <Profile navigator={navigator} {...route.passProps} route={route} />
@@ -85,7 +86,7 @@ export default class HPSReactNative extends Component {
       <Navigator
       	style={{ flex:1 }}
         ref={(nav) => { navigator = nav; }}
-        initialRoute={{ name: 'Profile' }}
+        initialRoute={{ name: 'Login' }}
         renderScene={ this.renderScene }
         configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
       />

@@ -25,30 +25,28 @@ export default class ControlPanel extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={{flex:1,flexDirection:'column', justifyContent:'center', alignItems:'center',padding:30}}>
-          <Image source={require('../images/menuuser.png')} style={{width: 50, height: 50}}/>
+          <Image source={{uri:'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg'}} style={{width: 50, height: 50,borderRadius: 25}}/>
           <Text style={{top:10}}>Shailesh Prajapati</Text>
         </View>
       <View>
         <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center'}}>
           <Icon name="user" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
-          <Text style={{left:10, fontSize:15, color:'#787878'}}>My Profile</Text>
+          <Text style={{left:10, fontSize:15, color:'#787878'}}>Profile</Text>
         </View>
 
+        <TouchableOpacity onPress={ () => this._navigate('Home',0) }>
+          <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
+            <Icon name="gear" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
+            <Text style={{left:10, fontSize:15, color:'#787878'}}>Leaves</Text>
+          </View>
+        </TouchableOpacity>
 
-        <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
-          <Icon name="gear" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
-          <Text style={{left:10, fontSize:15, color:'#787878'}}>Manage Leaves</Text>
-        </View>
-
-        <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
-          <Icon name="gear" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
-          <Text style={{left:10, fontSize:15, color:'#787878'}}>Request Leaves</Text>
-        </View>
-
-        <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
-          <Icon name="gear" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
-          <Text style={{left:10, fontSize:15, color:'#787878'}}>Holidays</Text>
-        </View>
+        <TouchableOpacity onPress={ () => this._navigate('Leaves',0) }>
+          <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
+            <Icon name="gear" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
+            <Text style={{left:10, fontSize:15, color:'#787878'}}>Manage Leaves</Text>
+          </View>
+        </TouchableOpacity>
 
         <TouchableOpacity onPress={ () => this._navigate('Login') }>
         <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
