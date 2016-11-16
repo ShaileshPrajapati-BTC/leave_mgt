@@ -22,7 +22,12 @@ export default class DrawerBar extends Component {
     this._drawer.open()
   };
   _onActionSelected = (position) => {
-    alert('Selected ' + position);
+    this.props.navigator.push({
+        name: 'Notification',
+        passProps: {
+          name: 'name'
+        }
+    })
   };
   render() {
       return (
@@ -61,8 +66,7 @@ export default class DrawerBar extends Component {
                 navIcon={require('../images/menu.png')}
                 title="Leave-Mgt"
                 titleColor="white"
-                actions={[{title:'Notifications', iconName: 'ios-notifications', iconSize: 30, show: 'always'},
-                          {title:'More', iconName: 'md-more', iconSize: 30, show: 'always'}]}
+                actions={[{title:'Notifications', iconName: 'ios-notifications', iconSize: 30, show: 'always'}]}
                 onIconClicked={() => {this.openDrawer()}}
                 onActionSelected={this._onActionSelected}
               >

@@ -15,6 +15,9 @@
  import Pin from './pages/card/pin.js';
  import QrScan from './pages/card/qr_scan.js';
  import Leaves from './pages/Leaves.js';
+ import Notification from './pages/Notification.js';
+ import LeaveDetail from './pages/LeaveDetail.js';
+
 
  import {
    AppRegistry,
@@ -26,15 +29,6 @@
 var navigator;
 export default class HPSReactNative extends Component {
 
-  componentWillMount = () => {
-    BackAndroid.addEventListener('hardwareBackPress', function() {
-     if (navigator && navigator.getCurrentRoutes().length > 1) {
-        navigator.pop();
-        return true;
-    }
-    return false;
-    });
-  };
 
   renderScene(route, navigator) {
   	if(route.name == 'Login') {
@@ -70,14 +64,20 @@ export default class HPSReactNative extends Component {
     if(route.name == 'Qr') {
       return <Qr navigator={navigator} {...route.passProps} route={route} />
     }
-    if(route.name == 'Pin') {
-      return <Pin navigator={navigator} {...route.passProps} route={route} />
+    if(route.name == 'Profile') {
+      return <Profile navigator={navigator} {...route.passProps} route={route} />
     }
     if(route.name == 'Leaves') {
       return <Leaves navigator={navigator} {...route.passProps} route={route} />
     }
     if(route.name == 'Profile') {
       return <Profile navigator={navigator} {...route.passProps} route={route} />
+    }
+    if(route.name == 'Notification') {
+      return <Notification navigator={navigator} {...route.passProps} route={route} />
+    }
+    if(route.name == 'LeaveDetail') {
+      return <LeaveDetail navigator={navigator} {...route.passProps} route={route} />
     }
   }
 

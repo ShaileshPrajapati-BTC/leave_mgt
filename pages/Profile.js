@@ -1,14 +1,19 @@
 import React,{Component} from 'react';
 import Button from 'react-native-button';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
+import ActionButton from 'react-native-action-button';
+import Tabbar from './LeavesTab.js';
+import DrawerBar from './drawer.js'
+
 import login_styles from '../styles/login_styles';
+
 import {
   Text,
   View,
   TextInput,
   Image,
   TouchableOpacity,
-  StatusBar
+  StatusBar,StyleSheet
 } from 'react-native';
 
 export default class Profile extends Component {
@@ -20,56 +25,47 @@ export default class Profile extends Component {
       }
     })
   }
-
-
-  render() {
-    return (
-      <View style={{flex: 1, backgroundColor: '#FFFFFF'}} > 
-      <View style={{flex: 1}}>
+  render_view() {
+    return(
+      <View style={{flex: 1}} > 
+      <View >
+      
         <View style={{justifyContent:'center',opacity: 1}}>
-          <Image source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} style={{width: 360, height: 250}}>
-          <TouchableOpacity onPress={() => this.back()}>
-          <Icon name="lock" size={30} color="#2196F3" style={{top:13,height:25,width:25}} />   
-          </TouchableOpacity>
-            <Text style ={{backgroundColor: 'transparent',paddingTop: 170,textAlign:'left',fontSize: 25,fontWeight: 'bold',color: 'white'}}>Shailesh</Text> 
-          </Image>  
-        </View>
+          <Image source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} style={{width: 360, height: 280}}>
+            <TouchableOpacity onPress={() => this.back()}>
+              <Icon name="arrow-left" size={15} color="#2196F3" style={{height:25,width:30}} />   
+            </TouchableOpacity>
+            <Text style ={{backgroundColor: 'transparent',paddingTop: 220,textAlign:'left',fontSize: 25,fontWeight: 'bold',color: 'white'}}>Shailesh</Text> 
+          </Image> 
 
-        <View style={{flexDirection: 'row',alignItems: 'flex-start'}}>
-          <Button
-            containerStyle={login_styles.login_botton}
-            style={login_styles.button_style}
-            onPress={ () => this._navigate('Home',0) }
-          >
-            Sign In
-          </Button>
-          <Button
-            containerStyle={login_styles.login_botton}
-            style={login_styles.button_style}
-            onPress={ () => this._navigate('Home',0) }
-          >
-            Sign In
-          </Button>
-          <View style={{}} >
-            <Icon name="lock" size={30} color="#2196F3" style={{top:13,height:25,width:25}} />   
-          </View> 
-          <View style={{flexDirection: 'column'}} >
-          <Text style={{color:'black',marginLeft: 12}}></Text>
-          <Text style={{color:'black',marginLeft: 12}}>(Home)</Text>
-          </View>                    
-        </View>
-        <View style={{height:1, backgroundColor:'black'}}/>
-        <View style={{flexDirection: 'row',padding: 12,alignItems: 'center'}}>
-          <View style={{}} >
-            <Icon name="lock" size={30} color="#2196F3" style={{top:13,height:25,width:25}} />   
-          </View> 
-          <View style={{}} >
-          <Text style={{color:'black',marginLeft: 12}}>sp@gm.com</Text>
-          </View>                    
         </View>
 
      </View>
+          <ActionButton buttonColor="rgba(231,76,60,1)" spacing={5} offsetY={0.20} offsetX={5} degrees={90} icon={<Icon name="md-more" style={styles.actionButtonIcon} />}>
+            <ActionButton.Item buttonColor='#9b59b6' title="Leave Balance: 10" onPress={() => console.log("notes tapped!")}>
+              <Icon name="md-create" style={styles.actionButtonIcon} />
+            </ActionButton.Item>
+            <ActionButton.Item buttonColor='#3498db' title="Leave Requests: 1" onPress={() => {}}>
+              <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+            </ActionButton.Item>
+            <ActionButton.Item buttonColor='#1abc9c' title="Taken Leave: 5" onPress={() => {}}>
+              <Icon name="md-done-all" style={styles.actionButtonIcon} />
+            </ActionButton.Item>
+          </ActionButton> 
     </View>
     );
   }
+
+  render() {
+    return (
+      <DrawerBar data={this.render_view()} navigator={this.props.navigator}/>
+    );
+  }
 }
+const styles = StyleSheet.create({
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
+  },
+});

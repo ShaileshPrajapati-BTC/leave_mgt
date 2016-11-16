@@ -29,11 +29,12 @@ export default class ControlPanel extends Component {
           <Text style={{top:10}}>Shailesh Prajapati</Text>
         </View>
       <View>
-        <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center'}}>
-          <Icon name="user" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
-          <Text style={{left:10, fontSize:15, color:'#787878'}}>Profile</Text>
-        </View>
-
+        <TouchableOpacity onPress={ () => this._navigate('Profile',0) }>
+          <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center'}}>
+            <Icon name="user" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
+            <Text style={{left:10, fontSize:15, color:'#787878'}}>Profile</Text>
+          </View>
+         </TouchableOpacity> 
         <TouchableOpacity onPress={ () => this._navigate('Home',0) }>
           <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
             <Icon name="gear" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
