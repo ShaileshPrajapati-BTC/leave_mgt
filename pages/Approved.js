@@ -19,7 +19,6 @@ export default class Approved extends Component {
     super(props);
 
     this.state = {
-      image: require(`../images/emptywallet.gif`),
       dialogOpen: false,
       margintop:80
     };
@@ -32,17 +31,6 @@ export default class Approved extends Component {
           name: name
         }
       })
-    }
-    componentWillMount(){
-      if (this.props.pin){
-        this.setState({
-          image: require(`../images/kamo_card.png`),
-          margintop:0
-        });
-        BackAndroid.addEventListener('hardwareBackPress', function() {        
-            BackAndroid.exitApp(0);
-        });
-      }
     }
     openDefaultAnimationDialog() {
     this.defaultAnimationDialog.openDialog();
@@ -78,6 +66,7 @@ export default class Approved extends Component {
                 <Icon name="md-checkmark-circle" size={25} color="green" style={{height:25,width:25}} /> 
               </View>
             </View>
+            <View style={{height:1,backgroundColor:'grey'}}/>
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'center'}}>
                 <Image source={require(`../images/kamo_card.png`)} style={styles.photo} />
 
@@ -106,6 +95,7 @@ export default class Approved extends Component {
                 <Icon name="md-checkmark-circle" size={25} color="green" style={{height:25,width:25}} /> 
               </View>
             </View>
+            <View style={{height:1,backgroundColor:'grey'}}/>
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'center'}}>
                 <Image source={require(`../images/kamo_card.png`)} style={styles.photo} />
 
@@ -134,6 +124,8 @@ export default class Approved extends Component {
                 <Icon name="md-checkmark-circle" size={25} color="green" style={{height:25,width:25}} /> 
               </View>
             </View>
+            <View style={{height:1,backgroundColor:'grey'}}/>
+
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'center'}}>
                 <Image source={require(`../images/kamo_card.png`)} style={styles.photo} />
 
@@ -162,6 +154,8 @@ export default class Approved extends Component {
                 <Icon name="md-checkmark-circle" size={25} color="green" style={{height:25,width:25}} /> 
               </View>
             </View>
+            <View style={{height:1,backgroundColor:'grey'}}/>
+          
           </View>
         );
     }

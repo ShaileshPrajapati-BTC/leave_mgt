@@ -60,7 +60,7 @@ const login_styles = StyleSheet.create({
   text_input:{
     width:260,
     height:50,
-    left:10
+    left:10,
   },
   bottom_text:{
     flexDirection: 'row',
@@ -79,9 +79,7 @@ const login_styles = StyleSheet.create({
     height:45,
     width:150,
     overflow:'hidden',
-    borderRadius:4,
-    backgroundColor: '#2196F3',
-    left:80
+    left:50
   }
 });
 

@@ -67,21 +67,24 @@ export default class LeaveDetail extends Component {
             <Text style ={{backgroundColor: 'transparent',fontSize: 18}}>Medical</Text> 
           </View>
         </View>
+
+        <View style={{top:30,left:50,height:1,width:360,backgroundColor:'grey'}}/>
+
+
         <View style={{flexDirection:'column',top:40,paddingLeft:16,paddingRight:10}}>
           <Text style ={{backgroundColor: 'transparent',fontSize: 18,fontWeight: 'bold'}}>Description :</Text>
           <Text> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</Text>
 
         </View>
 
-        <ActionButton buttonColor="rgba(231,76,60,1)" spacing={5} offsetY={0.20} offsetX={5} degrees={90} icon={<Icon name="md-more" style={styles.actionButtonIcon} />}>
-          <ActionButton.Item buttonColor='#3498db' title="Reject Leave" onPress={() => {}}>
-            <Icon name="md-close-circles" style={styles.actionButtonIcon} />
+        <ActionButton buttonColor="#3498db" spacing={5} offsetY={0.20} offsetX={5} degrees={90} icon={<Icon name="md-more" style={styles.actionButtonIcon} />}>
+          <ActionButton.Item buttonColor='rgba(231,76,60,1)' title="Reject Leave" onPress={() => {}}>
+            <Icon name="md-close-circle" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#1abc9c' title="Approve Leave" onPress={() => {}}>
             <Icon name="md-done-all" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
-
     </View>
     );
   }

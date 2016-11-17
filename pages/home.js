@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
-import Shopping from './sports/shopping.js';
+
 import Menu from './menu.js';
 import Tabbar from './tabbar.js';
 import DrawerBar from './drawer.js'

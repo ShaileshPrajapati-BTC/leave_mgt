@@ -75,6 +75,7 @@ export default class Holiday extends Component {
                 </View>
               </View>
             </Swipeout>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <Swipeout right={swipeoutBtns}>
               <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
@@ -90,6 +91,8 @@ export default class Holiday extends Component {
                 </View>
               </View>
             </Swipeout>
+            <View style={{backgroundColor:'grey',height:1}}/>
+            
             <Swipeout right={swipeoutBtns}>
               <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
                 <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
@@ -104,6 +107,7 @@ export default class Holiday extends Component {
                 </View>
               </View>
             </Swipeout>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <Swipeout right={swipeoutBtns}>
               <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
@@ -119,6 +123,7 @@ export default class Holiday extends Component {
                 </View>
               </View>
             </Swipeout>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <Swipeout right={swipeoutBtns}>
               <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
@@ -134,6 +139,7 @@ export default class Holiday extends Component {
                 </View>
               </View>
             </Swipeout>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <Swipeout right={swipeoutBtns}>
               <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
@@ -149,6 +155,7 @@ export default class Holiday extends Component {
                 </View>
               </View>
             </Swipeout>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <Swipeout right={swipeoutBtns}>
               <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
@@ -164,6 +171,7 @@ export default class Holiday extends Component {
                 </View>
               </View>
             </Swipeout>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <Swipeout right={swipeoutBtns}>
               <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>

@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import login_styles from '../styles/login_styles';
-import Tabbar from './tabbar.js';
+import FloatingLabel from 'react-native-floating-labels';
+
 import {
   Text,
   View,
@@ -26,7 +27,7 @@ export default class Login extends Component {
   render() {
     return (
       <View style={{flex: 1, justifyContent: 'center',
-    alignItems: 'center'}}>
+    alignItems: 'center',backgroundColor:'rgba(33,150,243,0.9)'}}>
         <StatusBar
            backgroundColor="#2196F3"
            barStyle="light-content"
@@ -40,12 +41,21 @@ export default class Login extends Component {
   
         <View style={login_styles.wallet_text,{padding:5}}>
           <View style={login_styles.login_field_view}>
-            <Icon name="user" size={30} color="#2196F3" style={{top:13,height:25,width:25}} />    
-            <TextInput style={login_styles.text_input} placeholder="Username"/>
+            <FloatingLabel 
+                labelStyle={{fontSize:12,color: 'white'}}
+                inputStyle={{borderWidth: 0,fontSize:15,color: 'white'}}
+                style={login_styles.text_input}
+                onBlur={this.onBlur}
+              ><Icon name="user" size={15} color="white" style={{top:13,height:25,width:25}} /> User Name</FloatingLabel>
           </View>
           <View style={login_styles.login_field_view}>
-            <Icon name="lock" size={30} color="#2196F3" style={{top:13,height:25,width:25}} />    
-            <TextInput style={login_styles.text_input} placeholder="Password"/>
+            <FloatingLabel 
+              labelStyle={{fontSize:12,color: 'white'}}
+              inputStyle={{borderWidth: 0,fontSize:15,color: 'white'}}
+              style={login_styles.text_input}
+              onBlur={this.onBlur}
+              underlineColorAndroi={'white'}
+            ><Icon name="lock" size={15} color="white" style={{top:13,height:25,width:25}} /> Password</FloatingLabel>
           </View>
           <Button
             containerStyle={login_styles.login_botton}

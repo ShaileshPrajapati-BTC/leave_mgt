@@ -49,6 +49,9 @@ export default class Pendding extends Component {
                 <Icon name="md-time" size={25} color="#FFCA28" style={{height:25,width:25}} /> 
               </View>
             </View>
+
+             <View style={{height:1,backgroundColor:'grey'}}/>
+
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'center'}}>
                 <Image source={require(`../images/kamo_card.png`)} style={styles.photo} />
 
@@ -77,6 +80,9 @@ export default class Pendding extends Component {
                 <Icon name="md-time" size={25} color="#FFCA28" style={{height:25,width:25}} /> 
               </View>
             </View>
+
+            <View style={{height:1,backgroundColor:'grey'}}/>
+
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'center'}}>
                 <Image source={require(`../images/kamo_card.png`)} style={styles.photo} />
 
@@ -105,6 +111,9 @@ export default class Pendding extends Component {
                 <Icon name="md-time" size={25} color="#FFCA28" style={{height:25,width:25}} /> 
               </View>
             </View>
+
+            <View style={{height:1,backgroundColor:'grey'}}/>
+
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'center'}}>
                 <Image source={require(`../images/kamo_card.png`)} style={styles.photo} />
 
@@ -133,6 +142,9 @@ export default class Pendding extends Component {
                 <Icon name="md-time" size={25} color="#FFCA28" style={{height:25,width:25}} /> 
               </View>
             </View>
+
+            <View style={{height:1,backgroundColor:'grey'}}/>
+
           </View>
     );
   }

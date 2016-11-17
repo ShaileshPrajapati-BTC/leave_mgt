@@ -33,17 +33,7 @@ export default class LeaveType extends Component {
         }
       })
     }
-    componentWillMount(){
-      if (this.props.pin){
-        this.setState({
-          image: require(`../images/kamo_card.png`),
-          margintop:0
-        });
-        BackAndroid.addEventListener('hardwareBackPress', function() {        
-            BackAndroid.exitApp(0);
-        });
-      }
-    }
+
     openDefaultAnimationDialog() {
     this.defaultAnimationDialog.openDialog();
     }
@@ -67,6 +57,7 @@ export default class LeaveType extends Component {
                   <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
                 </View>
             </View>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
               <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
@@ -84,6 +75,7 @@ export default class LeaveType extends Component {
                   <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
                 </View>
             </View>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
               <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
@@ -101,6 +93,7 @@ export default class LeaveType extends Component {
                   <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
                 </View>
             </View>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
               <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
@@ -118,6 +111,7 @@ export default class LeaveType extends Component {
                   <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
                 </View>
             </View>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
               <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
@@ -135,8 +129,9 @@ export default class LeaveType extends Component {
                   <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
                 </View>
             </View>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
-                      <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
+            <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
               <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
                 <View style={{flexDirection: 'column',alignItems: 'flex-start'}}>
                   <Text style={{fontSize:18}}>
@@ -152,6 +147,7 @@ export default class LeaveType extends Component {
                   <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
                 </View>
             </View>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
               <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
@@ -169,6 +165,7 @@ export default class LeaveType extends Component {
                   <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
                 </View>
             </View>
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
               <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>

@@ -39,24 +39,27 @@ export default class Notification extends Component {
              barStyle="light-content"
             />
 
-            <TouchableOpacity onPress={() => this._navigate('LeaveDetail')}>
+
               <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
-                <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
-                  <View style={{flexDirection: 'column',alignItems: 'flex-start'}}>
-                    <Text style={{fontSize:18}}>
-                     Shailesh Prajapati
-                    </Text>
-                    <Text style={{left:10}}>
-                      Descriptionddddddddddddddddddddddddddddddddddddddddd
-                    </Text>
+                <TouchableOpacity onPress={() => this._navigate('LeaveDetail')}>
+                  <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
+                    <View style={{flexDirection: 'column',alignItems: 'flex-start'}}>
+                      <Text style={{fontSize:18}}>
+                       Shailesh Prajapati
+                      </Text>
+                      <Text style={{left:10}}>
+                        Descriptionddddddddddddddddddddddddddddddddddddddddd
+                      </Text>
+                    </View>
                   </View>
-                </View>
+                </TouchableOpacity>
                 <View style={{flexDirection: 'row',justifyContent:'center',alignItems: 'center',left:20,width:60,top:15}}> 
                     <Icon name="md-create" size={25} color="#2196F3" style={{height:25,width:25}} /> 
                     <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
                   </View>
               </View>
-            </TouchableOpacity>
+
+            <View style={{backgroundColor:'grey',height:1}}/>
 
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
               <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
@@ -75,6 +78,9 @@ export default class Notification extends Component {
                 </View>
             </View>
 
+            <View style={{backgroundColor:'grey',height:1}}/>
+
+
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
               <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
                 <View style={{flexDirection: 'column',alignItems: 'flex-start'}}>
@@ -91,6 +97,9 @@ export default class Notification extends Component {
                   <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
                 </View>
             </View>
+
+            <View style={{backgroundColor:'grey',height:1}}/>
+
 
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
               <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
@@ -109,6 +118,9 @@ export default class Notification extends Component {
                 </View>
             </View>
 
+            <View style={{backgroundColor:'grey',height:1}}/>
+
+
             <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
               <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
                 <View style={{flexDirection: 'column',alignItems: 'flex-start'}}>
@@ -125,6 +137,9 @@ export default class Notification extends Component {
                   <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
                 </View>
             </View>
+
+            <View style={{backgroundColor:'grey',height:1}}/>
+
 
           </View>
         );
