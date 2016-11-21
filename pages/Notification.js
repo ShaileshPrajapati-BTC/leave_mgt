@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { Container, Content, List, ListItem, Thumbnail} from 'native-base';
 
 import {
   Text,
@@ -38,109 +39,60 @@ export default class Notification extends Component {
              backgroundColor="#2196F3"
              barStyle="light-content"
             />
-
-
-              <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
-                <TouchableOpacity onPress={() => this._navigate('LeaveDetail')}>
-                  <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
-                    <View style={{flexDirection: 'column',alignItems: 'flex-start'}}>
-                      <Text style={{fontSize:18}}>
-                       Shailesh Prajapati
-                      </Text>
-                      <Text style={{left:10}}>
-                        Descriptionddddddddddddddddddddddddddddddddddddddddd
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <View style={{flexDirection: 'row',justifyContent:'center',alignItems: 'center',left:20,width:60,top:15}}> 
-                    <Icon name="md-create" size={25} color="#2196F3" style={{height:25,width:25}} /> 
-                    <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
-                  </View>
-              </View>
-
-            <View style={{backgroundColor:'grey',height:1}}/>
-
-            <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
-              <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
-                <View style={{flexDirection: 'column',alignItems: 'flex-start'}}>
-                  <Text style={{fontSize:18}}>
-                    Ankur Vyas
-                  </Text>
-                  <Text style={{left:10}}>
-                    Descriptionddddddddddddddddddddddddddddddddddddddddd
-                  </Text>
-                </View>
-              </View>
-              <View style={{flexDirection: 'row',justifyContent:'center',alignItems: 'center',left:20,width:60,top:15}}> 
-                  <Icon name="md-create" size={25} color="#2196F3" style={{height:25,width:25}} /> 
-                  <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
-                </View>
-            </View>
-
-            <View style={{backgroundColor:'grey',height:1}}/>
-
-
-            <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
-              <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
-                <View style={{flexDirection: 'column',alignItems: 'flex-start'}}>
-                  <Text style={{fontSize:18}}>
-                    Amit Patel
-                  </Text>
-                  <Text style={{left:10}}>
-                    Descriptionddddddddddddddddddddddddddddddddddddddddd
-                  </Text>
-                </View>
-              </View>
-              <View style={{flexDirection: 'row',justifyContent:'center',alignItems: 'center',left:20,width:60,top:15}}> 
-                  <Icon name="md-create" size={25} color="#2196F3" style={{height:25,width:25}} /> 
-                  <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
-                </View>
-            </View>
-
-            <View style={{backgroundColor:'grey',height:1}}/>
-
-
-            <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
-              <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
-                <View style={{flexDirection: 'column',alignItems: 'flex-start'}}>
-                  <Text style={{fontSize:18}}>
-                    Parth Barot
-                  </Text>
-                  <Text style={{left:10}}>
-                    Descriptionddddddddddddddddddddddddddddddddddddddddd
-                  </Text>
-                </View>
-              </View>
-              <View style={{flexDirection: 'row',justifyContent:'center',alignItems: 'center',left:20,width:60,top:15}}> 
-                  <Icon name="md-create" size={25} color="#2196F3" style={{height:25,width:25}} /> 
-                  <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
-                </View>
-            </View>
-
-            <View style={{backgroundColor:'grey',height:1}}/>
-
-
-            <View style={{padding: 10,flexDirection: 'row',alignItems: 'flex-start'}}>
-              <View style={{flexDirection: 'column',alignItems: 'flex-start',width:250}}>
-                <View style={{flexDirection: 'column',alignItems: 'flex-start'}}>
-                  <Text style={{fontSize:18}}>
-                    Karan Patel
-                  </Text>
-                  <Text style={{left:10}}>
-                    Descriptionddddddddddddddddddddddddddddddddddddddddd
-                  </Text>
-                </View>
-              </View>
-              <View style={{flexDirection: 'row',justifyContent:'center',alignItems: 'center',left:20,width:60,top:15}}> 
-                  <Icon name="md-create" size={25} color="#2196F3" style={{height:25,width:25}} /> 
-                  <Icon name="ios-trash" size={25} color="red" style={{height:25,width:25,left:10}} /> 
-                </View>
-            </View>
-
-            <View style={{backgroundColor:'grey',height:1}}/>
-
-
+            <Container>
+              <Content>
+                <ListItem button onPress={() => this._navigate('LeaveDetail')}>
+                    <Thumbnail square size={50} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                    <Text>Santosh Sharma</Text>
+                    <Text note>Doing what you like will always keep you happy . .</Text>
+                </ListItem>
+                <ListItem button onPress={() => this._navigate('LeaveDetail')}>
+                    <Thumbnail square size={50} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                    <Text>Santosh Sharma</Text>
+                    <Text note>Doing what you like will always keep you happy . .</Text>
+                </ListItem>
+                <ListItem button onPress={() => this._navigate('LeaveDetail')}>
+                    <Thumbnail square size={50} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                    <Text>Santosh Sharma</Text>
+                    <Text note>Doing what you like will always keep you happy . .</Text>
+                </ListItem>
+                <ListItem button onPress={() => this._navigate('LeaveDetail')}>
+                    <Thumbnail square size={50} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                    <Text>Santosh Sharma</Text>
+                    <Text note>Doing what you like will always keep you happy . .</Text>
+                </ListItem>
+                <ListItem button onPress={() => this._navigate('LeaveDetail')}>
+                    <Thumbnail square size={50} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                    <Text>Santosh Sharma</Text>
+                    <Text note>Doing what you like will always keep you happy . .</Text>
+                </ListItem>
+                <ListItem button onPress={() => this._navigate('LeaveDetail')}>
+                    <Thumbnail square size={50} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                    <Text>Santosh Sharma</Text>
+                    <Text note>Doing what you like will always keep you happy . .</Text>
+                </ListItem>
+                <ListItem button onPress={() => this._navigate('LeaveDetail')}>
+                    <Thumbnail square size={50} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                    <Text>Santosh Sharma</Text>
+                    <Text note>Doing what you like will always keep you happy . .</Text>
+                </ListItem>
+                <ListItem button onPress={() => this._navigate('LeaveDetail')}>
+                    <Thumbnail square size={50} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                    <Text>Santosh Sharma</Text>
+                    <Text note>Doing what you like will always keep you happy . .</Text>
+                </ListItem>
+                <ListItem button onPress={() => this._navigate('LeaveDetail')}>
+                    <Thumbnail square size={50} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                    <Text>Santosh Sharma</Text>
+                    <Text note>Doing what you like will always keep you happy . .</Text>
+                </ListItem>
+                <ListItem button onPress={() => this._navigate('LeaveDetail')}>
+                    <Thumbnail square size={50} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                    <Text>Santosh Sharma</Text>
+                    <Text note>Doing what you like will always keep you happy . .</Text>
+                </ListItem>
+            </Content>
+        </Container>
           </View>
         );
     }

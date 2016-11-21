@@ -2,12 +2,12 @@ import React,{Component} from 'react';
 import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ActionButton from 'react-native-action-button';
-
+import { Container, Content, List, ListItem, Thumbnail, Text, Badge, Card, CardItem } from 'native-base';
 
 import login_styles from '../styles/login_styles';
 
 import {
-  Text,
+
   View,
   TextInput,
   Image,
@@ -26,7 +26,7 @@ export default class LeaveDetail extends Component {
   }
   render() {
     return (
-      <View style={{flex: 1}} > 
+      <View style={{flex: 1}} >
         <View style={{backgroundColor: '#2196F3',elevation: 3,borderTopColor:'black',borderTopWidth:0.2}} >
           <Icon.ToolbarAndroid
             navIconName={'md-arrow-back'}
@@ -42,40 +42,49 @@ export default class LeaveDetail extends Component {
          backgroundColor="#2196F3"
          barStyle="light-content"
         />
-        <View style={{flexDirection:'row',alignItems:'center'}}>
-          <Image source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} style={{width: 100, height: 100,borderRadius:50,top:8,left:5}}/>
-          <View style={{flexDirection:'column',left:20,top:8}}>          
-            <Text style ={{backgroundColor: 'transparent',fontSize: 20,fontWeight: 'bold'}}>Shailesh Prajapati</Text> 
-            <Text style ={{backgroundColor: 'transparent',fontSize: 15}}>Ror Developer</Text> 
-            <Text style ={{backgroundColor: 'transparent',fontSize: 15}}>On Probation</Text> 
-          </View>
-        </View>
-        <View style={{top:10,left:100,height:1,width:280,backgroundColor:'grey'}}/>
-        <View style={{flexDirection:'row',alignItems:'center'}}>
-          <View style={{flexDirection:'column',left:20,top:15}}>          
-            <Text style ={{backgroundColor: 'transparent',fontSize: 18,fontWeight: 'bold'}}>Leave Balance :</Text> 
-            <Text style ={{backgroundColor: 'transparent',fontSize: 18,fontWeight: 'bold'}}>Team Lead :</Text> 
-            <Text style ={{backgroundColor: 'transparent',fontSize: 18,fontWeight: 'bold'}}>Date :</Text> 
-            <Text style ={{backgroundColor: 'transparent',fontSize: 18,fontWeight: 'bold'}}>Leave Days :</Text> 
-            <Text style ={{backgroundColor: 'transparent',fontSize: 18,fontWeight: 'bold'}}>Leave Type :</Text> 
-          </View>
-          <View style={{flexDirection:'column',left:25,top:15}}>          
-            <Text style ={{backgroundColor: 'transparent',fontSize: 18}}>15</Text> 
-            <Text style ={{backgroundColor: 'transparent',fontSize: 18}}>Jay Pandya</Text> 
-            <Text style ={{backgroundColor: 'transparent',fontSize: 18}}>11th Jan to 15th Jan</Text> 
-            <Text style ={{backgroundColor: 'transparent',fontSize: 18}}>5 days</Text> 
-            <Text style ={{backgroundColor: 'transparent',fontSize: 18}}>Medical</Text> 
-          </View>
-        </View>
 
-        <View style={{top:30,left:50,height:1,width:360,backgroundColor:'grey'}}/>
+        <Container>
+             <Content>
+                 <List>
+                     <ListItem>
+                         <Thumbnail circle size={80} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                         <Text>Shailesh Prajapati</Text>
+                         <Text note>RoR Developer</Text>
+                     </ListItem>
+                     <ListItem>
+                        <Text>Leave Balance:</Text>
+                        <Badge>15</Badge>
+                    </ListItem>
+                    <ListItem>
+                      <Text>Team Lead</Text>
+                      <Text note>Jay Pandya</Text>
+                    </ListItem>
+                    <ListItem>
+                      <Text>Date</Text>
+                      <Text note>13th Jan to 18th Jan</Text>
+                    </ListItem>
+                    <ListItem>
+                      <Text>Leave Days</Text>
+                      <Text note>5 days</Text>
+                    </ListItem>
+                    <ListItem>
+                      <Text>Leave Type</Text>
+                      <Text note>Medical</Text>
+                    </ListItem>
 
-
-        <View style={{flexDirection:'column',top:40,paddingLeft:16,paddingRight:10}}>
-          <Text style ={{backgroundColor: 'transparent',fontSize: 18,fontWeight: 'bold'}}>Description :</Text>
-          <Text> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</Text>
-
-        </View>
+                </List>
+                <Card>
+                   <CardItem header>
+                       <Text>Description</Text>
+                   </CardItem>
+                   <CardItem>
+                       <Text>
+                           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                       </Text>
+                   </CardItem>
+                  </Card>
+             </Content>
+         </Container>
 
         <ActionButton buttonColor="#3498db" spacing={5} offsetY={0.20} offsetX={5} degrees={90} icon={<Icon name="md-more" style={styles.actionButtonIcon} />}>
           <ActionButton.Item buttonColor='rgba(231,76,60,1)' title="Reject Leave" onPress={() => {}}>
@@ -88,7 +97,7 @@ export default class LeaveDetail extends Component {
     </View>
     );
   }
-}        
+}
 
 const styles = StyleSheet.create({
   actionButtonIcon: {
