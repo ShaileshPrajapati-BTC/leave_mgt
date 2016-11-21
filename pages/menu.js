@@ -23,37 +23,28 @@ export default class ControlPanel extends Component {
         <View style={{flex:1,flexDirection:'column', justifyContent:'center', alignItems:'center',padding:30}}>
           <Image source={{uri:'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg'}} style={{width: 50, height: 50,borderRadius: 25}}/>
           <Text style={{top:10}}>Shailesh Prajapati</Text>
-        </View>                  
+        </View>
         <List>
-          <TouchableOpacity onPress={ () => this._navigate('Profile',0) }>
-            <ListItem iconLeft>
+            <ListItem iconLeft button onPress={ () => this._navigate('Profile',0) }>
                 <Icon name="ios-contact" style={{ color: '#0A69FE' }} />
                 <Text>Profile</Text>
             </ListItem>
-          </TouchableOpacity>
-           <TouchableOpacity onPress={ () => this._navigate('Home',0) }>
-            <ListItem iconLeft>
+            <ListItem iconLeft button onPress={ () => this._navigate('Home',0) }>
                 <Icon name="ios-settings-outline" style={{ color: '#0A69FE' }} />
                 <Text>Leaves</Text>
             </ListItem>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={ () => this._navigate('Leaves',0) }>
-            <ListItem iconLeft>
+            <ListItem iconLeft button onPress={ () => this._navigate('Leaves',0) }>
                 <Icon name="ios-mail-outline" style={{ color: '#0A69FE' }} />
                 <Text>Manage Leaves</Text>
                 <Badge>12</Badge>
             </ListItem>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={ () => this._navigate('Login') }>
-            <ListItem iconLeft>
+            <ListItem iconLeft button onPress={ () => this._navigate('Login') }>
                 <Icon name="md-log-out" style={{ color: '#0A69FE' }} />
                 <Text>Logout</Text>
             </ListItem>
-          </TouchableOpacity>
         </List>
       </Content>
     </Container>
     )
   }
 }
-
