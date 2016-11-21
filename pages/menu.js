@@ -1,15 +1,10 @@
-import React, { Component } from 'react';
-import {
-  PropTypes,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,Navigator
-} from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React,{Component} from 'react';
 
+import { Container, Content, List, ListItem, Text, Icon, Badge, Thumbnail } from 'native-base';
+
+import {
+  View,Image,TouchableOpacity
+} from 'react-native'
 export default class ControlPanel extends Component {
   static propTypes = {
     closeDrawer: React.PropTypes.func.isRequired
@@ -23,47 +18,42 @@ export default class ControlPanel extends Component {
   render() {
     let {closeDrawer} = this.props
     return (
-      <ScrollView style={styles.container}>
+     <Container backgroundColor='white'>
+      <Content>
         <View style={{flex:1,flexDirection:'column', justifyContent:'center', alignItems:'center',padding:30}}>
           <Image source={{uri:'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg'}} style={{width: 50, height: 50,borderRadius: 25}}/>
           <Text style={{top:10}}>Shailesh Prajapati</Text>
-        </View>
-      <View>
-        <TouchableOpacity onPress={ () => this._navigate('Profile',0) }>
-          <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center'}}>
-            <Icon name="user" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
-            <Text style={{left:10, fontSize:15, color:'#787878'}}>Profile</Text>
-          </View>
-         </TouchableOpacity> 
-        <TouchableOpacity onPress={ () => this._navigate('Home',0) }>
-          <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
-            <Icon name="gear" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
-            <Text style={{left:10, fontSize:15, color:'#787878'}}>Leaves</Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={ () => this._navigate('Leaves',0) }>
-          <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
-            <Icon name="gear" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
-            <Text style={{left:10, fontSize:15, color:'#787878'}}>Manage Leaves</Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={ () => this._navigate('Login') }>
-        <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center',paddingTop:10}}>
-          <Icon name="power-off" size={25} color="#2196F3" style={{left:10,top:5,height:35,width:35}} /> 
-            <Text style={{left:10, fontSize:15, color:'#787878'}}>Logout</Text>
-        </View>
-        </TouchableOpacity>
-
-      </View>
-      </ScrollView>
+        </View>                  
+        <List>
+          <TouchableOpacity onPress={ () => this._navigate('Profile',0) }>
+            <ListItem iconLeft>
+                <Icon name="ios-contact" style={{ color: '#0A69FE' }} />
+                <Text>Profile</Text>
+            </ListItem>
+          </TouchableOpacity>
+           <TouchableOpacity onPress={ () => this._navigate('Home',0) }>
+            <ListItem iconLeft>
+                <Icon name="ios-settings-outline" style={{ color: '#0A69FE' }} />
+                <Text>Leaves</Text>
+            </ListItem>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={ () => this._navigate('Leaves',0) }>
+            <ListItem iconLeft>
+                <Icon name="ios-mail-outline" style={{ color: '#0A69FE' }} />
+                <Text>Manage Leaves</Text>
+                <Badge>12</Badge>
+            </ListItem>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={ () => this._navigate('Login') }>
+            <ListItem iconLeft>
+                <Icon name="md-log-out" style={{ color: '#0A69FE' }} />
+                <Text>Logout</Text>
+            </ListItem>
+          </TouchableOpacity>
+        </List>
+      </Content>
+    </Container>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-  }
-})

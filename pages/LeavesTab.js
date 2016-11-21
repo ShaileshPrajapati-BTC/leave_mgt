@@ -13,6 +13,7 @@ import PopupDialog, {
 import DatePicker from 'react-native-datepicker'
 import FloatingLabel from 'react-native-floating-labels';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
+import ActionButton from 'react-native-action-button';
 import Tabs from './tabs';
 import LeaveType from './LeaveType.js'
 import Holiday from './Holiday.js';
@@ -49,13 +50,13 @@ export default class LeaVesTab extends Component{
         <ScrollView tabLabel="md-time">
           <LeaveType navigator={this.props.navigator} />
         </ScrollView>
-        <Button
-          containerStyle={styles.login_botton}
-          style={styles.button_style}
+
+        <ActionButton buttonColor="#3498db" 
+          spacing={5} offsetY={0.20} offsetX={5}
+          degrees={90} icon={<Icon name="md-add" style={styles.actionButtonIcon} />}
           onPress={ () => this.openDefaultAnimationDialog()}
-        >
-          <Icon name="md-add-circle" size={60} color="#2196F3" style={{height:60,width:60}} /> 
-        </Button>
+        />
+
         <PopupDialog
           ref={(defaultAnimationDialog) => {
             this.defaultAnimationDialog = defaultAnimationDialog;
@@ -88,17 +89,18 @@ export default class LeaVesTab extends Component{
           </View>
         </PopupDialog>
       </View>
+
       <View tabLabel="md-calendar">
         <ScrollView tabLabel="md-calendar">
           <Holiday navigator={this.props.navigator} />
         </ScrollView>
-        <Button
-          containerStyle={styles.login_botton}
-          style={styles.button_style}
+
+        <ActionButton buttonColor="#3498db" 
+          spacing={5} offsetY={0.20} offsetX={5}
+          degrees={90} icon={<Icon name="md-add" style={styles.actionButtonIcon} />}
           onPress={ () => this.openHolidayDialog()}
-        >
-          <Icon name="md-add-circle" size={60} color="#2196F3" style={{height:60,width:60}} /> 
-        </Button>
+        />
+
         <PopupDialog
           ref={(holidayDialog) => {
             this.holidayDialog = holidayDialog;
@@ -184,5 +186,10 @@ const styles = StyleSheet.create({
     width:260,
     height:50,
     left:10
-  }
+  },
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
+  },
 });
