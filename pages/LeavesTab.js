@@ -28,6 +28,10 @@ export default class LeaVesTab extends Component{
         <View tabLabel="md-time">
           <LeaveType/>
         </View>
+        
+        <View tabLabel="md-calendar">
+          <Holiday />
+        </View>
 
     </ScrollableTabView>;
   }

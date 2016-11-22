@@ -33,9 +33,9 @@ const Tabs = React.createClass({
 
   //color between rgb(59,89,152) and rgb(204,204,204)
   iconColor(progress) {
-    const red = 120 + (255 - 120) * progress;
-    const green = 120 + (255 - 120) * progress;
-    const blue = 120 + (255 - 120) * progress;
+    const red = 173 + (255 - 173) * progress;
+    const green = 216 + (255 - 216) * progress;
+    const blue = 230 + (255 - 230) * progress;
 
     return `rgb(${red}, ${green}, ${blue})`;
   },
@@ -47,7 +47,7 @@ const Tabs = React.createClass({
           <Icon
             name={tab}
             size={20}
-            color={this.props.activeTab === i ? 'rgb(128,128,128)' : 'rgb(255,255,255)'}
+            color={this.props.activeTab === i ? 'rgb(173, 216, 230)' : 'rgb(255,255,255)'}
             ref={(icon) => { this.tabIcons[i] = icon; }}
           />
         <Text style={{fontSize:10, color:this.props.activeTab === i ? 'rgb(120,120,120)' : 'rgb(255,255,255)'}}>{`${this.props.name[i]}`}</Text>
