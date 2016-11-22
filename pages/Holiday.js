@@ -13,15 +13,7 @@ import {
 import { Spinner, Container, Icon, Content, List, ListItem, Thumbnail, Text,InputGroup,Button,Input } from 'native-base';
 import Swipeout from 'react-native-swipeout';
 
-var swipeoutBtns = [
-  {
-    text: 'Button',
-    component: <ListItem>
-                <Icon name="md-create" style={{ color: '#2196F3' }} />
-                <Icon name='ios-trash' style={{ color: 'red',left:10}}/>
-               </ListItem>
-  }
-]
+
 const slideAnimation = new SlideAnimation({ slideFrom: 'bottom' });
 export default class Holiday extends Component {
   constructor(props) {
@@ -42,6 +34,30 @@ export default class Holiday extends Component {
  openHolidayDialog() {
    this.holidayDialog.openDialog();
  }
+
+  swipeoutBtn(id){
+     var swipeoutBtns =  [
+       {
+         text: 'Button',
+         component: <ListItem button onPress={ () => this.editHoliday(id)}>
+                     <Icon name="md-create" style={{ color: '#2196F3',left:5 }} />
+                    </ListItem>
+       },
+       {
+         text: 'Button',
+         component: <ListItem button onPress={ () => this.deleteHoliday(id)}>
+                     <Icon name="md-trash" style={{ color: 'red',left:5 }} />
+                    </ListItem>
+       }
+     ]
+     return(swipeoutBtns);
+   }
+
+   deleteHoliday(id){
+      fetch('https://lms-api.herokuapp.com/holidays/'+id+'.json',{method:'DELETE'})
+    this.getHolidays();
+   }
+   
  async addHolidayType(){
   let response = await fetch('https://lms-api.herokuapp.com/holidays', {
    method: 'POST',
@@ -88,7 +104,7 @@ export default class Holiday extends Component {
                 <Content>
                     {(this.state.loading) ? <Spinner /> : <List dataArray={this.state.results}
                       renderRow={(holidays) =>
-                        <Swipeout right={swipeoutBtns} backgroundColor='white'>
+                        <Swipeout right={this.swipeoutBtn(holidays.id)} backgroundColor='white'>
                           <ListItem>
                             <Thumbnail/>
                              <Text >{holidays.name}</Text>
