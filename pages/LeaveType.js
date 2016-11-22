@@ -14,15 +14,6 @@ import Swipeout from 'react-native-swipeout';
 import ActionButton from 'react-native-action-button';
 import PopupDialog, {SlideAnimation} from 'react-native-popup-dialog';
 
-var swipeoutBtns = [
-  {
-    text: 'Button',
-    component: <ListItem>
-                <Icon name="md-create" style={{ color: '#2196F3' }} />
-                <Icon name='ios-trash' style={{ color: 'red',left:10}}/>
-               </ListItem> 
-  }
-]
 
 const slideAnimation = new SlideAnimation({ slideFrom: 'bottom' });
 
@@ -42,6 +33,30 @@ export default class LeaveType extends Component {
   }
 
   componentWillMount () {
+    this.getLeaveType();
+  }
+
+  swipeoutBtn(id){
+    var swipeoutBtns =  [
+      {
+        text: 'Button',
+        component: <ListItem button onPress={() => alert('edit'+id)}>
+                    <Icon name="md-create" style={{ color: '#2196F3',left:5 }} />
+                   </ListItem> 
+      },
+      {
+        text: 'Button',
+        component: <ListItem button onPress={() => this.removeLeaveType(id)}>
+                    <Icon name="md-trash" style={{ color: 'red',left:5 }} />
+                   </ListItem> 
+      }
+    ]
+    return(swipeoutBtns);
+  }
+
+  async removeLeaveType(id){
+    fetch ('https://lms-api.herokuapp.com/leave_types/'+id+'.json',{method: 'DELETE',})
+      .then( response => response.json())
     this.getLeaveType();
   }
 
@@ -91,17 +106,19 @@ export default class LeaveType extends Component {
               <ScrollView tabLabel="md-time">
                 <Container>
                     <Content>
-                        {(this.state.loading)? <Spinner/> : <List dataArray={this.state.results}
+                        {(this.state.loading)? <Spinner/> : 
+                                            <List dataArray={this.state.results}
                                               renderRow={(leave_type) =>
-                                                <Swipeout right={swipeoutBtns} backgroundColor='white'>
+                                                <Swipeout right={this.swipeoutBtn(leave_type.id)} backgroundColor='white'>
                                                   <ListItem>
                                                     <Thumbnail/>
                                                      <Text >{leave_type.name}</Text>
-                                <Text note>{leave_type.descripton}</Text>
-                              </ListItem>
-                            </Swipeout>
-                            }>
-                        </List>}
+                                                     <Text note>{leave_type.descripton}</Text>
+                                                  </ListItem>
+                                                </Swipeout>
+                                                }>
+                                            </List>
+                        }
                     </Content>
                 </Container>
               </ScrollView>
