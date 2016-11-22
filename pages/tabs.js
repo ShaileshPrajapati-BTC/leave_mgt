@@ -50,7 +50,7 @@ const Tabs = React.createClass({
             color={this.props.activeTab === i ? 'rgb(173, 216, 230)' : 'rgb(255,255,255)'}
             ref={(icon) => { this.tabIcons[i] = icon; }}
           />
-        <Text style={{fontSize:10, color:this.props.activeTab === i ? 'rgb(120,120,120)' : 'rgb(255,255,255)'}}>{`${this.props.name[i]}`}</Text>
+        <Text style={{fontSize:10, color:this.props.activeTab === i ? 'rgb(173, 216, 230)' : 'rgb(255,255,255)'}}>{`${this.props.name[i]}`}</Text>
         </TouchableOpacity>;
       })}
     </View>;
