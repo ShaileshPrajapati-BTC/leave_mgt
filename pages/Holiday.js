@@ -28,7 +28,7 @@ export default class Holiday extends Component {
     super(props);
     this.state = {
       dialogOpen: false,
-      date:"2016-05-15",
+      date:new Date(),
       h_name: '',
       results:{
         holidays:[]
@@ -121,7 +121,7 @@ export default class Holiday extends Component {
                       <ListItem>
                       <DatePicker
                         style={{width: 200}}
-                        date={new Date()}
+                        date={this.state.date}
                         mode="date"
                         placeholder="select date"
                         format="YYYY-MM-DD"

@@ -11,11 +11,11 @@ import LeaveType from './LeaveType.js'
 import Holiday from './Holiday.js';
 import RequestLeave from './RequestLeave.js';
 
-export default class LeaVesTab extends Component{
+export default class LeavesTab extends Component{
 
    render() {
     let Tabname = ["REQUEST LEAVE","LEAVE TYPE","HOLIDAYS"];
-    return 
+    return (
 
       <ScrollableTabView
         initialPage={this.props.index}
@@ -33,6 +33,6 @@ export default class LeaVesTab extends Component{
           <Holiday />
         </View>
 
-    </ScrollableTabView>;
+    </ScrollableTabView>);
   }
 }
