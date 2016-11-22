@@ -27,16 +27,12 @@ export default class LeaVesTab extends Component{
 
     this.state = {
       dialogOpen: false,
-      date:"2016-05-15"
+      date:"2016-05-15",
+      h_name: ''
     };
-    this.openDefaultAnimationDialog = this.openDefaultAnimationDialog.bind(this);
   }
-  openDefaultAnimationDialog() {
-    this.defaultAnimationDialog.openDialog();
-  }
-  openHolidayDialog() {
-    this.holidayDialog.openDialog();
-  }
+
+
   render() {
     let Tabname = ["REQUEST LEAVE","LEAVE TYPE","HOLIDAYS"];
     return <ScrollableTabView
@@ -46,108 +42,11 @@ export default class LeaVesTab extends Component{
       <ScrollView tabLabel="md-checkbox">
         <RequestLeave navigator={this.props.navigator} />
       </ScrollView>
-      <View tabLabel="md-time">
-        <ScrollView tabLabel="md-time">
-          <LeaveType navigator={this.props.navigator} />
-        </ScrollView>
-
-        <ActionButton buttonColor="#3498db" 
-          spacing={5} offsetY={0.20} offsetX={5}
-          degrees={90} icon={<Icon name="md-add" style={styles.actionButtonIcon} />}
-          onPress={ () => this.openDefaultAnimationDialog()}
-        />
-
-        <PopupDialog
-          ref={(defaultAnimationDialog) => {
-            this.defaultAnimationDialog = defaultAnimationDialog;
-          }}
-          dialogAnimation={slideAnimation}
-          title="Add New Type"
-          width={320}
-          height={320}
-          dialogStyle = {{marginBottom:250,borderRadius:0}}
-        >
-          <View style={styles.dialogContentView}>
-            <View style={styles.card_container}>
-              <FloatingLabel 
-                labelStyle={{fontSize:12}}
-                inputStyle={{borderWidth: 0,fontSize:10}}
-                style={styles.text_input}
-                onBlur={this.onBlur}
-              >Leave Type</FloatingLabel>
-              <FloatingLabel 
-                labelStyle={{fontSize:12}}
-                inputStyle={{borderWidth: 0,fontSize:10}}
-                style={styles.text_input}
-                onBlur={this.onBlur}
-                multiline ={true}
-              >Description</FloatingLabel>
-              <Button
-                containerStyle={{margin: 10,padding:10,height:45,width:150,overflow:'hidden',borderRadius:4,backgroundColor: '#2196F3'}}
-                style={styles.button_style}> Add Leave Type </Button>
-            </View>
-          </View>
-        </PopupDialog>
-      </View>
-
+      
       <View tabLabel="md-calendar">
-        <ScrollView tabLabel="md-calendar">
-          <Holiday navigator={this.props.navigator} />
-        </ScrollView>
-
-        <ActionButton buttonColor="#3498db" 
-          spacing={5} offsetY={0.20} offsetX={5}
-          degrees={90} icon={<Icon name="md-add" style={styles.actionButtonIcon} />}
-          onPress={ () => this.openHolidayDialog()}
-        />
-
-        <PopupDialog
-          ref={(holidayDialog) => {
-            this.holidayDialog = holidayDialog;
-          }}
-          dialogAnimation={slideAnimation}
-          title="Add New Holiday"
-          width={320}
-          height={320}
-          dialogStyle = {{marginBottom:250,borderRadius:0}}
-        >
-          <View style={styles.dialogContentView}>
-            <View style={[styles.card_container,{bottom:20}]}>
-              <DatePicker
-                style={{width: 200,right:22}}
-                date={new Date()}
-                mode="date"
-                placeholder="select date"
-                format="YYYY-MM-DD"
-                minDate={new Date()}
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
-                customStyles={{
-                  dateIcon: {
-                    position: 'absolute',
-                    left: 0,
-                    top: 0,
-                    marginLeft: 0
-                  },
-                  dateInput: {
-                    marginLeft: 36
-                  }
-                }}
-                onDateChange={(date) => {this.setState({date: date})}}
-              />
-              <FloatingLabel 
-                labelStyle={{fontSize:12}}
-                inputStyle={{borderWidth: 0,fontSize:10}}
-                style={styles.text_input}
-                onBlur={this.onBlur}
-              >Holiday Name</FloatingLabel>
-              <Button
-                containerStyle={{margin: 10,padding:10,height:45,width:150,overflow:'hidden',borderRadius:4,backgroundColor: '#2196F3'}}
-                style={styles.button_style}> Add Holiday </Button>
-            </View>
-          </View>
-        </PopupDialog>
+        <Holiday />
       </View>
+
     </ScrollableTabView>;
   }
 }
