@@ -48,7 +48,7 @@ export default class LeaveType extends Component {
               <ScrollView tabLabel="md-time">
                 <Container>
                     <Content>
-                        {(this.state.loading)? <Spinner/> :
+                        {(this.state.loading)? <Spinner color='#2196F3'/> :
                                             <List dataArray={this.state.results}
                                               renderRow={(leave_type) =>
                                                   <ListItem>

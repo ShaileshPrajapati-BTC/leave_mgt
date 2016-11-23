@@ -42,7 +42,7 @@ export default class Holiday extends Component {
             <ScrollView tabLabel="md-calendar">
               <Container>
                 <Content>
-                    {(this.state.loading) ? <Spinner /> : <List dataArray={this.state.results}
+                    {(this.state.loading) ? <Spinner color='#2196F3'/> : <List dataArray={this.state.results}
                       renderRow={(holidays) =>
                           <ListItem>
                             <Thumbnail/>

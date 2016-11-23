@@ -1,19 +1,38 @@
 import React,{Component} from 'react';
-import Button from 'react-native-button';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import login_styles from '../styles/login_styles';
-import FloatingLabel from 'react-native-floating-labels';
+import { Spinner, Container, Content, List, ListItem, InputGroup,
+         Input, Icon, Text, Picker, Button ,
+         Thumbnail
+       } from 'native-base';
 
-import {
-  Text,
-  View,
-  TextInput,
-  Image,
-  TouchableOpacity,
-  StatusBar
-} from 'react-native';
-
+import {AsyncStorage} from 'react-native'
 export default class Login extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      login: true,
+      email: '',
+      password: ''
+    };
+
+  }
+  componentDidMount () {
+    this.checkLogin();
+  }
+
+  async checkLogin(){
+    AsyncStorage.getItem('current_user', (err, result) => {
+      current_user= JSON.parse(result)
+      if (result!=null){
+        this._navigate('Leaves',0);
+      }
+      else
+      {
+        this.setState({login: false});
+      }
+    });
+  }
   _navigate(name, index) {
     this.props.navigator.push({
       name: name,
@@ -23,50 +42,57 @@ export default class Login extends Component {
     })
   }
 
+  async login(email,password){
+
+    let response = await fetch('http://192.168.0.85:3000/users/sign_in', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user:{
+          email: this.state.email,
+          password: this.state.password
+        }
+      })
+    });
+
+    let res = await response.json();
+
+    if (res.success==true)
+    {
+      AsyncStorage.setItem('current_user', JSON.stringify(res));
+      this._navigate('Leaves',0)
+    }
+    else
+      alert('Invalid email and password');
+  }
 
   render() {
     return (
-      <View style={{flex: 1, justifyContent: 'center',
-    alignItems: 'center',backgroundColor:'rgba(33,150,243,0.9)'}}>
-        <StatusBar
-           backgroundColor="#2196F3"
-           barStyle="light-content"
-          />
-        <View style={login_styles.wallet_image}>
-          <Image source={{uri:'http://eduerp.net/wp-content/uploads/2015/08/Benefits-of-Leave-Management-System-in-School-ERP-Software-300x300.png'}} style={{width:70,height:70}} />
-        </View>
-        <View style={login_styles.wallet_text}>
-          <Text style={{fontSize: 25, fontWeight:'bold'}}>LMS</Text>
-        </View>
-
-        <View style={login_styles.wallet_text,{padding:5}}>
-          <View style={login_styles.login_field_view}>
-            <FloatingLabel
-                labelStyle={{fontSize:12,color: 'white'}}
-                inputStyle={{borderWidth: 0,fontSize:15,color: 'white'}}
-                style={login_styles.text_input}
-                onBlur={this.onBlur}
-              ><Icon name="user" size={15} color="white" style={{top:13,height:25,width:25}} /> User Name</FloatingLabel>
-          </View>
-          <View style={login_styles.login_field_view}>
-            <FloatingLabel
-              labelStyle={{fontSize:12,color: 'white'}}
-              inputStyle={{borderWidth: 0,fontSize:15,color: 'white'}}
-              style={login_styles.text_input}
-              onBlur={this.onBlur}
-              underlineColorAndroi={'white'}
-            ><Icon name="lock" size={15} color="white" style={{top:13,height:25,width:25}} /> Password</FloatingLabel>
-          </View>
-          <Button
-            containerStyle={login_styles.login_botton}
-            style={login_styles.button_style}
-            onPress={ () => this._navigate('Leaves',0) }
-          >
-            Sign In
-          </Button>
-        </View>
-
-      </View>
+      <Container >
+        <Content>
+        {(this.state.login)? <Spinner color='#2196F3'/>:
+          <List style={{ alignSelf: 'center', marginTop: 150, marginBottom: 20,width:300 }} >
+            <Thumbnail size={80} style={{ alignSelf: 'center',marginBottom: 20}} source={{uri:'https://cdn-images-1.medium.com/max/139/1*Q5ya0DSeneWh-Nieprl15w.png'}} />
+            <ListItem >
+              <InputGroup iconRight >
+                  <Input placeholder='Email....' onChangeText={(text) => {this.setState({email: text})}}/>
+              </InputGroup>
+            </ListItem>
+            <ListItem >
+              <InputGroup iconRight >
+                  <Input placeholder='Password' secureTextEntry={true} onChangeText={(text) => {this.setState({password: text})}}/>
+              </InputGroup>
+            </ListItem>
+            <Button style={{ alignSelf: 'center', marginTop: 20, marginBottom: 20,width:100 }} onPress={ () => this.login() }>
+             Login
+            </Button>
+          </List>
+        }
+        </Content>
+     </Container>
     );
   }
 }

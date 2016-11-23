@@ -3,7 +3,7 @@ import React,{Component} from 'react';
 import { Container, Content, List, ListItem, Text, Icon, Badge, Thumbnail } from 'native-base';
 
 import {
-  View,Image,TouchableOpacity
+  View,Image,TouchableOpacity,AsyncStorage
 } from 'react-native'
 export default class ControlPanel extends Component {
   static propTypes = {
@@ -14,6 +14,12 @@ export default class ControlPanel extends Component {
     this.props.navigator.push({
       name: name,
     })
+  }
+
+  logout(){
+    AsyncStorage.removeItem('current_user', (err, result) => {
+      this._navigate('Login',0);
+    });
   }
   render() {
     let {closeDrawer} = this.props
@@ -34,7 +40,7 @@ export default class ControlPanel extends Component {
                 <Text>Requested Leaves</Text>
                 <Badge>12</Badge>
             </ListItem>
-            <ListItem iconLeft button onPress={ () => this._navigate('Login') }>
+            <ListItem iconLeft button onPress={ () => this.logout() }>
                 <Icon name="md-log-out" style={{ color: '#0A69FE' }} />
                 <Text>Logout</Text>
             </ListItem>
