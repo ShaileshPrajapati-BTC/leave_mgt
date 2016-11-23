@@ -2,7 +2,6 @@
  import React, { Component } from 'react';
  import Login from './pages/login.js';
  import Profile from './pages/Profile.js';
- import Home from './pages/home.js';
 
  import Drawer from 'react-native-drawer';
 
@@ -25,9 +24,6 @@ export default class HPSReactNative extends Component {
   renderScene(route, navigator) {
   	if(route.name == 'Login') {
     	return <Login navigator={navigator} {...route.passProps}  />
-    }
-    if(route.name == 'Home') {
-    	return <Home navigator={navigator} {...route.passProps}  />
     }
     if(route.name == 'Profile') {
       return <Profile navigator={navigator} {...route.passProps} route={route} />
