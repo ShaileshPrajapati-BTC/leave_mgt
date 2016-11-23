@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { Container, Content, List, ListItem, InputGroup, Input, Icon, Text, Picker, Button } from 'native-base';
-import {AsyncStorage} from 'react-native';
+import {AsyncStorage,ToastAndroid} from 'react-native';
 import DatePicker from 'react-native-datepicker'
 import FloatingLabel from 'react-native-floating-labels';
 const Item = Picker.Item;
@@ -44,6 +44,7 @@ export default class RequestLeave extends Component {
          'access_token': '3fa4c7776cd02d24c5d5ec96e88f2b0e',
        })
       });
+    ToastAndroid.show('Leave Request Sent Successfully',ToastAndroid.LONG,ToastAndroid.CENTER,)
     }
 
     // async getToken(){
@@ -57,7 +58,7 @@ export default class RequestLeave extends Component {
     //    });
     //   return a;
     // }
-    
+
     onValueChange(value: string) {
         this.setState({
             selected1: value,
