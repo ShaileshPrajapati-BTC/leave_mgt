@@ -1,8 +1,6 @@
 import React,{Component} from 'react';
-import Button from 'react-native-button';
-import Icon from 'react-native-vector-icons/Ionicons';
 import ActionButton from 'react-native-action-button';
-import { Container, Content, List, ListItem, Thumbnail, Text, Badge, Card, CardItem } from 'native-base';
+import { Header, Title, Button, Icon,Container, Content, List, ListItem, Thumbnail, Text, Badge, Card, CardItem } from 'native-base';
 
 import login_styles from '../styles/login_styles';
 
@@ -26,39 +24,24 @@ export default class LeaveDetail extends Component {
   }
   render() {
     return (
-      <View style={{flex: 1}} >
-        <View style={{backgroundColor: '#2196F3',elevation: 3,borderTopColor:'black',borderTopWidth:0.2}} >
-          <Icon.ToolbarAndroid
-            navIconName={'md-arrow-back'}
-            title="Leave Detail"
-            titleColor="white"
-            onIconClicked={() => {this.props.navigator.pop()}}
-          >
-            <View style={{height: 56, flexDirection: 'row', alignItems: 'center'}}>
-            </View>
-          </Icon.ToolbarAndroid>
-        </View>
-        <StatusBar
-         backgroundColor="#2196F3"
-         barStyle="light-content"
-        />
-
         <Container>
              <Content>
+               <Header backgroundColor="#2196F3">
+                    <Button transparent onPress={() => {this.props.navigator.pop()}}>
+                        <Icon name='ios-arrow-back' />
+                    </Button>
+                    <Title>Leave Details</Title>
+                </Header>
+                <StatusBar
+                 backgroundColor="#2196F3"
+                 barStyle="light-content"
+                />
                  <List>
                      <ListItem>
                          <Thumbnail circle size={80} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
                          <Text>Shailesh Prajapati</Text>
                          <Text note>RoR Developer</Text>
                      </ListItem>
-                     <ListItem>
-                        <Text>Leave Balance:</Text>
-                        <Badge>15</Badge>
-                    </ListItem>
-                    <ListItem>
-                      <Text>Team Lead</Text>
-                      <Text note>Jay Pandya</Text>
-                    </ListItem>
                     <ListItem>
                       <Text>Date</Text>
                       <Text note>13th Jan to 18th Jan</Text>
@@ -85,16 +68,6 @@ export default class LeaveDetail extends Component {
                   </Card>
              </Content>
          </Container>
-
-        <ActionButton buttonColor="#3498db" spacing={5} offsetY={0.20} offsetX={5} degrees={90} icon={<Icon name="md-more" style={styles.actionButtonIcon} />}>
-          <ActionButton.Item buttonColor='rgba(231,76,60,1)' title="Reject Leave" onPress={() => {}}>
-            <Icon name="md-close-circle" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-          <ActionButton.Item buttonColor='#1abc9c' title="Approve Leave" onPress={() => {}}>
-            <Icon name="md-done-all" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-        </ActionButton>
-    </View>
     );
   }
 }

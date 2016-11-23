@@ -8,6 +8,7 @@
  import Leaves from './pages/Leaves.js';
  import Notification from './pages/Notification.js';
  import LeaveDetail from './pages/LeaveDetail.js';
+ import RequestedLeaveList from './pages/Requested_leaves_list.js';
 
 
  import {
@@ -27,6 +28,9 @@ export default class HPSReactNative extends Component {
     }
     if(route.name == 'Profile') {
       return <Profile navigator={navigator} {...route.passProps} route={route} />
+    }
+    if(route.name == 'LeavesList') {
+      return <RequestedLeaveList navigator={navigator} {...route.passProps} route={route} />
     }
     if(route.name == 'Leaves') {
       return <Leaves navigator={navigator} {...route.passProps} route={route} />
