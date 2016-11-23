@@ -16,7 +16,6 @@ export default class LeavesTab extends Component{
    render() {
     let Tabname = ["REQUEST LEAVE","LEAVE TYPE","HOLIDAYS"];
     return (
-
       <ScrollableTabView
         initialPage={this.props.index}
         renderTabBar={() => <Tabs name={Tabname} />}
@@ -33,6 +32,8 @@ export default class LeavesTab extends Component{
           <Holiday />
         </View>
 
-    </ScrollableTabView>);
+    </ScrollableTabView>
+    );
+
   }
 }

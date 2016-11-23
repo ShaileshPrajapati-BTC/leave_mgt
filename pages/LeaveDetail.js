@@ -2,8 +2,6 @@ import React,{Component} from 'react';
 import ActionButton from 'react-native-action-button';
 import { Header, Title, Button, Icon,Container, Content, List, ListItem, Thumbnail, Text, Badge, Card, CardItem } from 'native-base';
 
-import login_styles from '../styles/login_styles';
-
 import {
 
   View,

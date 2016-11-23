@@ -15,7 +15,7 @@ export default class Leaves extends Component {
 
   renderScene() {
     return (
-      <Tabbar navigator={this.props.navigator} index={this.props.index} pin={this.props.pin}/>
+      <Tabbar navigator={this.props.navigator} index={this.props.index} />
     );
   }
 
