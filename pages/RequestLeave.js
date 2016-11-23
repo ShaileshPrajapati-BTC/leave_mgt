@@ -23,42 +23,41 @@ export default class RequestLeave extends Component {
 
     }
 
-  async sendLeaveRequest(){
-    alert(this.getToken());
-  let response = await fetch('http://192.168.0.85:3000/sign_offs', {
-   method: 'POST',
-   headers: {
-     'Accept': 'application/json',
-     'Content-Type': 'application/json',
+    async sendLeaveRequest(){
 
-   },
-   body: JSON.stringify({
-     sign_off:{
-       requestee_ids: 1,
-       sign_off_type_id: 1,
-       half_full_leave:1,
-       date_from:this.state.from,
-       date_to:this.state.end,
-       reason:this.state.reason,
-     },
-     'access_token': this.getToken(),
-   })
-  });
-alert(response.json().text())
- }
+      let response = await fetch('http://192.168.0.85:3000/sign_offs', {
+       method: 'POST',
+       headers: {
+         'Accept': 'application/json',
+         'Content-Type': 'application/json',
 
- async getToken(){
-   let a = ''
-   AsyncStorage.getItem('current_user', (err, result) => {
-     current_user= JSON.parse(result)
+       },
+       body: JSON.stringify({
+         sign_off:{
+           requestee_ids: '1',
+           sign_off_type_id: '1',
+           half_full_leave:'half',
+           date_from:this.state.from,
+           date_to:this.state.end,
+           reason:this.state.reason,
+         },
+         'access_token': '3fa4c7776cd02d24c5d5ec96e88f2b0e',
+       })
+      });
+    }
 
-     if (result!=null){
-       a = current_user.user.access_token
-     }
-   });
- return a;
- }
+    // async getToken(){
+    //    let a = ''
+    //    AsyncStorage.getItem('current_user', (err, result) => {
+    //      current_user= JSON.parse(result)
 
+    //      if (result!=null){
+    //        a = current_user.user.access_token
+    //      }
+    //    });
+    //   return a;
+    // }
+    
     onValueChange(value: string) {
         this.setState({
             selected1: value,
