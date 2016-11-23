@@ -29,10 +29,6 @@ export default class ControlPanel extends Component {
                 <Icon name="ios-contact" style={{ color: '#0A69FE' }} />
                 <Text>Profile</Text>
             </ListItem>
-            <ListItem iconLeft button onPress={ () => this._navigate('Home',0) }>
-                <Icon name="ios-settings-outline" style={{ color: '#0A69FE' }} />
-                <Text>Leaves</Text>
-            </ListItem>
             <ListItem iconLeft button onPress={ () => this._navigate('Leaves',0) }>
                 <Icon name="ios-mail-outline" style={{ color: '#0A69FE' }} />
                 <Text>Manage Leaves</Text>

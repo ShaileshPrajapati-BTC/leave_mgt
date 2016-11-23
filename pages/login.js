@@ -38,10 +38,10 @@ export default class Login extends Component {
         <View style={login_styles.wallet_text}>
           <Text style={{fontSize: 25, fontWeight:'bold'}}>LMS</Text>
         </View>
-  
+
         <View style={login_styles.wallet_text,{padding:5}}>
           <View style={login_styles.login_field_view}>
-            <FloatingLabel 
+            <FloatingLabel
                 labelStyle={{fontSize:12,color: 'white'}}
                 inputStyle={{borderWidth: 0,fontSize:15,color: 'white'}}
                 style={login_styles.text_input}
@@ -49,7 +49,7 @@ export default class Login extends Component {
               ><Icon name="user" size={15} color="white" style={{top:13,height:25,width:25}} /> User Name</FloatingLabel>
           </View>
           <View style={login_styles.login_field_view}>
-            <FloatingLabel 
+            <FloatingLabel
               labelStyle={{fontSize:12,color: 'white'}}
               inputStyle={{borderWidth: 0,fontSize:15,color: 'white'}}
               style={login_styles.text_input}
@@ -60,7 +60,7 @@ export default class Login extends Component {
           <Button
             containerStyle={login_styles.login_botton}
             style={login_styles.button_style}
-            onPress={ () => this._navigate('Home',0) }
+            onPress={ () => this._navigate('Leaves',0) }
           >
             Sign In
           </Button>

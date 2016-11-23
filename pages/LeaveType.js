@@ -10,77 +10,20 @@ import {
   ScrollView
 } from 'react-native';
 
-import Swipeout from 'react-native-swipeout';
-import ActionButton from 'react-native-action-button';
-import PopupDialog, {SlideAnimation} from 'react-native-popup-dialog';
-
-
-const slideAnimation = new SlideAnimation({ slideFrom: 'bottom' });
-
 export default class LeaveType extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      results:{ 
+      results:{
         leave_types:[]
       },
-      leave_name:'',
-      leave_desc:''
     };
-    this.openDefaultAnimationDialog = this.openDefaultAnimationDialog.bind(this);
   }
 
   componentWillMount () {
     this.getLeaveType();
-  }
-
-  swipeoutBtn(id){
-    var swipeoutBtns =  [
-      {
-        text: 'Button',
-        component: <ListItem button onPress={() => alert('edit'+id)}>
-                    <Icon name="md-create" style={{ color: '#2196F3',left:5 }} />
-                   </ListItem> 
-      },
-      {
-        text: 'Button',
-        component: <ListItem button onPress={() => this.removeLeaveType(id)}>
-                    <Icon name="md-trash" style={{ color: 'red',left:5 }} />
-                   </ListItem> 
-      }
-    ]
-    return(swipeoutBtns);
-  }
-
-  async removeLeaveType(id){
-    fetch ('https://lms-api.herokuapp.com/leave_types/'+id+'.json',{method: 'DELETE',})
-      .then( response => response.json())
-    this.getLeaveType();
-  }
-
-  async addLeaveType(){
-    let response = await fetch('https://lms-api.herokuapp.com/leave_types', {  
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        leave_type:{
-        name: this.state.leave_name,
-        descripton: this.state.leave_desc
-      }
-      })
-     });
-   let res = await response.text();
-   this.getLeaveType();
-   this.defaultAnimationDialog.closeDialog();
-  }
-
-  openDefaultAnimationDialog() {
-    this.defaultAnimationDialog.openDialog();
   }
 
   async getLeaveType(){
@@ -102,73 +45,23 @@ export default class LeaveType extends Component {
   }
     render() {
         return (
-            <View >
               <ScrollView tabLabel="md-time">
                 <Container>
                     <Content>
-                        {(this.state.loading)? <Spinner/> : 
+                        {(this.state.loading)? <Spinner/> :
                                             <List dataArray={this.state.results}
                                               renderRow={(leave_type) =>
-                                                <Swipeout right={this.swipeoutBtn(leave_type.id)} backgroundColor='white'>
                                                   <ListItem>
                                                     <Thumbnail/>
                                                      <Text >{leave_type.name}</Text>
                                                      <Text note>{leave_type.descripton}</Text>
                                                   </ListItem>
-                                                </Swipeout>
                                                 }>
                                             </List>
                         }
                     </Content>
                 </Container>
               </ScrollView>
-
-              <ActionButton buttonColor="#3498db" 
-                spacing={5} offsetY={0.20} offsetX={5}
-                degrees={90} icon={<Icon name="md-add" style={styles.actionButtonIcon} />}
-                onPress={ () => this.openDefaultAnimationDialog()}
-              />
-
-              <PopupDialog
-                ref={(defaultAnimationDialog) => {
-                  this.defaultAnimationDialog = defaultAnimationDialog;
-                }}
-                dialogAnimation={slideAnimation}
-                title="Add New Type"
-                width={320}
-                height={320}
-                dialogStyle = {{marginBottom:250,borderRadius:0}}
-              >
-              <Container>
-                <Content>
-                  <List>
-                    <ListItem>
-                        <InputGroup >
-                            <Input stackedLabel label="Leave Type" onChangeText={(text) => {this.setState({leave_name: text})}} />
-                        </InputGroup>
-                    </ListItem>
-                
-                    <ListItem>
-                        <InputGroup >
-                            <Input stackedLabel label="Descripton" onChangeText={(text) => {this.setState({leave_desc: text})}} />
-                        </InputGroup>
-                    </ListItem>
-                  </List>
-                  <Button onPress={ () => this.addLeaveType()} style={{ alignSelf: 'center', marginTop: 20, marginBottom: 20 }}>
-                    Add Leave Type
-                  </Button>
-                 </Content>
-            </Container>
-              </PopupDialog>
-          </View>
         );
     }
 }
-
-const styles = StyleSheet.create({
-  actionButtonIcon: {
-    fontSize: 20,
-    height: 22,
-    color: 'white',
-  },
-});
