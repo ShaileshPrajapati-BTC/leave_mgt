@@ -40,6 +40,10 @@ export default class LeaveDetail extends Component {
                          <Text>Shailesh Prajapati</Text>
                          <Text note>RoR Developer</Text>
                      </ListItem>
+                     <ListItem>
+                       <Text>Status</Text>
+                       <Badge success>Approved</Badge>
+                     </ListItem>
                     <ListItem>
                       <Text>Date</Text>
                       <Text note>13th Jan to 18th Jan</Text>
