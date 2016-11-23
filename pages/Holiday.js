@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {
   StyleSheet,
-  View,TextInput,
+  View,TextInput,RefreshControl,
   ScrollView,Navigator
 } from 'react-native';
 import { Spinner, Container, Icon, Content, List, ListItem, Thumbnail, Text,InputGroup,Button,Input } from 'native-base';
@@ -16,6 +16,7 @@ export default class Holiday extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      refreshing: false,
       results:{
         holidays:[]
       }
@@ -34,7 +35,7 @@ export default class Holiday extends Component {
       .then((response) => response.json())
       .then((responseData) =>
       {
-         this.setState({ results:responseData, loading: false, refresh: false});
+         this.setState({ results:responseData, loading: false, refreshing: false});
       })
       .catch((error) => {
             this.setState({
@@ -49,6 +50,11 @@ export default class Holiday extends Component {
               <Container>
                 <Content>
                     {(this.state.loading) ? <Spinner color='#2196F3'/> : <List dataArray={this.state.results}
+                      refreshControl={
+                                      <RefreshControl
+                                        refreshing={this.state.refreshing}
+                                        onRefresh={this.getHolidays.bind(this)}
+                                      />}
                       renderRow={(holidays) =>
                           <ListItem>
                             {(holidays.holiday_date > date) ? <Text style={{color: 'gray'}}>{holidays.name}</Text>  : <Text>{holidays.name}</Text>}

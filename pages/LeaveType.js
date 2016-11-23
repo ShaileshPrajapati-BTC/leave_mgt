@@ -7,7 +7,7 @@ import { Container, Icon, Content, List, ListItem,
 import {
   StyleSheet,
   View,
-  ScrollView
+  ScrollView,RefreshControl
 } from 'react-native';
 
 export default class LeaveType extends Component {
@@ -16,6 +16,7 @@ export default class LeaveType extends Component {
     super(props);
 
     this.state = {
+      refreshing: false,
       results:{
         leave_types:[]
       },
@@ -36,6 +37,7 @@ export default class LeaveType extends Component {
      .then((responseData) =>
      {
         this.setState({ results:responseData,
+                        refreshing: false,
                         loading: false});
      })
      .done(() => {
@@ -50,6 +52,11 @@ export default class LeaveType extends Component {
                     <Content>
                         {(this.state.loading)? <Spinner color='#2196F3'/> :
                                             <List dataArray={this.state.results}
+                                               refreshControl={
+                                                  <RefreshControl
+                                                    refreshing={this.state.refreshing}
+                                                    onRefresh={this.getLeaveType.bind(this)}
+                                                  />}
                                               renderRow={(leave_type) =>
                                                   <ListItem>
                                                     <Thumbnail/>
