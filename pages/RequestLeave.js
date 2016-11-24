@@ -25,7 +25,7 @@ export default class RequestLeave extends Component {
 
     async sendLeaveRequest(){
 
-      let response = await fetch('http://192.168.0.85:3000/sign_offs', {
+      let response = await fetch('http://192.168.0.105:3000/sign_offs', {
        method: 'POST',
        headers: {
          'Accept': 'application/json',

@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
 
-import { Container, Icon, Content, List, ListItem,
+import { Container, Icon, Content, List, ListItem,Badge,
          Thumbnail, Text, Spinner, Button, InputGroup,Input
        } from 'native-base';
 
 import {
   StyleSheet,
-  View,
+  View,AsyncStorage,
   ScrollView,RefreshControl
 } from 'react-native';
 
@@ -17,14 +17,28 @@ export default class LeaveType extends Component {
 
     this.state = {
       refreshing: false,
+      access_token:'',
       results:{
         leave_types:[]
       },
     };
+            // this.getToken();
+
   }
 
   componentWillMount () {
-    this.getLeaveType();
+    this.getToken();
+  }
+
+  async getToken(){
+     AsyncStorage.getItem('current_user', (err, result) => {
+       current_user= JSON.parse(result)
+
+       if (result!=null){
+          this.setState({access_token:current_user.user.access_token});
+          this.getLeaveType();
+       }
+     });
   }
 
   async getLeaveType(){
@@ -32,14 +46,13 @@ export default class LeaveType extends Component {
       loading: true
     });
 
-    fetch('https://lms-api.herokuapp.com/leave_types.json', {method: "GET"})
-     .then((response) => response.json())
-     .then((responseData) =>
-     {
-        this.setState({ results:responseData,
-                        refreshing: false,
-                        loading: false});
-     })
+    fetch('http://192.168.0.105:3000/sign_off_types.json/?access_token='+this.state.access_token, {method: "GET"})
+      .then((response) => response.json())
+      .then((responseData) =>
+      {
+        console.log(responseData);
+        this.setState({ results:responseData.sign_off_types, refreshing: false, loading: false});
+      })
      .done(() => {
 
      });
@@ -60,8 +73,9 @@ export default class LeaveType extends Component {
                                               renderRow={(leave_type) =>
                                                   <ListItem>
                                                     <Thumbnail/>
-                                                     <Text >{leave_type.name}</Text>
-                                                     <Text note>{leave_type.descripton}</Text>
+                                                     <Text >{leave_type.sign_off_type_name}</Text>
+                                                     <Text note>{leave_type.description}</Text>
+                                                     <Badge info>{leave_type.no_of_days}</Badge>
                                                   </ListItem>
                                                 }>
                                             </List>

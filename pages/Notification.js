@@ -20,18 +20,19 @@ export default class Notification extends Component {
     render() {
       return(
         <Container>
+          <Header backgroundColor="#2196F3">
+               <Button transparent onPress={() => {this.props.navigator.pop()}}>
+                   <Icon name='ios-arrow-back' />
+               </Button>
+               <Title>Notification</Title>
+          </Header>
+          <StatusBar
+            backgroundColor="#2196F3"
+            barStyle="light-content"
+          />
           <Content>
-            <Header backgroundColor="#2196F3">
-                 <Button transparent onPress={() => {this.props.navigator.pop()}}>
-                     <Icon name='ios-arrow-back' />
-                 </Button>
-                 <Title>Notification</Title>
-             </Header>
-             <StatusBar
-              backgroundColor="#2196F3"
-              barStyle="light-content"
-             />
-         </Content>
+
+          </Content>
        </Container>
         );
     }

@@ -44,7 +44,7 @@ export default class Login extends Component {
 
   async login(email,password){
 
-    let response = await fetch('http://192.168.0.85:3000/users/sign_in', {
+    let response = await fetch('http://192.168.0.105:3000/users/sign_in', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

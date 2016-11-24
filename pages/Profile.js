@@ -1,10 +1,20 @@
 import React,{Component} from 'react';
 import ActionButton from 'react-native-action-button';
-import { Container, Content, List, ListItem, Thumbnail, Text, Badge, Card, CardItem, Header, Button, Icon, Title } from 'native-base';
+import { Spinner, Container, Content, List, ListItem, Thumbnail, Text, Badge, Card, CardItem, Header, Button, Icon, Title } from 'native-base';
 
+import {AsyncStorage} from 'react-native';
 
+export default class Profile extends Component {
 
-export default class Profile extends Component {Header
+  constructor(props) {
+    super(props);
+    this.state = {
+      access_token:'',
+      user:{},
+      profile:{},
+      leave:{}
+    };
+  }
   _navigate(name, index) {
     this.props.navigator.push({
       name: name,
@@ -13,6 +23,47 @@ export default class Profile extends Component {Header
       }
     })
   }
+
+  componentWillMount () {
+    this.getToken();
+  }
+
+  async getToken(){
+     AsyncStorage.getItem('current_user', (err, result) => {
+       current_user= JSON.parse(result)
+
+       if (result!=null){
+          this.setState({access_token:current_user.user.access_token});
+          this.getProfileDetails();
+       }
+     });
+  }
+
+  async getProfileDetails(){
+    this.setState({
+      loading: true
+    });
+   fetch('http://192.168.0.105:3000/profiles/3.json/?access_token='+this.state.access_token, {method: "GET"})
+    .then((response) => response.json())
+    .then((responseData) =>
+    {
+      console.log(responseData);
+            this.setState({ user: responseData.user,
+                        profile: responseData.profile,
+                        leave: responseData.leave_counts,
+                        loading: false});
+
+            console.log(this.state.user);
+                        console.log(this.state.profile);
+
+            console.log(this.state.leave);
+
+      }) 
+    .catch((error) => {
+        console.error(error);
+    });
+  }
+
   render() {
     return(
            <Container>
@@ -23,11 +74,12 @@ export default class Profile extends Component {Header
                 <Title>Shailesh Prajapati</Title>
               </Header>
             <Content>
+            {(this.state.loading) ? <Spinner color='#2196F3'/> :
               <List>
                   <ListItem>
                     <Thumbnail circle size={80} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
-                    <Text>Shailesh Prajapati</Text>
-                    <Text note>RoR Developer</Text>
+                    <Text>{this.state.user.name}</Text>
+                    <Text note>{this.state.user.designation}</Text>
                   </ListItem>
 
                   <ListItem itemDivider>
@@ -36,15 +88,15 @@ export default class Profile extends Component {Header
 
                   <ListItem>
                     <Text>Leave Balance:</Text>
-                    <Badge primary>15</Badge>
+                    <Badge primary>{this.state.leave.remaingin_leaves}</Badge>
                   </ListItem>
                   <ListItem>
                     <Text>Leave Requests:</Text>
-                    <Badge>1</Badge>
+                    <Badge>{this.state.leave.pending_request_counts}</Badge>
                   </ListItem>
                   <ListItem>
                     <Text >Taken Leave:</Text>
-                    <Badge success>6</Badge>
+                    <Badge success>{this.state.leave.laves_taken}</Badge>
                   </ListItem>
 
                   <ListItem itemDivider>
@@ -53,18 +105,13 @@ export default class Profile extends Component {Header
 
                   <ListItem>
                     <Text>Joining Date: </Text>
-                    <Text note>20 Nov 2017</Text>
+                    <Text note>{this.state.profile.joining_date}</Text>
                   </ListItem>
                   <ListItem>
                     <Text>Skills: </Text>
-                    <Text note>Rails, Rubby, React, Node, Amazon</Text>
+                    <Text note>{this.state.profile.skills}</Text>
                   </ListItem>
-                  <ListItem>
-                    <Text>Experience: </Text>
-                    <Text note>4 years</Text>
-                  </ListItem>
-
-              </List>
+              </List>}
            </Content>
         </Container>
     );
