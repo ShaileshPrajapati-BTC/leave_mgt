@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Container, Content, List, ListItem, InputGroup, Input, Icon, Text, Picker, Button } from 'native-base';
+import { Container, Content, List, ListItem, InputGroup, Input, Icon, Text, Button,Picker } from 'native-base';
 import {AsyncStorage,ToastAndroid} from 'react-native';
 import DatePicker from 'react-native-datepicker'
 import FloatingLabel from 'react-native-floating-labels';
@@ -11,16 +11,48 @@ export default class RequestLeave extends Component {
         super(props);
         this.state = {
             selected1: '1',
+            access_token:'',
             selected2: '0',
             send_to:'',
             reason:'',
             from:'',
             end:'',
-            results: {
-                items: [],
+            results:{
+              leave_types:[]
             },
         };
+    }
 
+    componentWillMount () {
+      this.getToken();
+    }
+
+    async getToken(){
+       AsyncStorage.getItem('current_user', (err, result) => {
+         current_user= JSON.parse(result)
+
+         if (result!=null){
+            this.setState({access_token:current_user.user.access_token});
+            this.getLeaveType();
+         }
+       });
+    }
+
+    async getLeaveType(){
+      this.setState({
+        loading: true
+      });
+
+      fetch('http://192.168.0.105:3000/sign_off_types.json/?access_token='+this.state.access_token, {method: "GET"})
+        .then((response) => response.json())
+        .then((responseData) =>
+        {
+          console.log(responseData);
+          this.setState({ results:responseData.sign_off_types, refreshing: false, loading: false});
+        })
+       .done(() => {
+
+       });
     }
 
     async sendLeaveRequest(){
@@ -41,23 +73,13 @@ export default class RequestLeave extends Component {
            date_to:this.state.end,
            reason:this.state.reason,
          },
-         'access_token': '3fa4c7776cd02d24c5d5ec96e88f2b0e',
+         'access_token': this.state.access_token,
        })
       });
     ToastAndroid.show('Leave Request Sent Successfully',ToastAndroid.LONG,ToastAndroid.CENTER,)
     }
 
-    // async getToken(){
-    //    let a = ''
-    //    AsyncStorage.getItem('current_user', (err, result) => {
-    //      current_user= JSON.parse(result)
 
-    //      if (result!=null){
-    //        a = current_user.user.access_token
-    //      }
-    //    });
-    //   return a;
-    // }
 
     onValueChange(value: string) {
         this.setState({
@@ -104,12 +126,7 @@ export default class RequestLeave extends Component {
                               mode="dropdown"
                               selectedValue={this.state.selected1}
                               onValueChange={this.onValueChange.bind(this)} >
-
-                                <Item label="Medical" value="1" />
-                                <Item label="Personal" value="2" />
-                                <Item label="Marriage" value="3" />
-                                <Item label="Govement" value="4" />
-                                <Item label="Work from Home" value="5" />
+                              {["1","2"].map((l,i) => {return <Item value={l} label={l} key={i}  /> })}
                             </Picker>
                         </ListItem>
                         <ListItem iconLeft>
