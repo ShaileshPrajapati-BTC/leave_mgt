@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { Container, Content, List, ListItem, Thumbnail,Header, Title, Button, Icon, Text} from 'native-base';
 
 
-export default class Approved extends Component {
+export default class OwnNotification extends Component {
   
     _navigate(name,id) {
       this.props.navigator.push({

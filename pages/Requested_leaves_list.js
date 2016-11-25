@@ -9,7 +9,7 @@ import {
 import Approved from './Approved.js'
 import Pendding from './Pendding.js'
 import Rejected from './Rejected.js'
-
+import Requests from './Requests.js'
 
 export default class Notification extends Component {
     
@@ -17,6 +17,7 @@ export default class Notification extends Component {
       super(props);
       this.state = {
         access_token:'',
+        leaves_for_approval:{},
         approved_requests:{},
         pendding_requests:{},
         rejected_requests:{}
@@ -46,7 +47,10 @@ export default class Notification extends Component {
       .then((response) => response.json())
       .then((responseData) =>
       {
-         this.setState({ approved_requests: responseData.approved_requests,
+          console.log(responseData);
+         this.setState({ 
+                         leaves_for_approval: responseData.leaves_for_approval,
+                         approved_requests: responseData.approved_requests,
                          pending_requests: responseData.pending_requests,
                          rejected_requests: responseData.rejected_requests,
                          loading: false});
@@ -84,6 +88,7 @@ export default class Notification extends Component {
               <Content>
               {(this.state.loading) ? <Spinner color='#2196F3'/> :
                     <Tabs >
+                        <Requests tabLabel='Requests' navigator={this.props.navigator} data={this.state.leaves_for_approval}/>
                         <Approved tabLabel='Approved' navigator={this.props.navigator} data={this.state.approved_requests}/>
                         <Pendding tabLabel='Pendding' navigator={this.props.navigator} data={this.state.pending_requests} />
                         <Rejected tabLabel='Rejected' navigator={this.props.navigator} data={this.state.rejected_requests}/>

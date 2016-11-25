@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import { Header, Title, Button, Icon,Container, Content, List, ListItem, Thumbnail, Text, Badge, Card, CardItem, Spinner } from 'native-base';
+import { Footer,FooterTab, Header, Title, Button, Icon,Container, Content, List, ListItem, Thumbnail, Text, Badge, Card, CardItem, Spinner } from 'native-base';
 
 import {
   AsyncStorage,
-  StatusBar,View
+  StatusBar,View,ToastAndroid
 } from 'react-native';
 
 export default class LeaveDetail extends Component {
@@ -55,6 +55,24 @@ export default class LeaveDetail extends Component {
     .catch((error) => {
         console.error(error);
     });
+  }
+
+  async changeStatus(sign_off_status){
+    let response = await fetch('http://192.168.0.105:3000/sign_offs/'+this.props.id+'/change_status', {
+       method: 'POST',
+       headers: {
+         'Accept': 'application/json',
+         'Content-Type': 'application/json',
+
+       },
+       body: JSON.stringify({
+         sign_off:{
+           status: sign_off_status
+         },
+         'access_token': this.state.access_token,
+       })
+      });
+    ToastAndroid.show('Leave '+sign_off_status+'Successfully...',ToastAndroid.LONG,ToastAndroid.CENTER,)
   }
 
   render() {
@@ -118,6 +136,20 @@ export default class LeaveDetail extends Component {
             </View>
             }
            </Content>
+           { (this.props.status) ?
+              <Footer >
+                <FooterTab>
+                    <Button onPress={() => this.changeStatus('approved')}>
+                        Approved
+                        <Icon name='md-checkmark-circle' />
+                    </Button>
+                    <Button onPress={() => this.changeStatus('rejected')}>
+                        Rejected
+                        <Icon name='md-close-circle' />
+                    </Button>
+                </FooterTab>
+              </Footer>:<Text/>
+           }
          </Container>
     );
   }
