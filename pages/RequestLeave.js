@@ -17,9 +17,9 @@ export default class RequestLeave extends Component {
             reason:'',
             from:'',
             end:'',
-            results:{
-              leave_types:[]
-            },
+            results:[],
+            user:[]
+            
         };
     }
 
@@ -34,6 +34,7 @@ export default class RequestLeave extends Component {
          if (result!=null){
             this.setState({access_token:current_user.user.access_token});
             this.getLeaveType();
+            this.getUsers();
          }
        });
     }
@@ -46,15 +47,33 @@ export default class RequestLeave extends Component {
       fetch('http://192.168.0.105:3000/sign_off_types.json/?access_token='+this.state.access_token, {method: "GET"})
         .then((response) => response.json())
         .then((responseData) =>
-        {
-          console.log(responseData);
+        { 
+
           this.setState({ results:responseData.sign_off_types, refreshing: false, loading: false});
+
         })
        .done(() => {
 
        });
     }
 
+    async getUsers(){
+      this.setState({
+        loading: true
+      });
+
+      fetch('http://192.168.0.105:3000/sign_offs/new.json?access_token='+this.state.access_token, {method: "GET"})
+        .then((response) => response.json())
+        .then((responseData) =>
+        { 
+
+          this.setState({ user:responseData.users, refreshing: false, loading: false});
+
+        })
+       .done(() => {
+
+       });
+    }
     async sendLeaveRequest(){
 
       let response = await fetch('http://192.168.0.105:3000/sign_offs', {
@@ -105,10 +124,15 @@ export default class RequestLeave extends Component {
                 <Content>
                     <List>
                         <ListItem>
-                            <InputGroup>
-                                <Input inlineLabel label="Send to" placeholder="Amit Patel"
-                                onChangeText={(text) => {this.setState({send_to: text})}}/>
-                            </InputGroup>
+                            <Icon name="md-list-box" style={{ color: '#0A69FE' }} />
+                            <Text>Send to</Text>
+                            <Picker
+                              iosHeader="Select one"
+                              mode="dropdown"
+                              selectedValue={this.state.selected1}
+                              onValueChange={this.onValueChange.bind(this)} >
+                              {this.state.user.map((l,i) => {return <Item value={l.id} label={l.email} key={i}  /> })}
+                            </Picker>
                         </ListItem>
 
                         <ListItem>
@@ -126,7 +150,7 @@ export default class RequestLeave extends Component {
                               mode="dropdown"
                               selectedValue={this.state.selected1}
                               onValueChange={this.onValueChange.bind(this)} >
-                              {["1","2"].map((l,i) => {return <Item value={l} label={l} key={i}  /> })}
+                              {this.state.results.map((l,i) => {return <Item value={l.id} label={l.sign_off_type_name} key={i}  /> })}
                             </Picker>
                         </ListItem>
                         <ListItem iconLeft>
