@@ -27,7 +27,6 @@ export default class LeaveDetail extends Component {
   }
 
   componentWillMount () {
-    // alert(this.props.id);
     this.getToken();
   }
 
@@ -72,7 +71,7 @@ export default class LeaveDetail extends Component {
          'access_token': this.state.access_token,
        })
       });
-    ToastAndroid.show('Leave '+sign_off_status+'Successfully...',ToastAndroid.LONG,ToastAndroid.CENTER,)
+    ToastAndroid.show('Leave '+sign_off_status+' Successfully...',ToastAndroid.LONG,ToastAndroid.CENTER,)
   }
 
   render() {
@@ -137,6 +136,7 @@ export default class LeaveDetail extends Component {
             }
            </Content>
            { (this.props.status) ?
+              (this.state.results.leave_status=='pending')?
               <Footer >
                 <FooterTab>
                     <Button onPress={() => this.changeStatus('approved')}>
@@ -148,7 +148,7 @@ export default class LeaveDetail extends Component {
                         <Icon name='md-close-circle' />
                     </Button>
                 </FooterTab>
-              </Footer>:<Text/>
+              </Footer>: <Text/> :<Text/>
            }
          </Container>
     );

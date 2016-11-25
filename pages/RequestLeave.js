@@ -66,7 +66,7 @@ export default class RequestLeave extends Component {
        },
        body: JSON.stringify({
          sign_off:{
-           requestee_ids: '3',
+           requestee_ids: '2',
            sign_off_type_id: '1',
            half_full_leave:'half',
            date_from:this.state.from,

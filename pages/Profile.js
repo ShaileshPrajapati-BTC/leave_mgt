@@ -9,6 +9,7 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id:'',
       access_token:'',
       user:{},
       profile:{},
@@ -31,9 +32,9 @@ export default class Profile extends Component {
   async getToken(){
      AsyncStorage.getItem('current_user', (err, result) => {
        current_user= JSON.parse(result)
-
+       console.log(current_user);
        if (result!=null){
-          this.setState({access_token:current_user.user.access_token});
+          this.setState({access_token:current_user.user.access_token,id:current_user.user.id});
           this.getProfileDetails();
        }
      });
@@ -43,21 +44,14 @@ export default class Profile extends Component {
     this.setState({
       loading: true
     });
-   fetch('http://192.168.0.105:3000/profiles/3.json/?access_token='+this.state.access_token, {method: "GET"})
+   fetch('http://192.168.0.105:3000/profiles/'+this.state.id+'.json/?access_token='+this.state.access_token, {method: "GET"})
     .then((response) => response.json())
     .then((responseData) =>
     {
-      console.log(responseData);
             this.setState({ user: responseData.user,
                         profile: responseData.profile,
                         leave: responseData.leave_counts,
                         loading: false});
-
-            console.log(this.state.user);
-                        console.log(this.state.profile);
-
-            console.log(this.state.leave);
-
       }) 
     .catch((error) => {
         console.error(error);
