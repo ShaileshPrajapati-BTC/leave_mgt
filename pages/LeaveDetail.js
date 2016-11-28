@@ -50,7 +50,7 @@ export default class LeaveDetail extends Component {
     .then((responseData) =>
     {
        this.setState({ results: responseData, loading: false});
-    }) 
+    })
     .catch((error) => {
         console.error(error);
     });
@@ -72,6 +72,7 @@ export default class LeaveDetail extends Component {
        })
       });
     ToastAndroid.show('Leave '+sign_off_status+' Successfully...',ToastAndroid.LONG,ToastAndroid.CENTER,)
+    this.getLeaveDetails()
   }
 
   render() {

@@ -3,7 +3,8 @@ import { Container, Content,Header, Title, Button, Icon, Tabs, Spinner} from 'na
 
 import {
   AsyncStorage,
-  StatusBar
+  StatusBar,
+  RefreshControl
 } from 'react-native';
 
 import Approved from './Approved.js'
@@ -12,11 +13,12 @@ import Rejected from './Rejected.js'
 import Requests from './Requests.js'
 
 export default class Notification extends Component {
-    
+
     constructor(props) {
       super(props);
       this.state = {
         access_token:'',
+        refreshing: false,
         leaves_for_approval:{},
         approved_requests:{},
         pendding_requests:{},
@@ -47,13 +49,12 @@ export default class Notification extends Component {
       .then((response) => response.json())
       .then((responseData) =>
       {
-          console.log(responseData);
-         this.setState({ 
+         this.setState({
                          leaves_for_approval: responseData.leaves_for_approval,
                          approved_requests: responseData.approved_requests,
                          pending_requests: responseData.pending_requests,
                          rejected_requests: responseData.rejected_requests,
-                         loading: false});
+                         loading: false,refreshing: false});
       })
       .catch((error) => {
         this.setState({
@@ -85,9 +86,14 @@ export default class Notification extends Component {
                 backgroundColor="#2196F3"
                 barStyle="light-content"
               />
-              <Content>
+              <Content
+                refreshControl={
+                                <RefreshControl
+                                  refreshing={this.state.refreshing}
+                                  onRefresh={this.getLeaveDetails.bind(this)}
+                                />}>
               {(this.state.loading) ? <Spinner color='#2196F3'/> :
-                    <Tabs >
+                    <Tabs>
                         <Requests tabLabel='Requests' navigator={this.props.navigator} data={this.state.leaves_for_approval}/>
                         <Approved tabLabel='Approved' navigator={this.props.navigator} data={this.state.approved_requests}/>
                         <Pendding tabLabel='Pendding' navigator={this.props.navigator} data={this.state.pending_requests} />
@@ -95,7 +101,7 @@ export default class Notification extends Component {
                     </Tabs>
                       }
             </Content>
-        
+
         </Container>
         );
     }

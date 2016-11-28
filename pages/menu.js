@@ -38,7 +38,6 @@ export default class ControlPanel extends Component {
             <ListItem iconLeft button onPress={ () => this._navigate('LeavesList',0) }>
                 <Icon name="ios-mail-outline" style={{ color: '#0A69FE' }} />
                 <Text>Requested Leaves</Text>
-                <Badge>12</Badge>
             </ListItem>
             <ListItem iconLeft button onPress={ () => this.logout() }>
                 <Icon name="md-log-out" style={{ color: '#0A69FE' }} />

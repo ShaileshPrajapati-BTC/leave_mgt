@@ -72,8 +72,8 @@ export default class Login extends Component {
   render() {
     return (
       <Container >
+        {(this.state.login)? <Content style={{top:200}}><Spinner color='#2196F3'/></Content>:
         <Content>
-        {(this.state.login)? <Spinner color='#2196F3'/>:
           <List style={{ alignSelf: 'center', marginTop: 150, marginBottom: 20,width:300 }} >
             <Thumbnail size={80} style={{ alignSelf: 'center',marginBottom: 20}} source={{uri:'https://cdn-images-1.medium.com/max/139/1*Q5ya0DSeneWh-Nieprl15w.png'}} />
             <ListItem >
@@ -90,8 +90,8 @@ export default class Login extends Component {
              Login
             </Button>
           </List>
+          </Content>
         }
-        </Content>
      </Container>
     );
   }
