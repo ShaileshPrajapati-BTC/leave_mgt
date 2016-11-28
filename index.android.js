@@ -9,8 +9,7 @@
  import Notification from './pages/Notification.js';
  import LeaveDetail from './pages/LeaveDetail.js';
  import RequestedLeaveList from './pages/Requested_leaves_list.js';
-
-
+ import LeaveChat from './pages/LeaveChat.js'
  import {
    AppRegistry,
    StyleSheet,
@@ -43,6 +42,9 @@ export default class HPSReactNative extends Component {
     }
     if(route.name == 'LeaveDetail') {
       return <LeaveDetail navigator={navigator} {...route.passProps} route={route} />
+    }
+    if(route.name == 'LeaveChat') {
+      return <LeaveChat navigator={navigator} {...route.passProps} route={route} />
     }
   }
 

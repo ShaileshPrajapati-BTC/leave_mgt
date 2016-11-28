@@ -1,11 +1,12 @@
 import React,{Component} from 'react';
-import { Footer,FooterTab, Header, Title, Button, Icon,Container, Content, List, ListItem, Thumbnail, Text, Badge, Card, CardItem, Spinner } from 'native-base';
+import { Footer,FooterTab, Header, Title, Button, Icon,
+          Container, Content, List, ListItem, Thumbnail, 
+          Text, Badge, Card, CardItem, Spinner } from 'native-base';
 
 import {
   AsyncStorage,
   StatusBar,View,ToastAndroid
 } from 'react-native';
-
 export default class LeaveDetail extends Component {
 
   constructor(props) {
@@ -17,11 +18,11 @@ export default class LeaveDetail extends Component {
       }
     };
   }
-  _navigate(name, index) {
+  _navigate(name) {
     this.props.navigator.push({
       name: name,
       passProps: {
-        index: index
+        id: this.props.id
       }
     })
   }
@@ -83,6 +84,9 @@ export default class LeaveDetail extends Component {
                   <Icon name='ios-arrow-back' />
               </Button>
               <Title>Leave Details</Title>
+              <Button transparent onPress={() => {this._navigate('LeaveChat')}}>
+                <Icon name='ios-chatbubbles' />
+              </Button>
           </Header>
           <StatusBar
            backgroundColor="#2196F3"

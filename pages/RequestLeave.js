@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
-import { Container, Content, List, ListItem, InputGroup, Input, Icon, Text, Button,Picker } from 'native-base';
+import { Container, Content, List, ListItem, InputGroup,
+         Input, Icon, Text, Button,Picker,Card,CardItem,Spinner } from 'native-base';
 import {AsyncStorage,ToastAndroid} from 'react-native';
 import DatePicker from 'react-native-datepicker'
 import FloatingLabel from 'react-native-floating-labels';
@@ -10,15 +11,17 @@ export default class RequestLeave extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected1: '1',
+            selected_user: '1',
+            selected_user_list:[],
+            leave_duration: '1',
             access_token:'',
-            selected2: '0',
+            leave_type: '1',
             send_to:'',
             reason:'',
-            from:'',
-            end:'',
-            results:[],
-            user:[]
+            from: new Date(),
+            end: new Date(),
+            leave_types:[],
+            users:[]
             
         };
     }
@@ -40,16 +43,13 @@ export default class RequestLeave extends Component {
     }
 
     async getLeaveType(){
-      this.setState({
-        loading: true
-      });
 
       fetch('http://192.168.0.105:3000/sign_off_types.json/?access_token='+this.state.access_token, {method: "GET"})
         .then((response) => response.json())
         .then((responseData) =>
         { 
 
-          this.setState({ results:responseData.sign_off_types, refreshing: false, loading: false});
+          this.setState({ leave_types:responseData.sign_off_types, refreshing: false});
 
         })
        .done(() => {
@@ -58,16 +58,13 @@ export default class RequestLeave extends Component {
     }
 
     async getUsers(){
-      this.setState({
-        loading: true
-      });
 
       fetch('http://192.168.0.105:3000/sign_offs/new.json?access_token='+this.state.access_token, {method: "GET"})
         .then((response) => response.json())
         .then((responseData) =>
         { 
 
-          this.setState({ user:responseData.users, refreshing: false, loading: false});
+          this.setState({ users:responseData.users, refreshing: false});
 
         })
        .done(() => {
@@ -75,6 +72,10 @@ export default class RequestLeave extends Component {
        });
     }
     async sendLeaveRequest(){
+
+      this.setState({
+        loading: true
+      });
 
       let response = await fetch('http://192.168.0.105:3000/sign_offs', {
        method: 'POST',
@@ -85,9 +86,9 @@ export default class RequestLeave extends Component {
        },
        body: JSON.stringify({
          sign_off:{
-           requestee_ids: '2',
-           sign_off_type_id: '1',
-           half_full_leave:'half',
+           requestee_ids: this.state.selected_user_list.toString(),
+           sign_off_type_id: this.state.leave_type,
+           half_full_leave:this.state.leave_duration,
            date_from:this.state.from,
            date_to:this.state.end,
            reason:this.state.reason,
@@ -95,19 +96,42 @@ export default class RequestLeave extends Component {
          'access_token': this.state.access_token,
        })
       });
-    ToastAndroid.show('Leave Request Sent Successfully',ToastAndroid.LONG,ToastAndroid.CENTER,)
+      let res = await response.json();
+      console.log(res);
+      if (res.success==true)
+      {
+         this.setState({
+        loading: false
+      });
+       ToastAndroid.show('Leave Request Sent Successfully',ToastAndroid.LONG,ToastAndroid.CENTER,)
+
+      }
+      else
+        alert('Something went wrong try again');
     }
 
 
 
-    onValueChange(value: string) {
+    onUserChange(value: string) {
+      if (this.state.selected_user_list.indexOf(value) < 0)
+          this.state.selected_user_list.push(value);
+        else
+          this.state.selected_user_list.splice(this.state.selected_user_list.indexOf(value),1);
+        
         this.setState({
-            selected1: value,
+            selected_user: value,
+            selected_user_list: this.state.selected_user_list
+        });
+        console.log(this.state.selected_user_list);
+    }
+    onLeaveTypeChange(value: string) {
+        this.setState({
+            leave_type: value,
         });
     }
     onValueChangeDuration(value: string) {
         this.setState({
-            selected2: value,
+            leave_duration: value,
         });
     }
     _navigate(name) {
@@ -121,20 +145,24 @@ export default class RequestLeave extends Component {
    render() {
         return (
           <Container>
-                <Content>
-                    <List>
-                        <ListItem>
-                            <Icon name="md-list-box" style={{ color: '#0A69FE' }} />
-                            <Text>Send to</Text>
-                            <Picker
-                              iosHeader="Select one"
-                              mode="dropdown"
-                              selectedValue={this.state.selected1}
-                              onValueChange={this.onValueChange.bind(this)} >
-                              {this.state.user.map((l,i) => {return <Item value={l.id} label={l.email} key={i}  /> })}
-                            </Picker>
-                        </ListItem>
+          {(this.state.loading)? <Content><Spinner color='#2196F3'/></Content>:
+            <Content>
+              <Card>
+                <CardItem>                        
+                  <Text style={{fontSize:15,fontWeight:'bold'}}>
+                      You Have selected {this.state.selected_user_list.length} Person.
 
+                  </Text>
+                  <Picker
+                    iosHeader="Select one"
+                    mode="dialog"
+                    selectedValue={this.state.selected_user}
+                    onValueChange={this.onUserChange.bind(this)} >
+                    {this.state.users.map((l,i) => {return <Item value={l.id}  label={l.email} key={l.id}  /> })}
+                  </Picker>
+                </CardItem>
+              </Card>
+                    <List>
                         <ListItem>
                             <InputGroup >
                                 <Input stackedLabel label="Leave Resaon"
@@ -148,9 +176,9 @@ export default class RequestLeave extends Component {
                             <Picker
                               iosHeader="Select one"
                               mode="dropdown"
-                              selectedValue={this.state.selected1}
-                              onValueChange={this.onValueChange.bind(this)} >
-                              {this.state.results.map((l,i) => {return <Item value={l.id} label={l.sign_off_type_name} key={i}  /> })}
+                              selectedValue={this.state.leave_type}
+                              onValueChange={this.onLeaveTypeChange.bind(this)} >
+                              {this.state.leave_types.map((l,i) => {return <Item value={l.id} label={l.sign_off_type_name} key={i}  /> })}
                             </Picker>
                         </ListItem>
                         <ListItem iconLeft>
@@ -159,19 +187,19 @@ export default class RequestLeave extends Component {
                             <Picker
                               iosHeader="Select one"
                               mode="dropdown"
-                              selectedValue={this.state.selected2}
+                              selectedValue={this.state.leave_duration}
                               onValueChange={this.onValueChangeDuration.bind(this)} >
 
-                                <Item label="Half Day" value="0" />
-                                <Item label="Full Day" value="1" />
-                                <Item label="Multiple Day" value="2" />
+                                <Item label="Half Day" value="half" />
+                                <Item label="Full Day" value="full" />
+                                <Item label="Multiple Day" value="muliple" />
                             </Picker>
                         </ListItem>
                         <ListItem >
                          <Text>From</Text>
                           <DatePicker
                             style={{width: 150,left:22}}
-                            date={new Date()}
+                            date={this.state.from}
                             mode="date"
                             placeholder="select date"
                             format="YYYY-MM-DD"
@@ -196,7 +224,7 @@ export default class RequestLeave extends Component {
                            <Text>End</Text>
                             <DatePicker
                               style={{width: 150,left:28}}
-                              date={new Date()}
+                              date={this.state.end}
                               mode="date"
                               placeholder="select date"
                               format="YYYY-MM-DD"
@@ -225,11 +253,11 @@ export default class RequestLeave extends Component {
                             </InputGroup>
                         </ListItem>
                     </List>
-                    <Button style={{ alignSelf: 'center', marginTop: 20, marginBottom: 20 }}
+                    <Button disabled={(this.state.reason.length < 1)? true : false} style={{ alignSelf: 'center', marginTop: 20, marginBottom: 20 }}
                     onPress={() => this.sendLeaveRequest()}>
                         Send Leave Request
                     </Button>
-                </Content>
+                </Content>}
             </Container>
         );
     }
