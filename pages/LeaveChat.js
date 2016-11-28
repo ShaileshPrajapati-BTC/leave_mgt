@@ -25,7 +25,13 @@ export default class LeaveChat extends Component {
         }
       })
     }
-    
+
+    componentDidMount () {
+      setInterval( () => {
+           this.getMessages()}, 1000);
+    }
+
+
     componentWillMount () {
       console.log('iddddddddddddddddddddddd'+this.props.id);
       this.getToken();
@@ -56,7 +62,7 @@ export default class LeaveChat extends Component {
       .catch((error) => {
           console.error(error);
       });
-    }         
+    }
     async postMessage(msg){
        let response = await fetch('http://192.168.0.105:3000/sign_offs/'+this.props.id+'/comments', {
        method: 'POST',
