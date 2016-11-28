@@ -3,11 +3,10 @@ import { Container, Content,Header,Button,Icon,Title } from 'native-base';
 import { GiftedChat } from 'react-native-gifted-chat';
 import {View,Dimensions,Text,AsyncStorage} from 'react-native'
 
-import timer from 'react-native-timer';
 const window = Dimensions.get('window');
 
 export default class LeaveChat extends Component {
-    
+
     constructor(props) {
       super(props);
       this.onSend = this.onSend.bind(this);
@@ -27,13 +26,16 @@ export default class LeaveChat extends Component {
       })
     }
 
-    componentDidMount () {
-      timer.setInterval('msg', this.getMessages(), 1000);
+    componentDidMount() {
+      this.timer = setInterval(()=> this.getMessages(), 1000)
     }
+  componentWillUnmount() {
+    if (this.timer) {
+      clearInterval(this.timer)
+      this.timer = null
+    }
+  }
 
-    componentDidUnmount() {
-       timer.clearInterval('msg');
-    }
 
     componentWillMount () {
       console.log('iddddddddddddddddddddddd'+this.props.id);
@@ -49,8 +51,8 @@ export default class LeaveChat extends Component {
             this.getMessages();
          }
        });
-    } 
-    
+    }
+
     async getMessages(){
       this.setState({
         loading: true
@@ -61,7 +63,7 @@ export default class LeaveChat extends Component {
       {
          this.setState({ messages: responseData.comments, loading: false});
          console.log(responseData);
-      }) 
+      })
       .catch((error) => {
           console.error(error);
       });
@@ -81,7 +83,7 @@ export default class LeaveChat extends Component {
          'access_token': this.state.access_token,
        })
       });
-      
+
     }
     onSend(messages = []) {
      this.postMessage(messages[0].text);
@@ -101,7 +103,7 @@ export default class LeaveChat extends Component {
             </Content>
               <View style={{flex: 1,height:window.height-140}}>
                  <GiftedChat
-                
+
                 bottomOffset={0}
                 messages={this.state.messages}
                 onSend={this.onSend}
