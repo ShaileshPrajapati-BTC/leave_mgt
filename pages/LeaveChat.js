@@ -3,6 +3,7 @@ import { Container, Content,Header,Button,Icon,Title } from 'native-base';
 import { GiftedChat } from 'react-native-gifted-chat';
 import {View,Dimensions,Text,AsyncStorage} from 'react-native'
 
+import timer from 'react-native-timer';
 const window = Dimensions.get('window');
 
 export default class LeaveChat extends Component {
@@ -27,10 +28,12 @@ export default class LeaveChat extends Component {
     }
 
     componentDidMount () {
-      setInterval( () => {
-           this.getMessages()}, 1000);
+      timer.setInterval('msg', this.getMessages(), 1000);
     }
 
+    componentDidUnmount() {
+       timer.clearInterval('msg');
+    }
 
     componentWillMount () {
       console.log('iddddddddddddddddddddddd'+this.props.id);

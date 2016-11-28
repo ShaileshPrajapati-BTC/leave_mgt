@@ -23,6 +23,7 @@
     "react-native-popup-menu": "^0.5.7",
     "react-native-scrollable-tab-view": "^0.6.0",
     "react-native-swipeout": "^2.0.12",
+    "react-native-timer": "^1.1.2",
     "react-native-underline-tabbar": "^1.0.5",
     "react-native-vector-icons": "^3.0.0"
   },
