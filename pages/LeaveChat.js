@@ -13,6 +13,7 @@ export default class LeaveChat extends Component {
       this.state = {
         messages: [],
         access_token:'',
+        user_name:'',
         u_id:''
 
       };
@@ -39,7 +40,6 @@ export default class LeaveChat extends Component {
     }
 
     componentWillMount () {
-      console.log('iddddddddddddddddddddddd'+this.props.id);
       this.getToken();
     }
 
@@ -48,7 +48,9 @@ export default class LeaveChat extends Component {
          current_user= JSON.parse(result)
          console.log(current_user);
          if (result!=null){
-            this.setState({access_token:current_user.user.access_token,u_id:current_user.user.id});
+            this.setState({ access_token:current_user.user.access_token,
+                            u_id:current_user.user.id,
+                            user_name: current_user.user.name});
             this.getMessages();
          }
        });
@@ -100,19 +102,18 @@ export default class LeaveChat extends Component {
                 <Button transparent onPress={() => {this.props.navigator.pop()}}>
                     <Icon name='ios-arrow-back' />
                 </Button>
-                <Title>Shailesh</Title>
+                <Title>{this.state.user_name}</Title>
               </Header>
             </Content>
             <View style={{flex: 1,height:window.height-140}}>
                <GiftedChat
-
-              bottomOffset={0}
-              messages={this.state.messages}
-              onSend={this.onSend}
-              user={{
-                _id: this.state.u_id,
-              }}
-            />
+                bottomOffset={0}
+                messages={this.state.messages}
+                onSend={this.onSend}
+                user={{
+                  _id: this.state.u_id,
+                }}
+              />
             </View>
           </Container>
         );
