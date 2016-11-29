@@ -18,7 +18,7 @@ export default class LeaveDetail extends Component {
       }
     };
   }
-  
+
   _navigate(name) {
     this.props.navigator.push({
       name: name,
@@ -51,6 +51,7 @@ export default class LeaveDetail extends Component {
     .then((response) => response.json())
     .then((responseData) =>
     {
+        console.log(responseData);
        this.setState({ results: responseData, loading: false});
     })
     .catch((error) => {
@@ -58,7 +59,20 @@ export default class LeaveDetail extends Component {
     });
   }
 
+  changeStatusColor(status)
+  {
+    if(status=='approved')
+      return '#4CAF50';
+    else if(status=='pendding')
+      return '#FFEB3B'
+    else if(status=='rejected')
+      return '#D32F2F'
+  }
+
   async changeStatus(sign_off_status){
+    this.setState({
+      loading: true
+    });
     let response = await fetch('http://192.168.0.105:3000/sign_offs/'+this.props.id+'/change_status', {
        method: 'POST',
        headers: {
@@ -101,9 +115,19 @@ export default class LeaveDetail extends Component {
                     <Text>{this.state.results.user_name}</Text>
                     <Text note>{this.state.results.designation}</Text>
                   </ListItem>
+                  <Card>
+                    <CardItem header>
+                      <Text>Requested To</Text>
+                    </CardItem>
+                    <CardItem>
+                      <Text>
+                      {this.state.results.requestee_name}
+                      </Text>
+                    </CardItem>
+                  </Card>
                   <ListItem>
                     <Text>Status</Text>
-                    <Badge success>{this.state.results.leave_status}</Badge>
+                    <Badge style={{ backgroundColor: this.changeStatusColor(this.state.results.leave_status) }}>{this.state.results.leave_status}</Badge>
                   </ListItem>
                   <ListItem>
                     <Text>Date</Text>
