@@ -62,21 +62,22 @@ export default class Holiday extends Component {
             <ScrollView tabLabel="md-calendar">
               <Container>
                 <Content>
-                    {(this.state.loading) ? <Spinner color='#2196F3'/> :
-                                           <List dataArray={this.state.results}
-                                            refreshControl={
-                                                            <RefreshControl
-                                                              refreshing={this.state.refreshing}
-                                                              onRefresh={this.getHolidays.bind(this)}
-                                                            />}
-                                            renderRow={(holidays) =>
-                                                <ListItem>
-                                                  {(holidays.holiday_date > date) ? <Text style={{color: 'gray'}}>{holidays.name}</Text>  : <Text>{holidays.name}</Text>}
-                                                  <Text note>{holidays.date}</Text>
+                  {(this.state.loading) ? 
+                    <Spinner color='#2196F3'/> :
+                     <List dataArray={this.state.results}
+                      refreshControl={
+                                      <RefreshControl
+                                        refreshing={this.state.refreshing}
+                                        onRefresh={this.getHolidays.bind(this)}
+                                      />}
+                      renderRow={(holidays) =>
+                          <ListItem>
+                            {(holidays.holiday_date > date) ? <Text style={{color: 'gray'}}>{holidays.name}</Text>  : <Text>{holidays.name}</Text>}
+                            <Text note>{holidays.date}</Text>
 
-                                                </ListItem>
-                                              }>
-                                          </List>
+                          </ListItem>
+                        }>
+                    </List>
                   }
                 </Content>
               </Container>

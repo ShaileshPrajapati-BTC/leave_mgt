@@ -18,6 +18,7 @@ export default class LeaveDetail extends Component {
       }
     };
   }
+  
   _navigate(name) {
     this.props.navigator.push({
       name: name,

@@ -12,7 +12,6 @@ import OtherNotification from './OtherNotification.js';
 
 export default class Notification extends Component {
 
- 
     constructor(props) {
       super(props);
       this.state = {
@@ -28,7 +27,6 @@ export default class Notification extends Component {
     }
 
     async getToken(){
-
       AsyncStorage.getItem('current_user', (err, result) => {
        current_user= JSON.parse(result)
        if (result!=null){
@@ -66,6 +64,7 @@ export default class Notification extends Component {
         }
       })
     }
+    
     render() {
       return(
         <Container>

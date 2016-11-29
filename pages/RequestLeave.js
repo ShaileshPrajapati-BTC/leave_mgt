@@ -9,21 +9,21 @@ const Item = Picker.Item;
 
 export default class RequestLeave extends Component {
     constructor(props) {
-        super(props);
-        this.state = {
-            selected_user: '1',
-            selected_user_list:[],
-            leave_duration: '1',
-            access_token:'',
-            leave_type: '1',
-            send_to:'',
-            reason:'',
-            from: new Date(),
-            end: new Date(),
-            leave_types:[],
-            users:[]
-            
-        };
+      super(props);
+      this.state = {
+          selected_user: '1',
+          selected_user_list:[],
+          leave_duration: '1',
+          access_token:'',
+          leave_type: '1',
+          send_to:'',
+          reason:'',
+          from: new Date(),
+          end: new Date(),
+          leave_types:[],
+          users:[]
+          
+      };
     }
 
     componentWillMount () {
@@ -71,6 +71,7 @@ export default class RequestLeave extends Component {
 
        });
     }
+
     async sendLeaveRequest(){
 
       this.setState({
@@ -110,8 +111,6 @@ export default class RequestLeave extends Component {
         alert('Something went wrong try again');
     }
 
-
-
     onUserChange(value: string) {
       if (this.state.selected_user_list.indexOf(value) < 0)
           this.state.selected_user_list.push(value);
@@ -124,16 +123,19 @@ export default class RequestLeave extends Component {
         });
         console.log(this.state.selected_user_list);
     }
+
     onLeaveTypeChange(value: string) {
         this.setState({
             leave_type: value,
         });
     }
+
     onValueChangeDuration(value: string) {
         this.setState({
             leave_duration: value,
         });
     }
+
     _navigate(name) {
       this.props.navigator.push({
         name: name,
@@ -142,7 +144,8 @@ export default class RequestLeave extends Component {
         }
       })
     }
-   render() {
+
+    render() {
         return (
           <Container>
           {(this.state.loading)? <Content><Spinner color='#2196F3'/></Content>:

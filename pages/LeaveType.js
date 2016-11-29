@@ -22,8 +22,6 @@ export default class LeaveType extends Component {
         leave_types:[]
       },
     };
-            // this.getToken();
-
   }
 
   componentWillMount () {
@@ -60,29 +58,30 @@ export default class LeaveType extends Component {
   }
     render() {
         return (
-              <ScrollView tabLabel="md-time">
-                <Container>
-                    <Content>
-                        {(this.state.loading)? <Spinner color='#2196F3'/> :
-                                            <List dataArray={this.state.results}
-                                               refreshControl={
-                                                  <RefreshControl
-                                                    refreshing={this.state.refreshing}
-                                                    onRefresh={this.getLeaveType.bind(this)}
-                                                  />}
-                                              renderRow={(leave_type) =>
-                                                  <ListItem>
-                                                    <Thumbnail/>
-                                                     <Text >{leave_type.sign_off_type_name}</Text>
-                                                     <Text note>{leave_type.description}</Text>
-                                                     <Badge info>{leave_type.no_of_days}</Badge>
-                                                  </ListItem>
-                                                }>
-                                            </List>
-                        }
-                    </Content>
-                </Container>
-              </ScrollView>
+            <ScrollView tabLabel="md-time">
+              <Container>
+                  <Content>
+                    {(this.state.loading)? 
+                      <Spinner color='#2196F3'/> :
+                      <List dataArray={this.state.results}
+                         refreshControl={
+                            <RefreshControl
+                              refreshing={this.state.refreshing}
+                              onRefresh={this.getLeaveType.bind(this)}
+                            />}
+                        renderRow={(leave_type) =>
+                            <ListItem>
+                              <Thumbnail/>
+                               <Text >{leave_type.sign_off_type_name}</Text>
+                               <Text note>{leave_type.description}</Text>
+                               <Badge info>{leave_type.no_of_days}</Badge>
+                            </ListItem>
+                          }>
+                      </List>
+                      }
+                  </Content>
+              </Container>
+            </ScrollView>
         );
     }
 }

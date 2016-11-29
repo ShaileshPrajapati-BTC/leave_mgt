@@ -41,21 +41,21 @@ const Tabs = React.createClass({
   },
 
   render() {
-    return <View style={[styles.tabs, this.props.style, ]}>
-      {this.props.tabs.map((tab, i,) => {
-        return <TouchableOpacity key={tab} onPress={() => this.props.goToPage(i)} style={styles.tab}>
-          <Icon
-            name={tab}
-            size={20}
-            color={this.props.activeTab === i ? 'rgb(173, 216, 230)' : 'rgb(255,255,255)'}
-            ref={(icon) => { this.tabIcons[i] = icon; }}
-          />
-        <Text style={{fontSize:10, color:this.props.activeTab === i ? 'rgb(173, 216, 230)' : 'rgb(255,255,255)'}}>{`${this.props.name[i]}`}</Text>
-        </TouchableOpacity>;
-      })}
-    </View>;
-  },
-});
+      return <View style={[styles.tabs, this.props.style, ]}>
+        {this.props.tabs.map((tab, i,) => {
+          return <TouchableOpacity key={tab} onPress={() => this.props.goToPage(i)} style={styles.tab}>
+            <Icon
+              name={tab}
+              size={20}
+              color={this.props.activeTab === i ? 'rgb(173, 216, 230)' : 'rgb(255,255,255)'}
+              ref={(icon) => { this.tabIcons[i] = icon; }}
+            />
+          <Text style={{fontSize:10, color:this.props.activeTab === i ? 'rgb(173, 216, 230)' : 'rgb(255,255,255)'}}>{`${this.props.name[i]}`}</Text>
+          </TouchableOpacity>;
+        })}
+      </View>;
+    },
+  });
 
 const styles = StyleSheet.create({
   tab: {

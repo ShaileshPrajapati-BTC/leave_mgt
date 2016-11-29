@@ -31,18 +31,18 @@ export default class ControlPanel extends Component {
           <Text style={{top:10}}>Shailesh Prajapati</Text>
         </View>
         <List>
-            <ListItem iconLeft button onPress={ () => this._navigate('Profile',0) }>
-                <Icon name="ios-contact" style={{ color: '#0A69FE' }} />
-                <Text>Profile</Text>
-            </ListItem>
-            <ListItem iconLeft button onPress={ () => this._navigate('LeavesList',0) }>
-                <Icon name="ios-mail-outline" style={{ color: '#0A69FE' }} />
-                <Text>Requested Leaves</Text>
-            </ListItem>
-            <ListItem iconLeft button onPress={ () => this.logout() }>
-                <Icon name="md-log-out" style={{ color: '#0A69FE' }} />
-                <Text>Logout</Text>
-            </ListItem>
+          <ListItem iconLeft button onPress={ () => this._navigate('Profile',0) }>
+              <Icon name="ios-contact" style={{ color: '#0A69FE' }} />
+              <Text>Profile</Text>
+          </ListItem>
+          <ListItem iconLeft button onPress={ () => this._navigate('LeavesList',0) }>
+              <Icon name="ios-mail-outline" style={{ color: '#0A69FE' }} />
+              <Text>Requested Leaves</Text>
+          </ListItem>
+          <ListItem iconLeft button onPress={ () => this.logout() }>
+              <Icon name="md-log-out" style={{ color: '#0A69FE' }} />
+              <Text>Logout</Text>
+          </ListItem>
         </List>
       </Content>
     </Container>

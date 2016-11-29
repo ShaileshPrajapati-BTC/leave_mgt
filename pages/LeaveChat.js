@@ -17,6 +17,7 @@ export default class LeaveChat extends Component {
 
       };
     }
+
     _navigate(name,id) {
       this.props.navigator.push({
         name: name,
@@ -29,13 +30,13 @@ export default class LeaveChat extends Component {
     componentDidMount() {
       this.timer = setInterval(()=> this.getMessages(), 1000)
     }
-  componentWillUnmount() {
-    if (this.timer) {
-      clearInterval(this.timer)
-      this.timer = null
-    }
-  }
 
+    componentWillUnmount() {
+      if (this.timer) {
+        clearInterval(this.timer)
+        this.timer = null
+      }
+    }
 
     componentWillMount () {
       console.log('iddddddddddddddddddddddd'+this.props.id);
@@ -68,6 +69,7 @@ export default class LeaveChat extends Component {
           console.error(error);
       });
     }
+
     async postMessage(msg){
        let response = await fetch('http://192.168.0.105:3000/sign_offs/'+this.props.id+'/comments', {
        method: 'POST',
@@ -83,8 +85,8 @@ export default class LeaveChat extends Component {
          'access_token': this.state.access_token,
        })
       });
-
     }
+
     onSend(messages = []) {
      this.postMessage(messages[0].text);
      this.getMessages();
@@ -92,28 +94,27 @@ export default class LeaveChat extends Component {
 
     render() {
       return(
-            <Container>
+          <Container>
             <Content>
-            <Header backgroundColor="#2196F3">
-              <Button transparent onPress={() => {this.props.navigator.pop()}}>
-                  <Icon name='ios-arrow-back' />
-              </Button>
-              <Title>Shailesh</Title>
-          </Header>
+              <Header backgroundColor="#2196F3">
+                <Button transparent onPress={() => {this.props.navigator.pop()}}>
+                    <Icon name='ios-arrow-back' />
+                </Button>
+                <Title>Shailesh</Title>
+              </Header>
             </Content>
-              <View style={{flex: 1,height:window.height-140}}>
-                 <GiftedChat
+            <View style={{flex: 1,height:window.height-140}}>
+               <GiftedChat
 
-                bottomOffset={0}
-                messages={this.state.messages}
-                onSend={this.onSend}
-                user={{
-                  _id: this.state.u_id,
-                }}
-              />
-              </View>
-            </Container>
-
+              bottomOffset={0}
+              messages={this.state.messages}
+              onSend={this.onSend}
+              user={{
+                _id: this.state.u_id,
+              }}
+            />
+            </View>
+          </Container>
         );
     }
 }
