@@ -23,22 +23,9 @@ const Tabs = React.createClass({
   setAnimationValue({ value, }) {
     this.tabIcons.forEach((icon, i) => {
       const progress = (value - i >= 0 && value - i <= 1) ? value - i : 1;
-      icon.setNativeProps({
-        style: {
-          color: this.iconColor(progress),
-        },
-      });
     });
   },
 
-  //color between rgb(59,89,152) and rgb(204,204,204)
-  iconColor(progress) {
-    const red = 173 + (255 - 173) * progress;
-    const green = 216 + (255 - 216) * progress;
-    const blue = 230 + (255 - 230) * progress;
-
-    return `rgb(${red}, ${green}, ${blue})`;
-  },
 
   render() {
       return <View style={[styles.tabs, this.props.style, ]}>
@@ -47,10 +34,10 @@ const Tabs = React.createClass({
             <Icon
               name={tab}
               size={20}
-              color={this.props.activeTab === i ? 'rgb(173, 216, 230)' : 'rgb(255,255,255)'}
+              color={this.props.activeTab === i ?  'rgb(255,255,255)' : 'rgb(189, 224, 250)'}
               ref={(icon) => { this.tabIcons[i] = icon; }}
             />
-          <Text style={{fontSize:10, color:this.props.activeTab === i ? 'rgb(173, 216, 230)' : 'rgb(255,255,255)'}}>{`${this.props.name[i]}`}</Text>
+          <Text style={{fontWeight:'bold', fontSize:10, color:this.props.activeTab === i ? 'rgb(255,255,255)' : 'rgb(189, 224, 250)'}}>{`${this.props.name[i]}`}</Text>
           </TouchableOpacity>;
         })}
       </View>;
