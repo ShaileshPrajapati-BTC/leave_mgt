@@ -13,6 +13,7 @@ export default class RequestLeave extends Component {
       this.state = {
           selected_user: '1',
           selected_user_list:[],
+          user_name:[],
           leave_duration: '1',
           access_token:'',
           leave_type: '1',
@@ -121,7 +122,7 @@ export default class RequestLeave extends Component {
             selected_user: value,
             selected_user_list: this.state.selected_user_list
         });
-        console.log(this.state.selected_user_list);
+      this.getUserName(this.state.selected_user_list);
     }
 
     onLeaveTypeChange(value: string) {
@@ -145,17 +146,27 @@ export default class RequestLeave extends Component {
       })
     }
 
+    getUserName(user){
+      name = [];
+      var doubles = this.state.users.map(function(num) {
+        if (user.indexOf(num.id) > -1)
+          name.push(num.email);
+        });
+      this.setState({user_name:name});
+      
+    }
     render() {
         return (
           <Container>
           {(this.state.loading)? <Content><Spinner color='#2196F3'/></Content>:
             <Content>
               <Card>
-                <CardItem>                        
-                  <Text style={{fontSize:15,fontWeight:'bold'}}>
-                      You Have selected {this.state.selected_user_list.length} Person.
+                <CardItem> 
 
+                  <Text style={{fontSize:15,fontWeight:'bold'}}>
+                    To  {this.state.user_name.toString()}
                   </Text>
+
                   <Picker
                     iosHeader="Select one"
                     mode="dialog"

@@ -11,6 +11,7 @@ export default class Profile extends Component {
     this.state = {
       id:'',
       access_token:'',
+      user_name:'',
       user:{},
       profile:{},
       leave:{}
@@ -32,9 +33,10 @@ export default class Profile extends Component {
   async getToken(){
      AsyncStorage.getItem('current_user', (err, result) => {
        current_user= JSON.parse(result)
-       console.log(current_user);
        if (result!=null){
-          this.setState({access_token:current_user.user.access_token,id:current_user.user.id});
+          this.setState({access_token:current_user.user.access_token,
+                         id:current_user.user.id,
+                         user_name: current_user.user.name});
           this.getProfileDetails();
        }
      });
@@ -48,6 +50,7 @@ export default class Profile extends Component {
     .then((response) => response.json())
     .then((responseData) =>
     {
+          console.log(responseData);
             this.setState({ user: responseData.user,
                         profile: responseData.profile,
                         leave: responseData.leave_counts,
@@ -65,7 +68,7 @@ export default class Profile extends Component {
                 <Button transparent onPress={() => this.props.navigator.pop()}>
                     <Icon name='ios-arrow-back' />
                 </Button>
-                <Title>Shailesh Prajapati</Title>
+                <Title>{this.state.user_name}</Title>
               </Header>
             <Content>
             {(this.state.loading) ? <Spinner color='#2196F3'/> :
@@ -90,7 +93,7 @@ export default class Profile extends Component {
                   </ListItem>
                   <ListItem>
                     <Text >Taken Leave:</Text>
-                    <Badge success>{this.state.leave.laves_taken}</Badge>
+                    <Badge success>{this.state.leave.approved_request_counts}</Badge>
                   </ListItem>
 
                   <ListItem itemDivider>
