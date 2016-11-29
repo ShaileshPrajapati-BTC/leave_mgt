@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Container, Content, List, ListItem, Thumbnail,Header, Title, Button, Icon, Text} from 'native-base';
+import { Container, Content, List, ListItem, Thumbnail,Header, Title, Button, Icon, Text, Badge} from 'native-base';
 
 
 export default class Requests extends Component {
@@ -14,6 +14,16 @@ export default class Requests extends Component {
       })
     }
 
+    changeStatusColor(status)
+    {
+      if(status=='approved')
+        return '#4CAF50';
+      else if(status=='pendding')
+        return '#FFEB3B'
+      else if(status=='rejected')
+        return '#D32F2F'
+    }
+
     render() {
       return(
             <Container>
@@ -21,9 +31,9 @@ export default class Requests extends Component {
               <List dataArray={this.props.data}
                     renderRow={(Request) =>
                       <ListItem button onPress={() => this._navigate('LeaveDetail',Request.id)}>
-                        <Thumbnail square size={50} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
-                        <Text>{Request.leave_type}</Text>
-                        <Text note>{Request.reason}</Text>
+                        <Text style={{fontSize:15,fontWeight:'bold'}}>{Request.username}</Text>
+                        <Text >{Request.reason}</Text>
+                        <Badge style={{ backgroundColor: this.changeStatusColor(Request.sign_off_status) }}>{Request.sign_off_status}</Badge>
                       </ListItem>
                     }>
               </List>
