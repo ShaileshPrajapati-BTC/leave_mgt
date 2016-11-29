@@ -37,7 +37,7 @@ export default class Requests extends Component {
                       </ListItem>
                     }>
               </List>
-          </Content> : <Content style={{top:100,left:70}}><Text>No Leave Request Available.</Text></Content>}
+          </Content> : <Content><Text>No Leave Request Available.</Text></Content>}
         </Container>
         );
     }

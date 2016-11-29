@@ -26,7 +26,7 @@ export default class Pendding extends Component {
                       </ListItem>
                     }>
               </List>
-          </Content> : <Content style={{top:100,left:70}}><Text>No Rejected Request Available.</Text></Content>}
+          </Content> : <Content><Text>No Rejected Request Available.</Text></Content>}
         </Container>
         );
     }

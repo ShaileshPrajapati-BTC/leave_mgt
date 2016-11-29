@@ -26,7 +26,7 @@ export default class Approved extends Component {
                       </ListItem>
                     }>
               </List>
-          </Content> : <Content style={{top:100,left:70}}><Text>No Approved Request Available.</Text></Content>}
+          </Content> : <Content><Text>No Approved Request Available.</Text></Content>}
         </Container>
         );
     }
