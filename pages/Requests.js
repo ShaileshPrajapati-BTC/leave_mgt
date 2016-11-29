@@ -18,10 +18,10 @@ export default class Requests extends Component {
     {
       if(status=='approved')
         return '#4CAF50';
-      else if(status=='pendding')
-        return '#FFEB3B'
+      else if(status=='pending')
+        return '#fdd835';
       else if(status=='rejected')
-        return '#D32F2F'
+        return '#D32F2F';
     }
 
     render() {

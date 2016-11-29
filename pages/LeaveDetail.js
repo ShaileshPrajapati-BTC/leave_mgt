@@ -63,10 +63,10 @@ export default class LeaveDetail extends Component {
   {
     if(status=='approved')
       return '#4CAF50';
-    else if(status=='pendding')
-      return '#FFEB3B'
+    else if(status=='pending')
+      return '#fdd835';
     else if(status=='rejected')
-      return '#D32F2F'
+      return '#D32F2F';
   }
 
   async changeStatus(sign_off_status){
@@ -108,7 +108,7 @@ export default class LeaveDetail extends Component {
            barStyle="light-content"
           />
            <Content>
-            {(this.state.loading) ? <Spinner color='#2196F3'/> : <View>
+             <View>
               <List>
                   <ListItem>
                     <Thumbnail circle size={80} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
@@ -163,22 +163,23 @@ export default class LeaveDetail extends Component {
                 </CardItem>
               </Card>
             </View>
-            }
            </Content>
-           { (this.props.status) ?
-              (this.state.results.leave_status=='pending')?
-              <Footer >
-                <FooterTab>
-                    <Button onPress={() => this.changeStatus('approved')}>
-                        Approved
-                        <Icon name='md-checkmark-circle' />
-                    </Button>
-                    <Button onPress={() => this.changeStatus('rejected')}>
-                        Rejected
-                        <Icon name='md-close-circle' />
-                    </Button>
-                </FooterTab>
-              </Footer>: <Text/> :<Text/>
+           { 
+            (this.state.loading) ? <Spinner color='#2196F3'/> :
+              (this.props.status) ?
+                (this.state.results.leave_status=='pending')?
+                <Footer >
+                  <FooterTab>
+                      <Button onPress={() => this.changeStatus('approved')}>
+                          Approved
+                          <Icon name='md-checkmark-circle' />
+                      </Button>
+                      <Button onPress={() => this.changeStatus('rejected')}>
+                          Rejected
+                          <Icon name='md-close-circle' />
+                      </Button>
+                  </FooterTab>
+                </Footer>: <Text/> :<Text/> 
            }
          </Container>
     );
