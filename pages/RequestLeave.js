@@ -1,18 +1,22 @@
 import React,{Component} from 'react';
 import { Container, Content, List, ListItem, InputGroup,
-         Input, Icon, Text, Button,Picker,Card,CardItem,Spinner } from 'native-base';
-import {AsyncStorage,ToastAndroid} from 'react-native';
+         Input, Icon, Text, Button,Picker,Card,CardItem,Spinner, Header, Title } from 'native-base';
+import {AsyncStorage,ToastAndroid,Modal,View,TouchableHighlight} from 'react-native';
 import DatePicker from 'react-native-datepicker'
 import FloatingLabel from 'react-native-floating-labels';
 const Item = Picker.Item;
+
+import ItemCheckbox from 'react-native-item-checkbox';
 
 
 export default class RequestLeave extends Component {
     constructor(props) {
       super(props);
       this.state = {
+          modalVisible: false,
           selected_user: '1',
           selected_user_list:[],
+          m_id:[],
           user_name:[],
           leave_duration: '1',
           access_token:'',
@@ -23,8 +27,12 @@ export default class RequestLeave extends Component {
           end: new Date(),
           leave_types:[],
           users:[]
-          
+
       };
+    }
+
+    setModalVisible(visible) {
+      this.setState({modalVisible: visible});
     }
 
     componentWillMount () {
@@ -48,7 +56,7 @@ export default class RequestLeave extends Component {
       fetch('http://192.168.0.105:3000/sign_off_types.json/?access_token='+this.state.access_token, {method: "GET"})
         .then((response) => response.json())
         .then((responseData) =>
-        { 
+        {
 
           this.setState({ leave_types:responseData.sign_off_types, refreshing: false});
 
@@ -63,7 +71,7 @@ export default class RequestLeave extends Component {
       fetch('http://192.168.0.105:3000/sign_offs/new.json?access_token='+this.state.access_token, {method: "GET"})
         .then((response) => response.json())
         .then((responseData) =>
-        { 
+        {
 
           this.setState({ users:responseData.users, refreshing: false});
 
@@ -112,18 +120,6 @@ export default class RequestLeave extends Component {
         alert('Something went wrong try again');
     }
 
-    onUserChange(value: string) {
-      if (this.state.selected_user_list.indexOf(value) < 0)
-          this.state.selected_user_list.push(value);
-        else
-          this.state.selected_user_list.splice(this.state.selected_user_list.indexOf(value),1);
-        
-        this.setState({
-            selected_user: value,
-            selected_user_list: this.state.selected_user_list
-        });
-      this.getUserName(this.state.selected_user_list);
-    }
 
     onLeaveTypeChange(value: string) {
         this.setState({
@@ -146,37 +142,51 @@ export default class RequestLeave extends Component {
       })
     }
 
-    getUserName(user){
-      name = [];
-      var doubles = this.state.users.map(function(num) {
-        if (user.indexOf(num.id) > -1)
-          name.push(num.email);
-        });
-      this.setState({user_name:name});
-      
+
+    onCheck(id) {
+      this.state.selected_user_list.push(id)
+      this.setState({selected_user_list: this.state.selected_user_list})
+    }
+    onUncheck(id){
+      this.state.selected_user_list.splice(this.state.selected_user_list.indexOf(id))
+      this.setState({selected_user_list: this.state.selected_user_list})
     }
     render() {
         return (
           <Container>
           {(this.state.loading)? <Content><Spinner color='#2196F3'/></Content>:
             <Content>
-              <Card>
-                <CardItem> 
-
-                  <Text style={{fontSize:15,fontWeight:'bold'}}>
-                    To  {this.state.user_name.toString()}
-                  </Text>
-
-                  <Picker
-                    iosHeader="Select one"
-                    mode="dialog"
-                    selectedValue={this.state.selected_user}
-                    onValueChange={this.onUserChange.bind(this)} >
-                    {this.state.users.map((l,i) => {return <Item value={l.id}  label={l.email} key={l.id}  /> })}
-                  </Picker>
-                </CardItem>
-              </Card>
                     <List>
+                        <ListItem button onPress={() => {
+                              this.setModalVisible(true)
+                            }}>
+                          <Text>Send to</Text>
+                          <Modal
+                            animationType={"slide"}
+                            transparent={false}
+                            visible={this.state.modalVisible}
+                            onRequestClose={() => this.setState({modalVisible: false})}
+                            >
+                           <Container>
+                           <Header backgroundColor="#2196F3">
+                               <Title>Send To ({this.state.selected_user_list.length})</Title>
+                           </Header>
+                           <Content>
+                            <List dataArray={this.state.users}
+                              renderRow={(leave_type) =>
+                                  <ListItem>
+                                     <ItemCheckbox
+                                        onCheck={this.onCheck.bind(this, leave_type.id)}
+                                        onUncheck={this.onUncheck.bind(this, leave_type.id)}
+                                      />
+                                      <Text style={{left:5}}>{leave_type.email}</Text>
+                                  </ListItem>
+                                }>
+                            </List>
+                              </Content>
+                            </Container>
+                          </Modal>
+                        </ListItem>
                         <ListItem>
                             <InputGroup >
                                 <Input stackedLabel label="Leave Resaon"
