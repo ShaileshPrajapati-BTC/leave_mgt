@@ -142,15 +142,26 @@ export default class RequestLeave extends Component {
       })
     }
 
+    onUserChange(value) {
+      if (this.state.selected_user_list.indexOf(value) < 0)
+          this.state.selected_user_list.push(value);
+        else
+          this.state.selected_user_list.splice(this.state.selected_user_list.indexOf(value),1);
+        
+        this.setState({
+            selected_user: value,
+            selected_user_list: this.state.selected_user_list
+        });
+    }
+
 
     onCheck(id) {
-      this.state.selected_user_list.push(id)
-      this.setState({selected_user_list: this.state.selected_user_list})
+      this.onUserChange(id);
     }
     onUncheck(id){
-      this.state.selected_user_list.splice(this.state.selected_user_list.indexOf(id))
-      this.setState({selected_user_list: this.state.selected_user_list})
+      this.onUserChange(id);
     }
+
     render() {
         return (
           <Container>
