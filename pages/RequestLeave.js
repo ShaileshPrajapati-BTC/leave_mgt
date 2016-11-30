@@ -172,7 +172,7 @@ export default class RequestLeave extends Component {
         return (
           <Container>
             <Content>
-              {(this.state.loading)? <Spinner color='#2196F3'/>:
+              {(this.state.loading)? <Spinner color='#2196F3' style={{top:100}}/>:
                     <View>
                       <List>
                         <ListItem button onPress={() => {
