@@ -194,9 +194,11 @@ export default class RequestLeave extends Component {
                               renderRow={(leave_type) =>
                                   <ListItem>
                                      <ItemCheckbox
+                                        default={(this.state.selected_user_list.indexOf(leave_type.id) > -1) ? true : false}
                                         onCheck={this.onCheck.bind(this, leave_type.id)}
                                         onUncheck={this.onUncheck.bind(this, leave_type.id)}
                                         size={30}
+                                        color='#2196F3'
                                       />
                                       <Text style={{left:5}}>{leave_type.email}</Text>
                                   </ListItem>
