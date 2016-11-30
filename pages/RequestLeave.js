@@ -147,7 +147,7 @@ export default class RequestLeave extends Component {
           this.state.selected_user_list.push(value);
         else
           this.state.selected_user_list.splice(this.state.selected_user_list.indexOf(value),1);
-        
+
         this.setState({
             selected_user: value,
             selected_user_list: this.state.selected_user_list
@@ -189,6 +189,7 @@ export default class RequestLeave extends Component {
                                      <ItemCheckbox
                                         onCheck={this.onCheck.bind(this, leave_type.id)}
                                         onUncheck={this.onUncheck.bind(this, leave_type.id)}
+                                        size={30}
                                       />
                                       <Text style={{left:5}}>{leave_type.email}</Text>
                                   </ListItem>
