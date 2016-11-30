@@ -74,7 +74,7 @@ export default class Profile extends Component {
             {(this.state.loading) ? <Spinner color='#2196F3'/> :
               <List>
                   <ListItem>
-                    <Thumbnail circle size={80} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                    <Thumbnail circle size={80} source={{uri: 'http://simpleicon.com/wp-content/uploads/user1.png' }} />
                     <Text>{this.state.user.name}</Text>
                     <Text note>{this.state.user.designation}</Text>
                   </ListItem>

@@ -35,7 +35,6 @@ export default class LeaveDetail extends Component {
   async getToken(){
      AsyncStorage.getItem('current_user', (err, result) => {
        current_user= JSON.parse(result)
-
        if (result!=null){
           this.setState({access_token:current_user.user.access_token});
           this.getLeaveDetails();
@@ -44,15 +43,12 @@ export default class LeaveDetail extends Component {
   }
 
   async getLeaveDetails(){
-    this.setState({
-      loading: true
-    });
    fetch('http://192.168.0.105:3000/sign_offs/'+this.props.id+'.json/?access_token='+this.state.access_token, {method: "GET"})
     .then((response) => response.json())
     .then((responseData) =>
     {
         console.log(responseData);
-       this.setState({ results: responseData, loading: false});
+       this.setState({ results: responseData});
     })
     .catch((error) => {
         console.error(error);
@@ -87,8 +83,17 @@ export default class LeaveDetail extends Component {
          'access_token': this.state.access_token,
        })
       });
-    ToastAndroid.show('Leave '+sign_off_status+' Successfully...',ToastAndroid.LONG,ToastAndroid.CENTER,)
-    this.getLeaveDetails()
+     let res = await response.json();
+      console.log(res);
+      if (res.success==true){
+        this.getLeaveDetails()
+        this.setState({ loading: false });
+        ToastAndroid.show('Leave '+sign_off_status+' Successfully...',ToastAndroid.LONG,ToastAndroid.CENTER,);
+      }
+      else{
+        this.setState({ loading: false });
+        alert('Something went wrong try again');
+      }
   }
 
   render() {
@@ -162,12 +167,12 @@ export default class LeaveDetail extends Component {
                   </Text>
                 </CardItem>
               </Card>
+               {(this.state.loading) ? <Spinner color='#2196F3'/> : <Text/>}
             </View>
            </Content>
-           { 
-            (this.state.loading) ? <Spinner color='#2196F3'/> :
+           {  (!this.state.loading) ?
               (this.props.status) ?
-                (this.state.results.leave_status=='pending')?
+              (this.state.results.leave_status=='pending')?
                 <Footer >
                   <FooterTab>
                       <Button onPress={() => this.changeStatus('approved')}>
@@ -179,7 +184,7 @@ export default class LeaveDetail extends Component {
                           <Icon name='md-close-circle' />
                       </Button>
                   </FooterTab>
-                </Footer>: <Text/> :<Text/> 
+                </Footer>: <Text/> :<Text/> :<Text/>
            }
          </Container>
     );

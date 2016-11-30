@@ -49,7 +49,7 @@ export default class ControlPanel extends Component {
      <Container backgroundColor='white'>
       <Content>
         <View style={{flex:1,flexDirection:'column', justifyContent:'center', alignItems:'center',padding:30}}>
-          <Image source={{uri:'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg'}} style={{width: 50, height: 50,borderRadius: 25}}/>
+          <Image source={{uri:'http://simpleicon.com/wp-content/uploads/user1.png'}} style={{width: 50, height: 50,borderRadius: 25}}/>
           <Text style={{top:10}}>{this.state.user_name}</Text>
         </View>
         <List>
@@ -60,6 +60,10 @@ export default class ControlPanel extends Component {
           <ListItem iconLeft button onPress={ () => this._navigate('LeavesList',0) }>
               <Icon name="ios-mail-outline" style={{ color: '#0A69FE' }} />
               <Text>Requested Leaves</Text>
+          </ListItem>
+          <ListItem iconLeft button onPress={ () => this._navigate('Notification',0) }>
+              <Icon name="ios-notifications" style={{ color: '#0A69FE' }} />
+              <Text>Notifications</Text>
           </ListItem>
           <ListItem iconLeft button onPress={ () => this.logout() }>
               <Icon name="md-log-out" style={{ color: '#0A69FE' }} />

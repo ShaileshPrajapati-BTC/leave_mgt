@@ -7,9 +7,7 @@ import {
   RefreshControl
 } from 'react-native';
 
-import Approved from './Approved.js'
-import Pendding from './Pendding.js'
-import Rejected from './Rejected.js'
+import LeaveList from './LeaveList.js'
 import Requests from './Requests.js'
 
 export default class Notification extends Component {
@@ -95,9 +93,9 @@ export default class Notification extends Component {
                 {(this.state.loading) ? <Spinner color='#2196F3'/> :
                   <Tabs>
                       <Requests tabLabel='Requests' navigator={this.props.navigator} data={this.state.leaves_for_approval}/>
-                      <Approved tabLabel='Approved' navigator={this.props.navigator} data={this.state.approved_requests}/>
-                      <Pendding tabLabel='Pending' navigator={this.props.navigator} data={this.state.pending_requests} />
-                      <Rejected tabLabel='Rejected' navigator={this.props.navigator} data={this.state.rejected_requests}/>
+                      <LeaveList tabLabel='Approved' navigator={this.props.navigator} data={this.state.approved_requests}/>
+                      <LeaveList tabLabel='Pending' navigator={this.props.navigator} data={this.state.pending_requests} />
+                      <LeaveList tabLabel='Rejected' navigator={this.props.navigator} data={this.state.rejected_requests}/>
                   </Tabs>
                 }
             </Content>

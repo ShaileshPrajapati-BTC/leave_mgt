@@ -31,12 +31,21 @@ export default class RequestLeave extends Component {
       };
     }
 
-    setModalVisible(visible) {
-      this.setState({modalVisible: visible});
-    }
-
     componentWillMount () {
       this.getToken();
+    }
+
+    _navigate(name) {
+      this.props.navigator.push({
+        name: name,
+        passProps: {
+          name: name
+        }
+      })
+    }
+
+    setModalVisible(visible) {
+      this.setState({modalVisible: visible});
     }
 
     async getToken(){
@@ -108,18 +117,16 @@ export default class RequestLeave extends Component {
       });
       let res = await response.json();
       console.log(res);
-      if (res.success==true)
-      {
-         this.setState({
-        loading: false
-      });
-       ToastAndroid.show('Leave Request Sent Successfully',ToastAndroid.LONG,ToastAndroid.CENTER,)
-
+      if (res.success==true){
+        this.setState({
+          loading: false
+        });
+        ToastAndroid.show('Leave Request Sent Successfully',ToastAndroid.LONG,ToastAndroid.CENTER,);
       }
-      else
+      else{
         alert('Something went wrong try again');
+      }
     }
-
 
     onLeaveTypeChange(value: string) {
         this.setState({
@@ -131,15 +138,6 @@ export default class RequestLeave extends Component {
         this.setState({
             leave_duration: value,
         });
-    }
-
-    _navigate(name) {
-      this.props.navigator.push({
-        name: name,
-        passProps: {
-          name: name
-        }
-      })
     }
 
     onUserChange(value) {
@@ -158,20 +156,29 @@ export default class RequestLeave extends Component {
     onCheck(id) {
       this.onUserChange(id);
     }
+
     onUncheck(id){
       this.onUserChange(id);
     }
-
+    validate(){
+      if(this.state.reason.length >1 && this.state.selected_user_list.length >0){
+        return false
+      }
+      else{
+        return true
+      }
+    }
     render() {
         return (
           <Container>
-          {(this.state.loading)? <Content><Spinner color='#2196F3'/></Content>:
             <Content>
-                    <List>
+              {(this.state.loading)? <Spinner color='#2196F3'/>:
+                    <View>
+                      <List>
                         <ListItem button onPress={() => {
                               this.setModalVisible(true)
                             }}>
-                          <Text>Send to</Text>
+                          <Text>Send to ({this.state.selected_user_list.length})</Text>
                           <Modal
                             animationType={"slide"}
                             transparent={false}
@@ -289,11 +296,12 @@ export default class RequestLeave extends Component {
                             </InputGroup>
                         </ListItem>
                     </List>
-                    <Button disabled={(this.state.reason.length < 1)? true : false} style={{ alignSelf: 'center', marginTop: 20, marginBottom: 20 }}
+                    <Button disabled={this.validate()} style={{ alignSelf: 'center', marginTop: 20, marginBottom: 20 }}
                     onPress={() => this.sendLeaveRequest()}>
                         Send Leave Request
                     </Button>
-                </Content>}
+                  </View>}
+                </Content>
             </Container>
         );
     }
