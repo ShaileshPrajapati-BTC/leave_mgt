@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import { Container, Content, List, ListItem, Thumbnail,Header, Title, Button, Icon, Text, Badge} from 'native-base';
 
+import Healper from './Healper.js'
+
 
 export default class Requests extends Component {
 
@@ -14,16 +16,6 @@ export default class Requests extends Component {
       })
     }
 
-    changeStatusColor(status)
-    {
-      if(status=='approved')
-        return '#4CAF50';
-      else if(status=='pending')
-        return '#fdd835';
-      else if(status=='rejected')
-        return '#D32F2F';
-    }
-
     render() {
       return(
             <Container>
@@ -33,7 +25,9 @@ export default class Requests extends Component {
                       <ListItem button onPress={() => this._navigate('LeaveDetail',Request.id)}>
                         <Text style={{fontSize:15,fontWeight:'bold'}}>{Request.username}</Text>
                         <Text >{Request.reason}</Text>
-                        <Badge style={{ backgroundColor: this.changeStatusColor(Request.sign_off_status) }}>{Request.sign_off_status}</Badge>
+                        <Text style={{fontSize:12}}>{Healper.dateFormat(Request.created_at)}</Text>
+                        
+                        <Badge style={{ backgroundColor: Healper.changeStatusColor(Request.sign_off_status) }}>{Request.sign_off_status}</Badge>
                       </ListItem>
                     }>
               </List>

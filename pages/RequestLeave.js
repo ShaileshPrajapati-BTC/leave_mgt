@@ -7,6 +7,7 @@ import FloatingLabel from 'react-native-floating-labels';
 const Item = Picker.Item;
 
 import ItemCheckbox from 'react-native-item-checkbox';
+import Healper from './Healper.js'
 
 
 export default class RequestLeave extends Component {
@@ -129,15 +130,15 @@ export default class RequestLeave extends Component {
     }
 
     onLeaveTypeChange(value: string) {
-        this.setState({
-            leave_type: value,
-        });
+      this.setState({
+          leave_type: value,
+      });
     }
 
     onValueChangeDuration(value: string) {
-        this.setState({
-            leave_duration: value,
-        });
+      this.setState({
+          leave_duration: value,
+      });
     }
 
     onUserChange(value) {
@@ -160,14 +161,7 @@ export default class RequestLeave extends Component {
     onUncheck(id){
       this.onUserChange(id);
     }
-    validate(){
-      if(this.state.reason.length >1 && this.state.selected_user_list.length >0){
-        return false
-      }
-      else{
-        return true
-      }
-    }
+
     render() {
         return (
           <Container>
@@ -187,6 +181,9 @@ export default class RequestLeave extends Component {
                             >
                            <Container>
                            <Header backgroundColor="#2196F3">
+                            <Button transparent onPress = {()=> this.setState({modalVisible: false})}>
+                              <Icon name='ios-arrow-back' />
+                            </Button>
                                <Title>Send To ({this.state.selected_user_list.length})</Title>
                            </Header>
                            <Content>
@@ -298,7 +295,7 @@ export default class RequestLeave extends Component {
                             </InputGroup>
                         </ListItem>
                     </List>
-                    <Button disabled={this.validate()} style={{ alignSelf: 'center', marginTop: 20, marginBottom: 20 }}
+                    <Button disabled={Healper.validate(this.state.reason,this.state.selected_user_list)} style={{ alignSelf: 'center', marginTop: 20, marginBottom: 20 }}
                     onPress={() => this.sendLeaveRequest()}>
                         Send Leave Request
                     </Button>

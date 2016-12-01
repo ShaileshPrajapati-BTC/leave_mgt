@@ -89,7 +89,8 @@ export default class Notification extends Component {
                                 <RefreshControl
                                   refreshing={this.state.refreshing}
                                   onRefresh={this.getLeaveDetails.bind(this)}
-                                />}>
+                                />
+                }>
                 {(this.state.loading) ? <Spinner color='#2196F3'/> :
                   <Tabs>
                       <Requests tabLabel='Requests' navigator={this.props.navigator} data={this.state.leaves_for_approval}/>

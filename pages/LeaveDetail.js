@@ -7,12 +7,15 @@ import {
   AsyncStorage,
   StatusBar,View,ToastAndroid
 } from 'react-native';
+import Healper from './Healper.js'
+
 export default class LeaveDetail extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       access_token:'',
+      current_user_id:'',
       results:{
         Leave:[]
       }
@@ -36,7 +39,8 @@ export default class LeaveDetail extends Component {
      AsyncStorage.getItem('current_user', (err, result) => {
        current_user= JSON.parse(result)
        if (result!=null){
-          this.setState({access_token:current_user.user.access_token});
+          this.setState({access_token:current_user.user.access_token,
+                         current_user_id:current_user.user.id});
           this.getLeaveDetails();
        }
      });
@@ -55,16 +59,6 @@ export default class LeaveDetail extends Component {
     });
   }
 
-  changeStatusColor(status)
-  {
-    if(status=='approved')
-      return '#4CAF50';
-    else if(status=='pending')
-      return '#fdd835';
-    else if(status=='rejected')
-      return '#D32F2F';
-  }
-
   async changeStatus(sign_off_status){
     this.setState({
       loading: true
@@ -78,7 +72,8 @@ export default class LeaveDetail extends Component {
        },
        body: JSON.stringify({
          sign_off:{
-           status: sign_off_status
+           status: sign_off_status,
+           approved_rejected_by_id:this.state.current_user_id
          },
          'access_token': this.state.access_token,
        })
@@ -132,7 +127,8 @@ export default class LeaveDetail extends Component {
                   </Card>
                   <ListItem>
                     <Text>Status</Text>
-                    <Badge style={{ backgroundColor: this.changeStatusColor(this.state.results.leave_status) }}>{this.state.results.leave_status}</Badge>
+                    <Text>By {this.state.results.approved_rejected_by}</Text>
+                    <Badge style={{ backgroundColor: Healper.changeStatusColor(this.state.results.leave_status) }}>{this.state.results.leave_status}</Badge>
                   </ListItem>
                   <ListItem>
                     <Text>Date</Text>
