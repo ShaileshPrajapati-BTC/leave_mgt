@@ -1,91 +1,98 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import React,{Component} from 'react';
+import { Spinner, Container, Content, List, ListItem, InputGroup,
+         Input, Icon, Text, Picker, Button ,
+         Thumbnail
+       } from 'native-base';
 
-import PushController from "./PushController";
-import firebaseClient from  "./FirebaseClient";
-import FCM from "react-native-fcm";
+import {AsyncStorage} from 'react-native'
+export default class Login extends Component {
 
-export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      token: ""
-    }
+      login: true,
+      email: '',
+      password: ''
+    };
+
   }
-omponentDidMount() {
+  componentDidMount () {
+    this.checkLogin();
+  }
 
-    FCM.requestPermissions();
+  async checkLogin(){
+    AsyncStorage.getItem('current_user', (err, result) => {
+      current_user= JSON.parse(result)
+      if (result!=null){
+        this._navigate('Leaves',0);
+      }
+      else
+      {
+        this.setState({login: false});
+      }
+    });
+  }
+  _navigate(name, index) {
+    this.props.navigator.push({
+      name: name,
+      passProps: {
+        index: index
+      }
+    })
+  }
 
-    FCM.getFCMToken().then(token => {
-      console.log("TOKEN (getFCMToken)", token);
+  async login(email,password){
+
+    let response = await fetch('http://192.168.0.105:3000/users/sign_in', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user:{
+          email: this.state.email,
+          password: this.state.password
+        }
+      })
     });
 
-    
+    let res = await response.json();
+
+    if (res.success==true)
+    {
+      AsyncStorage.setItem('current_user', JSON.stringify(res));
+      this._navigate('Leaves',0)
+    }
+    else
+      alert('Invalid email and password');
   }
+
   render() {
-    let { token } = this.state;
-
     return (
-      <View style={styles.container}>
-        <PushController
-          onChangeToken={token => this.setState({token: token || ""})}
-        />
-        <Text style={styles.welcome}>
-          Welcome to Simple Fcm Client!
-        </Text>
-
-        <Text style={styles.instructions}>
-          Token: {this.state.token}
-        </Text>
-
-        <TouchableOpacity onPress={() => firebaseClient.sendNotification(token)} style={styles.button}>
-          <Text style={styles.buttonText}>Send Notification</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => firebaseClient.sendData(token)} style={styles.button}>
-          <Text style={styles.buttonText}>Send Data</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => firebaseClient.sendNotificationWithData(token)} style={styles.button}>
-          <Text style={styles.buttonText}>Send Notification With Data</Text>
-        </TouchableOpacity>
-      </View>
+      <Container >
+        {(this.state.login)? <Content style={{top:200}}><Spinner color='#2196F3'/></Content>:
+        <Content>
+          <List style={{ alignSelf: 'center', marginTop: 150, marginBottom: 20,width:300 }} >
+            <Thumbnail size={80} style={{ alignSelf: 'center',marginBottom: 20}} source={{uri:'https://cdn-images-1.medium.com/max/139/1*Q5ya0DSeneWh-Nieprl15w.png'}} />
+            <ListItem >
+              <InputGroup iconRight >
+                  <Input placeholder='Email....' onChangeText={(text) => {this.setState({email: text})}}/>
+              </InputGroup>
+            </ListItem>
+            <ListItem >
+              <InputGroup iconRight >
+                  <Input placeholder='Password' secureTextEntry={true} onChangeText={(text) => {this.setState({password: text})}}/>
+              </InputGroup>
+            </ListItem>
+            <Button style={{ alignSelf: 'center', marginTop: 20, marginBottom: 20,width:100 }} onPress={ () => this.login() }>
+             Login
+            </Button>
+          </List>
+          </Content>
+        }
+     </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  button: {
-    backgroundColor: "teal",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    marginVertical: 15,
-    borderRadius: 10
-  },
-  buttonText: {
-    color: "white",
-    backgroundColor: "transparent"
-  },
-});
