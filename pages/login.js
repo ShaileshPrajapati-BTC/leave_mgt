@@ -5,6 +5,8 @@ import { Spinner, Container, Content, List, ListItem, InputGroup,
        } from 'native-base';
 
 import {AsyncStorage} from 'react-native'
+import FCM from "react-native-fcm";
+
 export default class Login extends Component {
 
   constructor(props) {
@@ -13,11 +15,20 @@ export default class Login extends Component {
     this.state = {
       login: true,
       email: '',
-      password: ''
+      password: '',
+      fcm_token: ""
+
     };
 
   }
   componentDidMount () {
+
+    FCM.requestPermissions();
+
+    FCM.getFCMToken().then(token => {
+      this.setState({fcm_token:token});
+    });
+
     this.checkLogin();
   }
 
@@ -53,7 +64,8 @@ export default class Login extends Component {
       body: JSON.stringify({
         user:{
           email: this.state.email,
-          password: this.state.password
+          password: this.state.password,
+          fcm_token:this.state.fcm_token
         }
       })
     });

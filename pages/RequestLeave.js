@@ -8,6 +8,7 @@ const Item = Picker.Item;
 
 import ItemCheckbox from 'react-native-item-checkbox';
 import Healper from './Healper.js'
+import PushController from "./PushController";
 
 
 export default class RequestLeave extends Component {
@@ -28,7 +29,6 @@ export default class RequestLeave extends Component {
           end: new Date(),
           leave_types:[],
           users:[]
-
       };
     }
 
@@ -168,6 +168,7 @@ export default class RequestLeave extends Component {
             <Content>
               {(this.state.loading)? <Spinner color='#2196F3' style={{top:100}}/>:
                     <View>
+                    <PushController/>
                       <List>
                         <ListItem button onPress={() => {
                               this.setModalVisible(true)

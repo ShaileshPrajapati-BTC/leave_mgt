@@ -2,8 +2,6 @@ import React, { Component } from "react";
 
 import FCM from "react-native-fcm";
 
-import firebaseClient from  "./FirebaseClient";
-
 export default class PushController extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +12,6 @@ export default class PushController extends Component {
 
     FCM.getFCMToken().then(token => {
       console.log("TOKEN (getFCMToken)", token);
-      this.props.onChangeToken(token);
     });
 
     FCM.getInitialNotification().then(notif => {
@@ -26,7 +23,7 @@ export default class PushController extends Component {
       if (notif && notif.local_notification) {
         return;
       }
-      this.sendRemote(notif.fcm);
+      this.sendRemote(notif);
     });
 
     this.refreshUnsubscribe = FCM.on("refreshToken", token => {
@@ -51,8 +48,6 @@ export default class PushController extends Component {
     this.refreshUnsubscribe();
     this.notificationUnsubscribe();
   }
-
-
   render() {
     return null;
   }
