@@ -21,9 +21,9 @@ export default class LeaveList extends Component {
               <List dataArray={this.props.data}
                     renderRow={(approved) =>
                       <ListItem button onPress={() => this._navigate('LeaveDetail',approved.id)}>
-                        <Thumbnail square size={50} source={{uri: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAgzAAAAJDZjMmIxODk0LTNjNDktNDgyMi04OTY3LTNiMDU0YWE0ZjQwMw.jpg' }} />
+                        <Thumbnail square size={50} source={{uri: 'https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png' }} />
+                        <Text style={{fontSize:17,fontWeight:'bold'}}>{approved.reason}</Text>
                         <Text>{approved.leave_type}</Text>
-                        <Text>{approved.reason}</Text>
                         <Text style={{fontSize:12}}>{Healper.dateFormat(approved.updated_at)}</Text>
                       </ListItem>
                     }>

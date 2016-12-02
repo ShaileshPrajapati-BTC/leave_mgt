@@ -49,7 +49,7 @@ export default class ControlPanel extends Component {
      <Container backgroundColor='white'>
       <Content>
         <View style={{flex:1,flexDirection:'column', justifyContent:'center', alignItems:'center',padding:30}}>
-          <Image source={{uri:'http://simpleicon.com/wp-content/uploads/user1.png'}} style={{width: 50, height: 50,borderRadius: 25}}/>
+          <Image source={{uri:'https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png'}} style={{width: 50, height: 50,borderRadius: 25}}/>
           <Text style={{top:10}}>{this.state.user_name}</Text>
         </View>
         <List>

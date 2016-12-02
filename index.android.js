@@ -4,6 +4,7 @@
  import Profile from './pages/Profile.js';
 
  import Drawer from 'react-native-drawer';
+ import RequiresConnection from 'react-native-offline-mode';
 
  import Leaves from './pages/Leaves.js';
  import Notification from './pages/Notification.js';
@@ -61,4 +62,20 @@ export default class HPSReactNative extends Component {
   }
 }
 
-AppRegistry.registerComponent('HPSReactNative', () => HPSReactNative);
+class OfflineClass extends Component {
+  render() {
+    return (
+      <Text>Oh snap! You're offline!</Text>
+    )
+  }
+}
+
+const offlineFunction = () => 
+    <View style={{flex:1,flexDirection:'column',justifyContent:'center', alignItems:'center',padding:30}}>
+      <Text style={{fontSize:17,fontWeight:'bold'}}>
+        No Internet Available.Please check your Internet connection.
+      </Text>
+    </View>
+
+AppRegistry.registerComponent('HPSReactNative', () => RequiresConnection(HPSReactNative, offlineFunction));
+

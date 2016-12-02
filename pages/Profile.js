@@ -74,7 +74,7 @@ export default class Profile extends Component {
             {(this.state.loading) ? <Spinner color='#2196F3'/> :
               <List>
                   <ListItem>
-                    <Thumbnail circle size={80} source={{uri: 'http://simpleicon.com/wp-content/uploads/user1.png' }} />
+                    <Thumbnail circle size={80} source={{uri: 'https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png' }} />
                     <Text>{this.state.user.name}</Text>
                     <Text note>{this.state.user.designation}</Text>
                   </ListItem>
