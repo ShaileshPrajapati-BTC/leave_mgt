@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 import Menu from './menu.js';
-import Tabbar from './LeavesTab.js';
+import HomeTabs from './HomeTabs.js';
 import DrawerBar from './drawer.js';
 
 import {
@@ -15,7 +15,7 @@ export default class Leaves extends Component {
 
   renderScene() {
     return (
-      <Tabbar navigator={this.props.navigator} index={this.props.index} />
+      <HomeTabs navigator={this.props.navigator} index={this.props.index} />
     );
   }
 

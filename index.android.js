@@ -6,6 +6,7 @@
  import Drawer from 'react-native-drawer';
  import RequiresConnection from 'react-native-offline-mode';
 
+ import LeavesTab from './pages/LeavesTab.js'
  import Leaves from './pages/Leaves.js';
  import Notification from './pages/Notification.js';
  import LeaveDetail from './pages/LeaveDetail.js';
@@ -30,7 +31,7 @@ export default class HPSReactNative extends Component {
       return <Profile navigator={navigator} {...route.passProps} route={route} />
     }
     if(route.name == 'LeavesList') {
-      return <RequestedLeaveList navigator={navigator} {...route.passProps} route={route} />
+      return <LeavesTab navigator={navigator} {...route.passProps} route={route} />
     }
     if(route.name == 'Leaves') {
       return <Leaves navigator={navigator} {...route.passProps} route={route} />
